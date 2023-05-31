@@ -252,7 +252,7 @@ def demux(img):
 if __name__ == '__main__':
 
     # =========== BIT FILES =============
-    bitfile       = "bitfile/Reveal_Top_t7_based_on_t6_06.07.bit"
+    bitfile       = "bitfile/Reveal_Top_t7_based_on_t6_06.08.bit"
     #bitfile     = 'bitfile/Reveal_Top_t7_based_on_t6_roberto_ADC2_EN_03.bit'
 
 
@@ -279,7 +279,6 @@ if __name__ == '__main__':
 
 
     # =========== EXP/RO Variables ========
-
     if(0):
         subFrameNum = 900        # Number of subframes
         exposure    = 60         # =(exposure time(us) per subframe)/2. must be larger than 26.2*repNum. Sorry it's kinda weird right now
@@ -374,8 +373,8 @@ if __name__ == '__main__':
     t6.param_set(t6.param['ADC1_T5'],       4)                # > TADC*14
     t6.param_set(t6.param['ADC1_T6'],       1)    #  =1
     t6.param_set(t6.param['ADC1_T7'],       30)   #  > 20
-    t6.param_set(t6.param['ADC1_T8'],       3)
-    t6.param_set(t6.param['ADC1_T9'],       3+20)
+    t6.param_set(t6.param['ADC1_T8'],       2)     # 2 needs 1.8V
+    t6.param_set(t6.param['ADC1_T9'],       2+20)  # 3 needs 1.2/1.3V
     t6.param_set(t6.param['ADC1_Tcolumn'],  int(TADC*17 + 30*14 + 4)) #T4 + T7*12 + T5
     t6.param_set(t6.param['ADC1_NUM_ROW'],  rows_test+1)
 
