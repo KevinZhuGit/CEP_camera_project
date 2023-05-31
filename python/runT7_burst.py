@@ -49,6 +49,7 @@ def nothing(umm):
 
     pass
 
+
 def getADCs(cam, rows, NSUB, adc1_en=True, adc2_en = True):
     """
         cam: camera class handle
@@ -67,6 +68,7 @@ def getADCs(cam, rows, NSUB, adc1_en=True, adc2_en = True):
     return raw_adc1, raw_adc2
     # return raw
 
+
 def arrangeImg(cam,raw_adc1=None,raw_adc2=None,rows_adc1=480,rows_adc2=480,adc2_PerCh=16):
     if(raw_adc1!=None):
         img_adc1 = cam.arrange_raw_T7(raw_adc1,rows_adc1)
@@ -78,6 +80,7 @@ def arrangeImg(cam,raw_adc1=None,raw_adc2=None,rows_adc1=480,rows_adc2=480,adc2_
         img_adc2 = np.zeros((row,col),dtype=np.uint16)
 
     return img_adc1,img_adc2
+
 
 def getImg(cam,rows):
     """
@@ -98,6 +101,7 @@ def getImg(cam,rows):
     # logging.info('rearrange time: {}'.format(time.time()-tic))
     return raw, raw_img    
 
+
 def getSubImg(cam,NSUB):
     pread=bytearray(int(680*480*256/255*NSUB/8));
     t6.read(0xa3,pread)
@@ -105,6 +109,7 @@ def getSubImg(cam,NSUB):
     mean = (1-cam.arrange_adc2(pread))*(2**16-1)
 
     return mean.astype(np.uint16)
+
 
 def showImg(win,img,cam=None,show=True,\
             raw=False,gain=False,black=False,dynamic=False,hdr=False,\
@@ -213,6 +218,34 @@ def exit_handler(cam):
     print("adc2_spacing-------: {}".format(adc2_spacing))
 
 
+def demux(img):
+    """
+    img@ip: input image of size 480x1360
+    final_img@op: Demultiplexed image of size 480x1360
+
+    HARD CODED FOR BURST 8x8 mask
+    """
+
+    step = 8
+    v_step = 480 // step
+    h_step = 680 // step
+
+    col_offset = 680 #tap1 tap2 separation
+
+
+    final_img = img.copy()
+    burst_video = np.zeros((128, v_step, h_step), dtype=np.uint16)
+
+    for i in range(step):
+        for j in range(step):
+            # tap 2
+            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::step, j:col_offset:step]
+            burst_video[step*i + j, :, :] = img[i::step, j:col_offset:step]
+            # tap 1
+            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = img[i::step, (col_offset+j)::step]
+            burst_video[step*i + j + 64, :, :] = img[i::step, (col_offset+j)::step]
+
+    return [final_img, burst_video]
 
 
 
@@ -406,6 +439,16 @@ if __name__ == '__main__':
     raw ='C2B' ;cv2.namedWindow(raw)
     cv2.createTrackbar('Zoom', raw, 5, 40, nothing); f=1
     hdr='C2B_(HDR2LDR)';cv2.namedWindow(hdr) # this may or may not work well/it is not working
+    # create demuxed image and video windows
+    demux_img_win = 'DEMUX IMAGE'; cv2.namedWindow(demux_img_win)
+    demux_video_win = 'DEMUX VIDEO'; cv2.namedWindow(demux_video_win)
+
+
+    # =========== Demux Video Buffer  =============
+    buffer_size     = 5*64
+    video_buffer    = np.zeros((buffer_size, 60, 85), dtype=np.uint16)     # hard coded for 8x8 burst mask
+    write_ptr       = 0
+    read_ptr        = 0
 
 
     # =========== Saving Camera Output =============
@@ -441,9 +484,8 @@ if __name__ == '__main__':
 
         if(showFlag):
             img_adc1,img_adc2=arrangeImg(t6,raw_adc1,raw_adc2,rows_adc1=rows_test,rows_adc2=rows_sub_img,adc2_PerCh=adc2_PerCh)
-        
-
             f=cv2.getTrackbarPos('Zoom',raw)/5 #image scale factor
+
             if(adc1_en):
                 blackCal_img = showImg(raw, cam=t6, show=True,
                             img=img_adc1, black=True, dynamic=False, 
@@ -452,6 +494,21 @@ if __name__ == '__main__':
                             # drawLines = True,
                             # crop_loc = [r1,c1,r2,c2], crop = True, 
                             max_scale=2048,f=f)
+                
+                [demux_img, demux_video] = demux(blackCal_img)
+
+                if write_ptr < buffer_size:
+                    video_buffer[write_ptr:write_ptr+64, :, :] = demux_video[64:, :, :]
+                    write_ptr += 64
+                if read_ptr < buffer_size:
+                    read_ptr += 1
+                else:
+                    write_ptr = 0
+                    read_ptr = 0
+
+                display_demux_img = showImg(demux_img_win, demux_img, t6, raw=True)
+                display_demux_video = showImg(demux_video_win, video_buffer[read_ptr-1], t6, raw=True, f=5*f)
+
             if(adc2_en):
                 showImg("subframes",img=img_adc2, cam=t6, heatmap=True)
 
@@ -536,6 +593,10 @@ if __name__ == '__main__':
                 FRAMENUM, new_time, (FRAMENUM - prev_fNum)/(new_time-prev_time)))
             prev_time = time.time()
             prev_fNum = FRAMENUM
+        ### RESET SLOW MODE VIDEO ###  
+        elif(key==ord('z')):
+            write_ptr = 0
+            read_ptr = 0
         elif(key==81):
             if(c1>=0):
                 c1-=1;c2-=1
