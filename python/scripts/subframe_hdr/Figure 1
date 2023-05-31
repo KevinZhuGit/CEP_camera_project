@@ -1,0 +1,73 @@
+Figure 1:
+
+3rd row
+arbitray in time and per m x n subarray
+in this example m=2 n=3
+
+
+VREF 3 times thicker
+color not visible on comparators
+not sure if we want to show comparator every subframe 
+
+
+red pixel is pixel 2 is not clear
+
+
+red/blue this work
+orange ellipses not required
+
+
+
+12-bit output - Per exposure ADC
+1-bit output  - intra frame output
+
+
+coulmn-parallel circuits
+
+
+
+1 comparator bank at bottom
+1 orange wire output on the graph
+1 comparator 
+
+
+2 timing diagram 
+conventional CEP
+conventional CEP with comparator
+
+title: PER-PIXEL coded exposure 
+remove bolded font at the 
+
+line between top and bottom
+subframe readout
+
+
+2 legends 
+ legend-1 : tap1 and off
+ legend-2 : tap2 and off
+
+Candidate figures 1
+
+
+
+FIGURE 2:
+dashed thicker
+no colors insider the subframes
+no green at the top
+
+
+Don't need the scene 
+letter 'H'
+Drop scene intensity at top left
+lines going through 
+drop 
+
+two version:
+	1. just the label 
+	2. actual example
+
+Figure 3
+
+
+Figure 5
+Bracketed 

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="Reveal_Top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="Reveal_Top_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="40943476662fs"></ZoomStartTime>
+      <ZoomEndTime time="428443476663fs"></ZoomEndTime>
+      <Cursor1Time time="123943476662fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="154"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="3" />
+   <wvobject type="group" fp_name="group178">
+      <obj_property name="label">pipein_fifo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/wr_clk">
+         <obj_property name="ElementShortName">wr_clk</obj_property>
+         <obj_property name="ObjectShortName">wr_clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/rd_clk">
+         <obj_property name="ElementShortName">rd_clk</obj_property>
+         <obj_property name="ObjectShortName">rd_clk</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/din">
+         <obj_property name="ElementShortName">din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">din[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/wr_en">
+         <obj_property name="ElementShortName">wr_en</obj_property>
+         <obj_property name="ObjectShortName">wr_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/rd_en">
+         <obj_property name="ElementShortName">rd_en</obj_property>
+         <obj_property name="ObjectShortName">rd_en</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/dout">
+         <obj_property name="ElementShortName">dout[255:0]</obj_property>
+         <obj_property name="ObjectShortName">dout[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/full">
+         <obj_property name="ElementShortName">full</obj_property>
+         <obj_property name="ObjectShortName">full</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/empty">
+         <obj_property name="ElementShortName">empty</obj_property>
+         <obj_property name="ObjectShortName">empty</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/valid">
+         <obj_property name="ElementShortName">valid</obj_property>
+         <obj_property name="ObjectShortName">valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/rd_data_count">
+         <obj_property name="ElementShortName">rd_data_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_data_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeIn_fifo/wr_data_count">
+         <obj_property name="ElementShortName">wr_data_count[9:0]</obj_property>
+         <obj_property name="ObjectShortName">wr_data_count[9:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group191">
+      <obj_property name="label">pipeout_fifo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/wr_data_count">
+         <obj_property name="ElementShortName">wr_data_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">wr_data_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/wr_clk">
+         <obj_property name="ElementShortName">wr_clk</obj_property>
+         <obj_property name="ObjectShortName">wr_clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/rd_clk">
+         <obj_property name="ElementShortName">rd_clk</obj_property>
+         <obj_property name="ObjectShortName">rd_clk</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/din">
+         <obj_property name="ElementShortName">din[255:0]</obj_property>
+         <obj_property name="ObjectShortName">din[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/wr_en">
+         <obj_property name="ElementShortName">wr_en</obj_property>
+         <obj_property name="ObjectShortName">wr_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/rd_en">
+         <obj_property name="ElementShortName">rd_en</obj_property>
+         <obj_property name="ObjectShortName">rd_en</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/dout">
+         <obj_property name="ElementShortName">dout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dout[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/full">
+         <obj_property name="ElementShortName">full</obj_property>
+         <obj_property name="ObjectShortName">full</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/empty">
+         <obj_property name="ElementShortName">empty</obj_property>
+         <obj_property name="ObjectShortName">empty</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/valid">
+         <obj_property name="ElementShortName">valid</obj_property>
+         <obj_property name="ObjectShortName">valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/okPipeOut_fifo/rd_data_count">
+         <obj_property name="ElementShortName">rd_data_count[9:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_data_count[9:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group256">
+      <obj_property name="label">ddr3</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rd_data">
+         <obj_property name="ElementShortName">app_rd_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">app_rd_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rd_data_valid">
+         <obj_property name="ElementShortName">app_rd_data_valid</obj_property>
+         <obj_property name="ObjectShortName">app_rd_data_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_data">
+         <obj_property name="ElementShortName">app_wdf_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_wren">
+         <obj_property name="ElementShortName">app_wdf_wren</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_wren</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/reset">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/writes_en">
+         <obj_property name="ElementShortName">writes_en</obj_property>
+         <obj_property name="ObjectShortName">writes_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/reads_en">
+         <obj_property name="ElementShortName">reads_en</obj_property>
+         <obj_property name="ObjectShortName">reads_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/test_en">
+         <obj_property name="ElementShortName">test_en</obj_property>
+         <obj_property name="ObjectShortName">test_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/calib_done">
+         <obj_property name="ElementShortName">calib_done</obj_property>
+         <obj_property name="ObjectShortName">calib_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/img_cnt">
+         <obj_property name="ElementShortName">img_cnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">img_cnt[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/NUM_PAT">
+         <obj_property name="ElementShortName">NUM_PAT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">NUM_PAT[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/NUM_REP">
+         <obj_property name="ElementShortName">NUM_REP[31:0]</obj_property>
+         <obj_property name="ObjectShortName">NUM_REP[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib0_re">
+         <obj_property name="ElementShortName">ib0_re</obj_property>
+         <obj_property name="ObjectShortName">ib0_re</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib0_data">
+         <obj_property name="ElementShortName">ib0_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ib0_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib0_count">
+         <obj_property name="ElementShortName">ib0_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">ib0_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib0_valid">
+         <obj_property name="ElementShortName">ib0_valid</obj_property>
+         <obj_property name="ObjectShortName">ib0_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib0_empty">
+         <obj_property name="ElementShortName">ib0_empty</obj_property>
+         <obj_property name="ObjectShortName">ib0_empty</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob0_we">
+         <obj_property name="ElementShortName">ob0_we</obj_property>
+         <obj_property name="ObjectShortName">ob0_we</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob0_data">
+         <obj_property name="ElementShortName">ob0_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ob0_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob0_count">
+         <obj_property name="ElementShortName">ob0_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">ob0_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob0_full">
+         <obj_property name="ElementShortName">ob0_full</obj_property>
+         <obj_property name="ObjectShortName">ob0_full</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib1_re">
+         <obj_property name="ElementShortName">ib1_re</obj_property>
+         <obj_property name="ObjectShortName">ib1_re</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib1_data">
+         <obj_property name="ElementShortName">ib1_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ib1_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib1_count">
+         <obj_property name="ElementShortName">ib1_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">ib1_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib1_valid">
+         <obj_property name="ElementShortName">ib1_valid</obj_property>
+         <obj_property name="ObjectShortName">ib1_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib1_empty">
+         <obj_property name="ElementShortName">ib1_empty</obj_property>
+         <obj_property name="ObjectShortName">ib1_empty</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob1_we">
+         <obj_property name="ElementShortName">ob1_we</obj_property>
+         <obj_property name="ObjectShortName">ob1_we</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob1_data">
+         <obj_property name="ElementShortName">ob1_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ob1_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob1_count">
+         <obj_property name="ElementShortName">ob1_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">ob1_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob1_full">
+         <obj_property name="ElementShortName">ob1_full</obj_property>
+         <obj_property name="ObjectShortName">ob1_full</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rdy">
+         <obj_property name="ElementShortName">app_rdy</obj_property>
+         <obj_property name="ObjectShortName">app_rdy</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_en">
+         <obj_property name="ElementShortName">app_en</obj_property>
+         <obj_property name="ObjectShortName">app_en</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_cmd">
+         <obj_property name="ElementShortName">app_cmd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">app_cmd[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_addr">
+         <obj_property name="ElementShortName">app_addr[29:0]</obj_property>
+         <obj_property name="ObjectShortName">app_addr[29:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rd_data">
+         <obj_property name="ElementShortName">app_rd_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">app_rd_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rd_data_end">
+         <obj_property name="ElementShortName">app_rd_data_end</obj_property>
+         <obj_property name="ObjectShortName">app_rd_data_end</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_rd_data_valid">
+         <obj_property name="ElementShortName">app_rd_data_valid</obj_property>
+         <obj_property name="ObjectShortName">app_rd_data_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_rdy">
+         <obj_property name="ElementShortName">app_wdf_rdy</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_rdy</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_wren">
+         <obj_property name="ElementShortName">app_wdf_wren</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_wren</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_data">
+         <obj_property name="ElementShortName">app_wdf_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_end">
+         <obj_property name="ElementShortName">app_wdf_end</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_end</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_wdf_mask">
+         <obj_property name="ElementShortName">app_wdf_mask[31:0]</obj_property>
+         <obj_property name="ObjectShortName">app_wdf_mask[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/MASK_SIZE">
+         <obj_property name="ElementShortName">MASK_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MASK_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/cmd_byte_addr_wr">
+         <obj_property name="ElementShortName">cmd_byte_addr_wr[29:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_byte_addr_wr[29:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/cmd_byte_addr_rd">
+         <obj_property name="ElementShortName">cmd_byte_addr_rd[29:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_byte_addr_rd[29:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/img_byte_addr_wr">
+         <obj_property name="ElementShortName">img_byte_addr_wr[29:0]</obj_property>
+         <obj_property name="ObjectShortName">img_byte_addr_wr[29:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/img_byte_addr_rd">
+         <obj_property name="ElementShortName">img_byte_addr_rd[29:0]</obj_property>
+         <obj_property name="ObjectShortName">img_byte_addr_rd[29:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/burst_count">
+         <obj_property name="ElementShortName">burst_count[4:0]</obj_property>
+         <obj_property name="ObjectShortName">burst_count[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/write_count">
+         <obj_property name="ElementShortName">write_count[4:0]</obj_property>
+         <obj_property name="ObjectShortName">write_count[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/read_count">
+         <obj_property name="ElementShortName">read_count[4:0]</obj_property>
+         <obj_property name="ObjectShortName">read_count[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/write_mode">
+         <obj_property name="ElementShortName">write_mode</obj_property>
+         <obj_property name="ObjectShortName">write_mode</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/read_mode">
+         <obj_property name="ElementShortName">read_mode</obj_property>
+         <obj_property name="ObjectShortName">read_mode</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/run_mode">
+         <obj_property name="ElementShortName">run_mode</obj_property>
+         <obj_property name="ObjectShortName">run_mode</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/reset_d">
+         <obj_property name="ElementShortName">reset_d</obj_property>
+         <obj_property name="ObjectShortName">reset_d</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib_re">
+         <obj_property name="ElementShortName">ib_re</obj_property>
+         <obj_property name="ObjectShortName">ib_re</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib_data">
+         <obj_property name="ElementShortName">ib_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ib_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ib_valid">
+         <obj_property name="ElementShortName">ib_valid</obj_property>
+         <obj_property name="ObjectShortName">ib_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob_we">
+         <obj_property name="ElementShortName">ob_we</obj_property>
+         <obj_property name="ObjectShortName">ob_we</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ob_data">
+         <obj_property name="ElementShortName">ob_data[255:0]</obj_property>
+         <obj_property name="ObjectShortName">ob_data[255:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ch0_en">
+         <obj_property name="ElementShortName">ch0_en</obj_property>
+         <obj_property name="ObjectShortName">ch0_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/ch1_en">
+         <obj_property name="ElementShortName">ch1_en</obj_property>
+         <obj_property name="ObjectShortName">ch1_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/wdf_flag">
+         <obj_property name="ElementShortName">wdf_flag</obj_property>
+         <obj_property name="ObjectShortName">wdf_flag</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/Reveal_Top_tb/i_top/i_ddr3_ctl/app_flag">
+         <obj_property name="ElementShortName">app_flag</obj_property>
+         <obj_property name="ObjectShortName">app_flag</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

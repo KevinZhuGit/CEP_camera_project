@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="exp_ro_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="exp_ro_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="77.925000 us"></ZoomStartTime>
+      <ZoomEndTime time="92.012849 us"></ZoomEndTime>
+      <Cursor1Time time="288.175000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="194"></NameColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject type="logic" fp_name="/exp_ro_tb/CLKMi">
+      <obj_property name="ElementShortName">CLKMi</obj_property>
+      <obj_property name="ObjectShortName">CLKMi</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/exp_ro_tb/TX_CLKi">
+      <obj_property name="ElementShortName">TX_CLKi</obj_property>
+      <obj_property name="ObjectShortName">TX_CLKi</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/exp_ro_tb/TX_CLKi2">
+      <obj_property name="ElementShortName">TX_CLKi2</obj_property>
+      <obj_property name="ObjectShortName">TX_CLKi2</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/exp_ro_tb/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/exp_ro_tb/ROWADD">
+      <obj_property name="ElementShortName">ROWADD[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ROWADD[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/exp_ro_tb/DEC_SEL">
+      <obj_property name="ElementShortName">DEC_SEL</obj_property>
+      <obj_property name="ObjectShortName">DEC_SEL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/exp_ro_tb/DEC_EN">
+      <obj_property name="ElementShortName">DEC_EN</obj_property>
+      <obj_property name="ObjectShortName">DEC_EN</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/exp_ro_tb/ROWADD_EXP">
+      <obj_property name="ElementShortName">ROWADD_EXP[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ROWADD_EXP[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/exp_ro_tb/ROWADD_RO">
+      <obj_property name="ElementShortName">ROWADD_RO[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ROWADD_RO[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group137">
+      <obj_property name="label">Exposure</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/exp_ro_tb/exposure_inst/state">
+         <obj_property name="ElementShortName">state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/DES2ND">
+         <obj_property name="ElementShortName">DES2ND</obj_property>
+         <obj_property name="ObjectShortName">DES2ND</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/MASK_EN">
+         <obj_property name="ElementShortName">MASK_EN</obj_property>
+         <obj_property name="ObjectShortName">MASK_EN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ex_trigger">
+         <obj_property name="ElementShortName">ex_trigger</obj_property>
+         <obj_property name="ObjectShortName">ex_trigger</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIX_GSUBC">
+         <obj_property name="ElementShortName">PIX_GSUBC</obj_property>
+         <obj_property name="ObjectShortName">PIX_GSUBC</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIX_DRAIN">
+         <obj_property name="ElementShortName">PIX_DRAIN</obj_property>
+         <obj_property name="ObjectShortName">PIX_DRAIN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIXGLOB_RES_i">
+         <obj_property name="ElementShortName">PIXGLOB_RES_i</obj_property>
+         <obj_property name="ObjectShortName">PIXGLOB_RES_i</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group142">
+      <obj_property name="label">Readout</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/exp_ro_tb/re_busy">
+         <obj_property name="ElementShortName">re_busy</obj_property>
+         <obj_property name="ObjectShortName">re_busy</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ADC_CLK">
+         <obj_property name="ElementShortName">ADC_CLK</obj_property>
+         <obj_property name="ObjectShortName">ADC_CLK</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIXGLOB_RES_i">
+         <obj_property name="ElementShortName">PIXGLOB_RES_i</obj_property>
+         <obj_property name="ObjectShortName">PIXGLOB_RES_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIXVTG_GLOB">
+         <obj_property name="ElementShortName">PIXVTG_GLOB</obj_property>
+         <obj_property name="ObjectShortName">PIXVTG_GLOB</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/rd_enable">
+         <obj_property name="ElementShortName">rd_enable</obj_property>
+         <obj_property name="ObjectShortName">rd_enable</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group36">
+      <obj_property name="label">Readout_t7</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/exp_ro_tb/re_busy_t7">
+         <obj_property name="ElementShortName">re_busy_t7</obj_property>
+         <obj_property name="ObjectShortName">re_busy_t7</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/exp_ro_tb/ROWADD_RO_t7">
+         <obj_property name="ElementShortName">ROWADD_RO_t7[8:0]</obj_property>
+         <obj_property name="ObjectShortName">ROWADD_RO_t7[8:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/SET_ROW_RO">
+         <obj_property name="ElementShortName">SET_ROW_RO</obj_property>
+         <obj_property name="ObjectShortName">SET_ROW_RO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/SET_ROW_DONE_RO">
+         <obj_property name="ElementShortName">SET_ROW_DONE_RO</obj_property>
+         <obj_property name="ObjectShortName">SET_ROW_DONE_RO</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/COLL_EN_t7">
+         <obj_property name="ElementShortName">COLL_EN_t7</obj_property>
+         <obj_property name="ObjectShortName">COLL_EN_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIX_LEFTBUCK_SEL_t7">
+         <obj_property name="ElementShortName">PIX_LEFTBUCK_SEL_t7</obj_property>
+         <obj_property name="ObjectShortName">PIX_LEFTBUCK_SEL_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ODDCOL_EN_t7">
+         <obj_property name="ElementShortName">ODDCOL_EN_t7</obj_property>
+         <obj_property name="ObjectShortName">ODDCOL_EN_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/COL_PRECH_12_t7">
+         <obj_property name="ElementShortName">COL_PRECH_12_t7</obj_property>
+         <obj_property name="ObjectShortName">COL_PRECH_12_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ADC_RST_t7">
+         <obj_property name="ElementShortName">ADC_RST_t7</obj_property>
+         <obj_property name="ObjectShortName">ADC_RST_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ADC_CLK_out_t7">
+         <obj_property name="ElementShortName">ADC_CLK_out_t7</obj_property>
+         <obj_property name="ObjectShortName">ADC_CLK_out_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/PIXREAD_SEL_t7">
+         <obj_property name="ElementShortName">PIXREAD_SEL_t7</obj_property>
+         <obj_property name="ObjectShortName">PIXREAD_SEL_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ADC_BIAS_EN_t7">
+         <obj_property name="ElementShortName">ADC_BIAS_EN_t7</obj_property>
+         <obj_property name="ObjectShortName">ADC_BIAS_EN_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/RST_BAR_LTCHD_t7">
+         <obj_property name="ElementShortName">RST_BAR_LTCHD_t7</obj_property>
+         <obj_property name="ObjectShortName">RST_BAR_LTCHD_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/LOAD_IN_t7">
+         <obj_property name="ElementShortName">LOAD_IN_t7</obj_property>
+         <obj_property name="ObjectShortName">LOAD_IN_t7</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/ADC_DATA_VALID_t7">
+         <obj_property name="ElementShortName">ADC_DATA_VALID_t7</obj_property>
+         <obj_property name="ObjectShortName">ADC_DATA_VALID_t7</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/exp_ro_tb/u_Readout/ROWADD_phase">
+         <obj_property name="ElementShortName">ROWADD_phase[1:0]</obj_property>
+         <obj_property name="ObjectShortName">ROWADD_phase[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/exp_ro_tb/DIGOUT[17]">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">[17]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/exp_ro_tb/u_DIGOUT_test/STREAM_VAR">
+         <obj_property name="ElementShortName">STREAM_VAR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">STREAM_VAR[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/exp_ro_tb/u_DIGOUT_test/ROWADD">
+         <obj_property name="ElementShortName">ROWADD[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ROWADD[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/exp_ro_tb/u_Readout/state1">
+         <obj_property name="ElementShortName">state1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state1[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

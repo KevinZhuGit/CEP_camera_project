@@ -1,0 +1,3 @@
+Readout versions:
+Readout_noPGA.v	- all PGA signals are constant
+Readout_PGA.v	- PGA signals functional. Can be programmatically enabled/disabled using PGA_en input (ACTIVE HIGH)

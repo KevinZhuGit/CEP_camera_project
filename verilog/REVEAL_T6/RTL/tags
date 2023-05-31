@@ -1,0 +1,1023 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADC1_DATA	ADC2FIFO_v0.v	/^    wire [15:0] ADC1_DATA;$/;"	n
+ADC1_DATA	Misc/ADC/ADC_RO.v	/^    wire [15:0] ADC1_DATA;$/;"	n
+ADC1_done	Misc/ADC/ADC_RO.v	/^    reg ADC_en, ADC1_done, ADC2_done, ADC_start;$/;"	r
+ADC1_state	Misc/ADC/ADC_RO.v	/^    reg [15:0] ADC1_state, ADC2_state; \/\/ current state$/;"	r
+ADC2FIFO_v0	ADC2FIFO_v0.v	/^module ADC2FIFO_v0($/;"	m
+ADC2_DATA	ADC2FIFO_v0.v	/^    wire [15:0] ADC2_DATA;$/;"	n
+ADC2_DATA	Misc/ADC/ADC_RO.v	/^    wire [15:0] ADC2_DATA;$/;"	n
+ADC2_done	Misc/ADC/ADC_RO.v	/^    reg ADC_en, ADC1_done, ADC2_done, ADC_start;$/;"	r
+ADC2_state	Misc/ADC/ADC_RO.v	/^    reg [15:0] ADC1_state, ADC2_state; \/\/ current state$/;"	r
+ADC_DEBUG	Reveal_Top.bak.v	/^wire [8:0] ADC_DEBUG;$/;"	n
+ADC_DEBUG	Reveal_Top.v	/^wire [8:0] ADC_DEBUG;$/;"	n
+ADC_FIFO_ctrl	Misc/ADC/ADC_FIFO_ctrl.v	/^module ADC_FIFO_ctrl();$/;"	m
+ADC_RO	Misc/ADC/ADC_RO.v	/^module ADC_RO($/;"	m
+ADC_en	Misc/ADC/ADC_RO.v	/^    reg ADC_en, ADC1_done, ADC2_done, ADC_start;$/;"	r
+ADC_parser	ADC/ADCparser.v	/^module ADC_parser($/;"	m
+ADC_start	Misc/ADC/ADC_RO.v	/^    reg ADC_en, ADC1_done, ADC2_done, ADC_start;$/;"	r
+ADCtoFIFO_v0	ADC/ADCtoFIFO_v0.v	/^module ADCtoFIFO_v0($/;"	m
+CLK	exp_ro/Readout_v0.v	/^	input CLK,$/;"	p
+CLK	exp_ro/Readout_v1.v	/^	input CLK,$/;"	p
+CLK	exp_ro/Readout_v1_OLD.v	/^	input CLK,$/;"	p
+CLK	exp_ro/Readout_v2.v	/^	input CLK,$/;"	p
+CLK_EN	Misc/ADC/T2_ADC.v	/^input 									  CLK_EN;$/;"	p
+CLK_IN	Misc/ADC/T2_ADC.v	/^input 									  CLK_IN;$/;"	p
+COL_NUM	Misc/ADC/ADC_RO.v	/^    parameter COL_NUM = 43;$/;"	c
+CPHA	Misc/SPI/SPI_top.v	/^    wire CPOL, CPHA;$/;"	n
+CPOL	Misc/SPI/SPI_top.v	/^    wire CPOL, CPHA;$/;"	n
+CP_MUX_IN_i	Reveal_Top.bak.v	/^wire CP_MUX_IN_i;$/;"	n
+CP_MUX_IN_i	Reveal_Top.v	/^wire CP_MUX_IN_i;$/;"	n
+CS	Misc/OneTimeSetup.v	/^    output [7:1] CS$/;"	p
+CurrentState	Misc/SPI/serializer.v	/^reg [5:0] CurrentState;$/;"	r
+CurrentState	Misc/SPI/serializer_ctrl.v	/^reg [5:0] CurrentState;$/;"	r
+DATA	Misc/SPI/serializer.v	/^input [15:0]DATA;$/;"	p
+DATA_FROM_ADC1	Misc/ADC/ADC_RO.v	/^    reg [47:0] DATA_FROM_ADC1;$/;"	r
+DATA_FROM_ADC2	Misc/ADC/ADC_RO.v	/^    reg [47:0] DATA_FROM_ADC2;$/;"	r
+DATA_IN_FROM_PINS1	Misc/ADC/T2_ADC.v	/^input		[7:0] 						  DATA_IN_FROM_PINS1;$/;"	p
+DATA_IN_FROM_PINS2	Misc/ADC/T2_ADC.v	/^input		[7:0] 						  DATA_IN_FROM_PINS2;$/;"	p
+DATA_IN_TO_DEVICE1	Misc/ADC/T2_ADC.v	/^output		[15:0] 						  DATA_IN_TO_DEVICE1;$/;"	p
+DATA_IN_TO_DEVICE2	Misc/ADC/T2_ADC.v	/^output		[15:0] 						  DATA_IN_TO_DEVICE2;$/;"	p
+DIN	Reveal_Top.v	/^wire [31:0] DIN;$/;"	n
+DI_f1	exp_ro/patternToSensors_v0.v	/^	wire [255:0]DI_f1;$/;"	n
+DOUT	Reveal_Top.bak.v	/^wire [31:0] DOUT;$/;"	n
+DOUT	Reveal_Top.v	/^wire [31:0] DOUT;$/;"	n
+DO_f1	exp_ro/patternToSensors_v0.v	/^	wire [31:0]DO_f1;$/;"	n
+EXP_state	exp_ro/Exposure_v1.v	/^  integer EXP_state;$/;"	r
+EXP_state	exp_ro/Exposure_v2.v	/^  integer EXP_state;$/;"	r
+Exposure_v1	exp_ro/Exposure_v1.v	/^module Exposure_v1($/;"	m
+Exposure_v2	exp_ro/Exposure_v2.v	/^module Exposure_v2($/;"	m
+FIFO_CLK	Misc/ADC/ADC_RO.v	/^    wire FIFO_CLK;$/;"	n
+FIFO_CLK	Reveal_Top.v	/^wire FIFO_CLK;$/;"	n
+FIFO_Empty	Reveal_Top.bak.v	/^wire FIFO_Empty;$/;"	n
+FIFO_Empty	Reveal_Top.v	/^wire FIFO_Empty;$/;"	n
+FIFO_Flag	Reveal_Top.bak.v	/^wire [31:0] FIFO_Flag;$/;"	n
+FIFO_Flag	Reveal_Top.v	/^wire [31:0] FIFO_Flag;$/;"	n
+FIFO_IN_CLK	Reveal_Top.bak.v	/^wire FIFO_IN_CLK;$/;"	n
+FIFO_IN_DATA1	Reveal_Top.bak.v	/^wire [15:0] FIFO_IN_DATA1;$/;"	n
+FIFO_IN_DATA1	Reveal_Top.v	/^wire [15:0] FIFO_IN_DATA1;$/;"	n
+FIFO_IN_DATA2	Reveal_Top.bak.v	/^wire [15:0] FIFO_IN_DATA2;$/;"	n
+FIFO_IN_DATA2	Reveal_Top.v	/^wire [15:0] FIFO_IN_DATA2;$/;"	n
+FIFO_IN_TRIG	Reveal_Top.bak.v	/^wire FIFO_IN_TRIG;$/;"	n
+FIFO_IN_TRIG	Reveal_Top.v	/^wire FIFO_IN_TRIG;$/;"	n
+FRONTPANEL	XEM7310-A200/okLibrary.vhd	/^package FRONTPANEL is$/;"	P
+FRONTPANEL	XEM7310-A75/okLibrary.vhd	/^package FRONTPANEL is$/;"	P
+HS_state	exp_ro/Exposure_v1.v	/^  integer HS_state;$/;"	r
+HS_state	exp_ro/Exposure_v2.v	/^  integer HS_state;$/;"	r
+HS_state	exp_ro/Readout_v0.v	/^	integer HS_state;	\/\/handshaking state$/;"	r
+HS_state	exp_ro/Readout_v1.v	/^	integer HS_state;	\/\/handshaking state$/;"	r
+HS_state	exp_ro/Readout_v1_OLD.v	/^	integer HS_state;	\/\/handshaking state$/;"	r
+HS_state	exp_ro/Readout_v2.v	/^	integer HS_state;	\/\/handshaking state$/;"	r
+IMG_SIZE	ddr/ddr3_ctl_v0.v	/^reg [32:0] IMG_SIZE;$/;"	r
+LOAD_n	Misc/SPI/SPI_top.v	/^    wire LOAD_n;$/;"	n
+MASK_ONCE	exp_ro/Exposure_v1.v	/^  reg MASK_ONCE;$/;"	r
+MASK_ONCE	exp_ro/Exposure_v2.v	/^  reg MASK_ONCE;$/;"	r
+MASK_SIZE	ddr/ddr3_ctl_v0.v	/^reg [31:0] MASK_SIZE;$/;"	r
+MASK_SIZE	ddr/ddr3_test_v1.v	/^reg [31:0] MASK_SIZE;$/;"	r
+MASK_SIZE	ddr/ddr3_test_v3.v	/^reg [31:0] MASK_SIZE;$/;"	r
+MUX_START_i	Reveal_Top.bak.v	/^reg MUX_START_i;$/;"	r
+MUX_START_i	Reveal_Top.v	/^reg  MUX_START_i;$/;"	r
+NUM_COL	exp_ro/Readout_v0.v	/^	parameter NUM_COL = 48;	\/\/rows in output image$/;"	c
+NUM_COL	exp_ro/Readout_v1_OLD.v	/^	parameter NUM_COL = 48;	\/\/rows in output image$/;"	c
+NUM_ROW	Reveal_Top.bak.v	/^parameter NUM_ROW	= 20;$/;"	c
+NextState	Misc/SPI/serializer.v	/^reg [5:0] NextState;$/;"	r
+NextState	Misc/SPI/serializer_ctrl.v	/^reg [5:0] NextState;$/;"	r
+NumPat	Reveal_Top.bak.v	/^wire [31:0] NumPat;$/;"	n
+NumPat	Reveal_Top.v	/^wire [31:0] NumPat;$/;"	n
+NumRep	Reveal_Top.v	/^wire [31:0] NumRep;$/;"	n
+NumRow	Reveal_Top.bak.v	/^wire [31:0] NumRow;$/;"	n
+NumRow	Reveal_Top.v	/^wire [31:0] NumRow;$/;"	n
+OK_FIFO_DATA_OUT	Reveal_Top.bak.v	/^wire [31:0] OK_FIFO_DATA_OUT;$/;"	n
+OK_FIFO_DATA_OUT	Reveal_Top.v	/^wire [31:0] OK_FIFO_DATA_OUT;$/;"	n
+OK_FIFO_OUT_TRIG	Reveal_Top.bak.v	/^wire OK_FIFO_OUT_TRIG;$/;"	n
+OK_FIFO_OUT_TRIG	Reveal_Top.v	/^wire OK_FIFO_OUT_TRIG;$/;"	n
+OK_FIFO_Start_Trig	Reveal_Top.bak.v	/^wire OK_FIFO_Start_Trig;$/;"	n
+OK_FIFO_Start_Trig	Reveal_Top.v	/^wire OK_FIFO_Start_Trig;$/;"	n
+OneTimeSetup	Misc/OneTimeSetup.v	/^module OneTimeSetup($/;"	m
+PH1_delayTimer	exp_ro/Readout_v0.v	/^	integer	PH1_delayTimer;$/;"	r
+PH1_delayTimer	exp_ro/Readout_v1_OLD.v	/^	integer	PH1_delayTimer;$/;"	r
+PH1_fastTimer	exp_ro/Readout_v0.v	/^	integer	PH1_fastTimer;$/;"	r
+PH1_fastTimer	exp_ro/Readout_v1_OLD.v	/^	integer	PH1_fastTimer;$/;"	r
+Pat_i	exp_ro/loadPattern_v0.v	/^	reg	[255:0] Pat_i;$/;"	r
+READ_TIME_L	exp_ro/Readout_v0.v	/^	integer READ_TIME_L; initial READ_TIME_L = 2*(T4 + NUM_SAMPR*T5R);$/;"	r
+READ_TIME_L	exp_ro/Readout_v1_OLD.v	/^	integer READ_TIME_L; initial READ_TIME_L = 2*(T4 + NUM_SAMPR*T5R);$/;"	r
+READ_TIME_R	exp_ro/Readout_v0.v	/^	integer READ_TIME_R; initial READ_TIME_R = 2*(T4 + NUM_SAMPL*T5L);$/;"	r
+READ_TIME_R	exp_ro/Readout_v1_OLD.v	/^	integer READ_TIME_R; initial READ_TIME_R = 2*(T4 + NUM_SAMPL*T5L);$/;"	r
+ROWADD_EXP	Reveal_Top.bak.v	/^wire [9:0] ROWADD_EXP;$/;"	n
+ROWADD_EXP	Reveal_Top.v	/^wire [9:0] ROWADD_EXP;$/;"	n
+ROWADD_RO	Reveal_Top.bak.v	/^wire [9:0] ROWADD_RO;$/;"	n
+ROWADD_RO	Reveal_Top.v	/^wire [9:0] ROWADD_RO;$/;"	n
+RO_state	exp_ro/Readout_v0.v	/^	integer RO_state;	\/\/readout state$/;"	r
+RO_state	exp_ro/Readout_v1.v	/^	integer RO_state;	\/\/readout state$/;"	r
+RO_state	exp_ro/Readout_v1_OLD.v	/^	integer RO_state;	\/\/readout state$/;"	r
+RO_state	exp_ro/Readout_v2.v	/^	integer RO_state;	\/\/readout state$/;"	r
+Readout_v0	exp_ro/Readout_v0.v	/^module Readout_v0($/;"	m
+Readout_v1	exp_ro/Readout_v1.v	/^module Readout_v1($/;"	m
+Readout_v1	exp_ro/Readout_v1_OLD.v	/^module Readout_v1($/;"	m
+Readout_v2	exp_ro/Readout_v2.v	/^module Readout_v2($/;"	m
+Reveal_Top	Reveal_Top.bak.v	/^module Reveal_Top$/;"	m
+Reveal_Top	Reveal_Top.v	/^module Reveal_Top$/;"	m
+SPI_top	Misc/SPI/SPI_top.v	/^module SPI_top($/;"	m
+T1_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T1_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T1_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T1_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T2_ADC_RO	Misc/ADC/T2_ADC.v	/^module T2_ADC_RO$/;"	m
+T2_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T2_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T2_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T2_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T3_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T3_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T3_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T3_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T4_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T4_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T4_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T4_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T5_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T5_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T5_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T5_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T6_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T6_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T6_r	Reveal_Top.bak.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T6_r	Reveal_Top.v	/^wire [31:0] T1_r, T2_r, T3_r, T4_r, T5_r, T6_r;$/;"	n
+T7_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T7_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T8_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T8_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+T9_e	Reveal_Top.bak.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e; $/;"	n
+T9_e	Reveal_Top.v	/^wire [31:0] T1_e, T2_e, T3_e, T4_e, T5_e, T6_e, T7_e, T8_e, T9_e;$/;"	n
+TOUT_1	Misc/ADC/T2_ADC.v	/^  wire [7:0]	TOUT_1;$/;"	n
+TOUT_2	Misc/ADC/T2_ADC.v	/^  wire [7:0]	TOUT_2;$/;"	n
+T_reset	Reveal_Top.bak.v	/^wire [31:0] T_reset;$/;"	n
+T_reset	Reveal_Top.v	/^wire [31:0] T_reset;$/;"	n
+T_stdby	Reveal_Top.bak.v	/^wire [31:0] T_stdby;$/;"	n
+T_stdby	Reveal_Top.v	/^wire [31:0] T_stdby;$/;"	n
+Texp_ctrl	Reveal_Top.bak.v	/^wire [31:0] Texp_ctrl;$/;"	n
+Texp_ctrl	Reveal_Top.v	/^wire [31:0] Texp_ctrl;$/;"	n
+Tgl_res	Reveal_Top.bak.v	/^wire [31:0] Tgl_res;$/;"	n
+Tgl_res	Reveal_Top.v	/^wire [31:0] Tgl_res;$/;"	n
+Tlat	Reveal_Top.v	/^wire [31:0] Tlat;$/;"	n
+a	Reveal_Top.bak.v	/^input [7:0] a;$/;"	p
+a	Reveal_Top.v	/^input [7:0] a;$/;"	p
+adc1_dat	ADC2FIFO_v0.v	/^	wire [15:0] adc1_dat;$/;"	n
+adc2_dat	ADC2FIFO_v0.v	/^	wire [15:0] adc2_dat;$/;"	n
+adc_dly	exp_ro/Readout_v2.v	/^	reg [31:0] adc_dly;$/;"	r
+adc_rd	exp_ro/Readout_v2.v	/^	reg adc_rd;		\/\/adc read signal$/;"	r
+adc_valid	Reveal_Top.v	/^wire adc_valid;$/;"	n
+almost_full	ADC/ADCtoFIFO_v0.v	/^	wire almost_full;$/;"	n
+almost_full_f1	exp_ro/patternToSensors_v0.v	/^    wire almost_full_f1;$/;"	n
+app_addr	Reveal_Top.v	/^wire [29 :0]  app_addr;$/;"	n
+app_cmd	Reveal_Top.v	/^wire [2  :0]  app_cmd;$/;"	n
+app_en	Reveal_Top.v	/^wire          app_en;$/;"	n
+app_flag	ddr/ddr3_ctl_v0.v	/^reg app_flag;$/;"	r
+app_flag	ddr/ddr3_test_v1.v	/^reg app_flag;$/;"	r
+app_flag	ddr/ddr3_test_v3.v	/^reg app_flag;$/;"	r
+app_rd_data	Reveal_Top.v	/^wire [255:0]  app_rd_data;$/;"	n
+app_rd_data_end	Reveal_Top.v	/^wire          app_rd_data_end;$/;"	n
+app_rd_data_valid	Reveal_Top.v	/^wire          app_rd_data_valid;$/;"	n
+app_rdy	Reveal_Top.v	/^wire          app_rdy;$/;"	n
+app_wdf_data	Reveal_Top.v	/^wire [255:0]  app_wdf_data;$/;"	n
+app_wdf_end	Reveal_Top.v	/^wire                       app_wdf_end;$/;"	n
+app_wdf_mask	Reveal_Top.v	/^wire [31 :0]  app_wdf_mask;$/;"	n
+app_wdf_rdy	Reveal_Top.v	/^wire          app_wdf_rdy;$/;"	n
+app_wdf_wren	Reveal_Top.v	/^wire          app_wdf_wren;$/;"	n
+buffer_data1	Misc/ADC/ADC_RO.v	/^    reg [15:0] buffer_data1;$/;"	r
+buffer_data2	Misc/ADC/ADC_RO.v	/^    reg [15:0] buffer_data2;$/;"	r
+buffer_trig1	Misc/ADC/ADC_RO.v	/^    reg buffer_trig1, buffer_trig2;$/;"	r
+buffer_trig2	Misc/ADC/ADC_RO.v	/^    reg buffer_trig1, buffer_trig2;$/;"	r
+buffer_valid1	Misc/ADC/ADC_RO.v	/^    wire buffer_valid1;$/;"	n
+buffer_valid2	Misc/ADC/ADC_RO.v	/^    wire buffer_valid2;$/;"	n
+byte_index	Misc/ADC/T2_ADC.v	/^integer byte_index;$/;"	r
+cache_data	Reveal_Top.v	/^wire [255:0] cache_data;$/;"	n
+cache_empty	Reveal_Top.v	/^wire         cache_empty;$/;"	n
+cache_full	Reveal_Top.v	/^wire         cache_full;$/;"	n
+cache_rd_count	Reveal_Top.v	/^wire [9:0]   cache_rd_count;$/;"	n
+cache_rd_en	Reveal_Top.v	/^wire         cache_rd_en;$/;"	n
+cache_ready	Reveal_Top.v	/^reg          cache_ready;$/;"	r
+cache_valid	Reveal_Top.v	/^wire         cache_valid;$/;"	n
+cache_wr_count	Reveal_Top.v	/^wire [6:0]   cache_wr_count;$/;"	n
+ch0_en	ddr/ddr3_ctl_v0.v	/^reg ch0_en;$/;"	r
+ch0_en	ddr/ddr3_test_v1.v	/^reg ch0_en;$/;"	r
+ch0_en	ddr/ddr3_test_v3.v	/^reg ch0_en;$/;"	r
+ch1_en	ddr/ddr3_ctl_v0.v	/^reg ch1_en;$/;"	r
+ch1_en	ddr/ddr3_test_v1.v	/^reg ch1_en;$/;"	r
+ch1_en	ddr/ddr3_test_v3.v	/^reg ch1_en;$/;"	r
+clk_010	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_010	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_022	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_022	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_100	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_100	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_200	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_200	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_400	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_400	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_50	Reveal_Top.bak.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_50	Reveal_Top.v	/^wire clk_400,clk_200,clk_100,clk_50,clk_010,clk_022;$/;"	n
+clk_in_inv	Misc/ADC/T2_ADC.v	/^	wire clk_in_inv;$/;"	n
+cnt	ADC/ADCparser.v	/^	reg [3:0] cnt;$/;"	r
+cntMask	exp_ro/loadPattern_v0.v	/^	integer cntMask;$/;"	r
+cntPat	exp_ro/loadPattern_v0.v	/^	integer cntPat;$/;"	r
+cnt_DES	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_DES;$/;"	r
+cnt_DES	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_DES;$/;"	r
+cnt_ROW	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_ROW;$/;"	r
+cnt_ROW	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_ROW;$/;"	r
+cnt_SYNC	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_SYNC;$/;"	r
+cnt_SYNC	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_SYNC;$/;"	r
+cnt_T1	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_T1;$/;"	r
+cnt_T1	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_T1;$/;"	r
+cnt_T_reset	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_T_reset;$/;"	r
+cnt_T_reset	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_T_reset;$/;"	r
+cnt_T_stdby	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_T_stdby;$/;"	r
+cnt_Texp_ctrl	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_Texp_ctrl;$/;"	r
+cnt_Texp_ctrl	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_Texp_ctrl;$/;"	r
+cnt_Tgl_res	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_Tgl_res;$/;"	r
+cnt_Tgl_res	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_Tgl_res;$/;"	r
+cnt_sub	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_sub;$/;"	r
+cnt_sub	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_sub;$/;"	r
+cnt_sub_MSTREAM	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_sub_MSTREAM;$/;"	r
+cnt_sub_MSTREAM	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_sub_MSTREAM;$/;"	r
+cnt_sub_ROW_3_0	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_sub_ROW_3_0;$/;"	r
+cnt_sub_ROW_3_0	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_sub_ROW_3_0;$/;"	r
+cnt_sub_first	exp_ro/Exposure_v1.v	/^  reg [31:0] cnt_sub_first;$/;"	r
+cnt_sub_first	exp_ro/Exposure_v2.v	/^  reg [31:0] cnt_sub_first;$/;"	r
+col_cnt	Misc/ADC/ADC_RO.v	/^    reg [15:0] col_cnt;$/;"	r
+counter	Misc/SPI/wait_counter.v	/^	 reg [6:0]counter;$/;"	r
+counter	Misc/counter.v	/^module counter$/;"	m
+counter	Misc/counter.v	/^reg [N-1:0] counter = 0;$/;"	r
+counter	Reveal_Top.bak.v	/^reg [7:0] counter;$/;"	r
+counter	Reveal_Top.v	/^reg [7:0] counter;$/;"	r
+cp_start	Reveal_Top.bak.v	/^wire cp_start;$/;"	n
+cp_start	Reveal_Top.v	/^wire cp_start;$/;"	n
+current_state	Misc/ADC/ADC_RO.v	/^    reg [15:0] current_state, next_state;$/;"	r
+data1_index	Misc/ADC/ADC_RO.v	/^    reg [7:0] data1_index, data2_index;$/;"	r
+data2_index	Misc/ADC/ADC_RO.v	/^    reg [7:0] data1_index, data2_index;$/;"	r
+data_in_from_pins_delay1	Misc/ADC/T2_ADC.v	/^  wire [7:0]  data_in_from_pins_delay1;$/;"	n
+data_in_from_pins_delay2	Misc/ADC/T2_ADC.v	/^  wire [7:0]  data_in_from_pins_delay2;$/;"	n
+data_in_from_pins_int1	Misc/ADC/T2_ADC.v	/^  wire   [7:0] data_in_from_pins_int1;$/;"	n
+data_in_from_pins_int2	Misc/ADC/T2_ADC.v	/^  wire   [7:0] data_in_from_pins_int2;$/;"	n
+data_init	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+data_latched	Misc/SPI/serializer.v	/^reg [15:0] data_latched;$/;"	r
+data_reg	ADC/ADCparser.v	/^	reg [13:0] data_reg; $/;"	r
+data_s	ADC/ADCtoFIFO_v0.v	/^	wire [63:0] data_s;$/;"	n
+data_shift	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+data_w	ADC/ADCtoFIFO_v0.v	/^	wire [47:0] data_w; \/\/ 9 chs data$/;"	n
+data_wo	ADC/ADCtoFIFO_v0.v	/^	wire [47:0] data_wo; \/\/ 9 chs data$/;"	n
+ddr3_ctl_v0	ddr/ddr3_ctl_v0.v	/^module ddr3_ctl_v0$/;"	m
+ddr3_test_v1	ddr/ddr3_test_v1.v	/^module ddr3_test_v1$/;"	m
+ddr3_test_v3	ddr/ddr3_test_v3.v	/^module ddr3_test_v3$/;"	m
+defActive	varValueSelector.v	/^	reg defActive;$/;"	r
+delayTimer	exp_ro/Readout_v0.v	/^	integer delayTimer;$/;"	r
+delayTimer	exp_ro/Readout_v1.v	/^	integer delayTimer;$/;"	r
+delayTimer	exp_ro/Readout_v1_OLD.v	/^	integer delayTimer;$/;"	r
+delayTimer	exp_ro/Readout_v2.v	/^	integer delayTimer;$/;"	r
+done150	Misc/SPI/serializer.v	/^wire done150,done300;$/;"	n
+done300	Misc/SPI/serializer.v	/^wire done150,done300;$/;"	n
+done_exp	exp_ro/Exposure_v1.v	/^  reg done_exp;$/;"	r
+done_exp	exp_ro/Exposure_v2.v	/^  reg done_exp;$/;"	r
+done_ro	exp_ro/Readout_v0.v	/^	reg done_ro;		\/\/trigger handshaking state change after done readout$/;"	r
+done_ro	exp_ro/Readout_v1.v	/^	reg done_ro;		\/\/trigger handshaking state change after done readout$/;"	r
+done_ro	exp_ro/Readout_v1_OLD.v	/^	reg done_ro;		\/\/trigger handshaking state change after done readout$/;"	r
+done_ro	exp_ro/Readout_v2.v	/^	reg done_ro;		\/\/trigger handshaking state change after done readout$/;"	r
+dout	Reveal_Top.bak.v	/^wire [31:0] dout;    $/;"	n
+early_CP_MUX_IN	Misc/ADC/ADC_RO.v	/^    reg early_CP_MUX_IN;$/;"	r
+empty_f1	exp_ro/patternToSensors_v0.v	/^    wire empty_f1;$/;"	n
+en150	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+en300	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+ep00wire	Reveal_Top.bak.v	/^wire [31:0] ep00wire;   \/\/PCB_SPI_DATA$/;"	n
+ep00wire	Reveal_Top.v	/^wire [31:0] ep00wire;   \/\/PCB_SPI_DATA$/;"	n
+ep01wire	Reveal_Top.bak.v	/^wire [31:0] ep01wire;$/;"	n
+ep01wire	Reveal_Top.v	/^wire [31:0] ep01wire;$/;"	n
+ep02wire	Reveal_Top.bak.v	/^wire [31:0] ep02wire;$/;"	n
+ep02wire	Reveal_Top.v	/^wire [31:0] ep02wire;$/;"	n
+ep03wire	Reveal_Top.bak.v	/^wire [31:0] ep03wire;$/;"	n
+ep03wire	Reveal_Top.v	/^wire [31:0] ep03wire;$/;"	n
+ep04wire	Reveal_Top.bak.v	/^wire [31:0] ep04wire;$/;"	n
+ep04wire	Reveal_Top.v	/^wire [31:0] ep04wire;$/;"	n
+ep20wire	Reveal_Top.bak.v	/^wire [31:0] ep20wire;$/;"	n
+ep20wire	Reveal_Top.v	/^wire [31:0] ep20wire;$/;"	n
+ep22wire	Reveal_Top.bak.v	/^wire [31:0] ep22wire;$/;"	n
+ep22wire	Reveal_Top.v	/^wire [31:0] ep22wire;$/;"	n
+ex_trigger	Reveal_Top.bak.v	/^wire ex_trigger;$/;"	n
+ex_trigger	Reveal_Top.v	/^wire ex_trigger;$/;"	n
+fake_data	Reveal_Top.v	/^wire [255:0] fake_data;$/;"	n
+fake_data_wire	Reveal_Top.v	/^wire [31:0] fake_data_wire;$/;"	n
+fastTimer	exp_ro/Readout_v0.v	/^	integer fastTimer;$/;"	r
+fastTimer	exp_ro/Readout_v1.v	/^	integer fastTimer;$/;"	r
+fastTimer	exp_ro/Readout_v1_OLD.v	/^	integer fastTimer;$/;"	r
+fastTimer	exp_ro/Readout_v2.v	/^	integer fastTimer;$/;"	r
+full_f1	exp_ro/patternToSensors_v0.v	/^	wire full_f1;$/;"	n
+i	Misc/ADC/T2_ADC.v	/^integer i;$/;"	r
+i	Reveal_Top.bak.v	/^integer i;$/;"	r
+i	Reveal_Top.v	/^integer i;$/;"	r
+i	XEM7310-A200/okLibrary.v	/^	integer i;$/;"	r
+i	XEM7310-A75/okLibrary.v	/^	integer i;$/;"	r
+ib_data	ddr/ddr3_ctl_v0.v	/^wire [255:0]  ib_data;$/;"	n
+ib_data	ddr/ddr3_test_v1.v	/^wire [255:0]  ib_data;$/;"	n
+ib_data	ddr/ddr3_test_v3.v	/^wire [255:0]  ib_data;$/;"	n
+ib_re	ddr/ddr3_ctl_v0.v	/^reg           ib_re;$/;"	r
+ib_re	ddr/ddr3_test_v1.v	/^reg           ib_re;$/;"	r
+ib_re	ddr/ddr3_test_v3.v	/^reg           ib_re;$/;"	r
+ib_valid	ddr/ddr3_ctl_v0.v	/^wire          ib_valid;$/;"	n
+ib_valid	ddr/ddr3_test_v1.v	/^wire          ib_valid;$/;"	n
+ib_valid	ddr/ddr3_test_v3.v	/^wire          ib_valid;$/;"	n
+img_cnt	Reveal_Top.v	/^wire [2:0] img_cnt;$/;"	n
+init_calib_complete	Reveal_Top.v	/^wire init_calib_complete;$/;"	n
+input	exp_ro/Readout_v0.v	/^	input rst,$/;"	p
+input	exp_ro/Readout_v1.v	/^	input rst,$/;"	p
+input	exp_ro/Readout_v1_OLD.v	/^	input rst,$/;"	p
+input	exp_ro/Readout_v2.v	/^	input rst,$/;"	p
+iobf0_o	XEM7310-A200/okLibrary.v	/^	wire [31:0] iobf0_o;$/;"	n
+iobf0_o	XEM7310-A75/okLibrary.v	/^	wire [31:0] iobf0_o;$/;"	n
+lat_cnt	Misc/ADC/ADC_RO.v	/^    reg [15:0] lat_cnt;     \/\/ lat3 counter$/;"	r
+load_pattern_v0	exp_ro/loadPattern_v0.v	/^module load_pattern_v0($/;"	m
+long_MASK	exp_ro/Exposure_v1.v	/^  reg long_MASK;$/;"	r
+long_MASK	exp_ro/Exposure_v2.v	/^  reg long_MASK;$/;"	r
+mask_fifo_rd	Reveal_Top.v	/^wire 		 mask_fifo_rd;$/;"	n
+mmcm0_clk0	XEM7310-A200/okLibrary.v	/^	wire        mmcm0_clk0;$/;"	n
+mmcm0_clk0	XEM7310-A75/okLibrary.v	/^	wire        mmcm0_clk0;$/;"	n
+mmcm0_clkfb	XEM7310-A200/okLibrary.v	/^	wire        mmcm0_clkfb, mmcm0_clkfb_bufg;$/;"	n
+mmcm0_clkfb	XEM7310-A75/okLibrary.v	/^	wire        mmcm0_clkfb, mmcm0_clkfb_bufg;$/;"	n
+mmcm0_clkfb_bufg	XEM7310-A200/okLibrary.v	/^	wire        mmcm0_clkfb, mmcm0_clkfb_bufg;$/;"	n
+mmcm0_clkfb_bufg	XEM7310-A75/okLibrary.v	/^	wire        mmcm0_clkfb, mmcm0_clkfb_bufg;$/;"	n
+mmcm0_locked	XEM7310-A200/okLibrary.v	/^	wire        mmcm0_locked;$/;"	n
+mmcm0_locked	XEM7310-A75/okLibrary.v	/^	wire        mmcm0_locked;$/;"	n
+modesel	Reveal_Top.bak.v	/^wire [31:0] modesel;$/;"	n
+modesel	Reveal_Top.v	/^wire [31:0] modesel;$/;"	n
+next_state	Misc/ADC/ADC_RO.v	/^    reg [15:0] current_state, next_state;$/;"	r
+num_streams	exp_ro/loadPattern_v0.v	/^  reg [31:0] num_streams;$/;"	r
+ob_data	ddr/ddr3_ctl_v0.v	/^reg  [255:0]  ob_data;$/;"	r
+ob_data	ddr/ddr3_test_v1.v	/^reg  [255:0]  ob_data;$/;"	r
+ob_data	ddr/ddr3_test_v3.v	/^reg  [255:0]  ob_data;$/;"	r
+ob_full	Reveal_Top.v	/^wire         ob_full;$/;"	n
+ob_we	ddr/ddr3_ctl_v0.v	/^reg           ob_we;$/;"	r
+ob_we	ddr/ddr3_test_v1.v	/^reg           ob_we;$/;"	r
+ob_we	ddr/ddr3_test_v3.v	/^reg           ob_we;$/;"	r
+okCH	XEM7310-A200/okLibrary.v	/^	wire [37:0] okCH;$/;"	n
+okCH	XEM7310-A75/okLibrary.v	/^	wire [37:0] okCH;$/;"	n
+okClk	Reveal_Top.bak.v	/^wire okClk;$/;"	n
+okClk	Reveal_Top.v	/^wire 		okClk;$/;"	n
+okEH	Reveal_Top.bak.v	/^wire  [64:0] okEH;$/;"	n
+okEH	Reveal_Top.v	/^wire  [64:0] okEH;$/;"	n
+okEHx	Reveal_Top.bak.v	/^wire [65*EHx_NUM-1:0] okEHx;$/;"	n
+okEHx	Reveal_Top.v	/^wire [65*EHx_NUM-1:0] okEHx;$/;"	n
+okHC	XEM7310-A200/okLibrary.v	/^	wire [38:0] okHC;$/;"	n
+okHC	XEM7310-A75/okLibrary.v	/^	wire [38:0] okHC;$/;"	n
+okHE	Reveal_Top.bak.v	/^wire [112:0] okHE;$/;"	n
+okHE	Reveal_Top.v	/^wire [112:0] okHE;$/;"	n
+okHost	XEM7310-A200/okLibrary.v	/^module okHost$/;"	m
+okHost	XEM7310-A200/okLibrary.vhd	/^entity okHost is$/;"	e
+okHost	XEM7310-A75/okLibrary.v	/^module okHost$/;"	m
+okHost	XEM7310-A75/okLibrary.vhd	/^entity okHost is$/;"	e
+okUH0_ibufg	XEM7310-A200/okLibrary.v	/^	wire        okUH0_ibufg;$/;"	n
+okUH0_ibufg	XEM7310-A75/okLibrary.v	/^	wire        okUH0_ibufg;$/;"	n
+okUHx	XEM7310-A200/okLibrary.v	/^	wire [3:0]  okUHx;$/;"	n
+okUHx	XEM7310-A75/okLibrary.v	/^	wire [3:0]  okUHx;$/;"	n
+okWireOR	XEM7310-A200/okLibrary.v	/^module okWireOR # (parameter N = 1)	($/;"	m
+okWireOR	XEM7310-A200/okLibrary.vhd	/^entity okWireOR is$/;"	e
+okWireOR	XEM7310-A75/okLibrary.v	/^module okWireOR # (parameter N = 1)	($/;"	m
+okWireOR	XEM7310-A75/okLibrary.vhd	/^entity okWireOR is$/;"	e
+p0_din_pipe	Reveal_Top.bak.v	/^wire [31:0]  p0_din_pipe;$/;"	n
+p0_din_pipe	Reveal_Top.v	/^wire [31:0]  p0_din_pipe;$/;"	n
+p0_empty	Reveal_Top.bak.v	/^wire         p0_empty;$/;"	n
+p0_empty	Reveal_Top.v	/^wire         p0_empty;$/;"	n
+p0_full	Reveal_Top.bak.v	/^wire         p0_full;$/;"	n
+p0_full	Reveal_Top.v	/^wire         p0_full;$/;"	n
+p0_out_rd_count	Reveal_Top.bak.v	/^wire [16:0] p0_out_rd_count;$/;"	n
+p0_out_rd_count	Reveal_Top.v	/^wire [16:0] p0_out_rd_count;$/;"	n
+p0_prg_full	Reveal_Top.bak.v	/^wire				 p0_prg_full;$/;"	n
+p0_prg_full	Reveal_Top.v	/^wire				 p0_prg_full;$/;"	n
+p0_rd_data_cnt	Reveal_Top.bak.v	/^wire [17:0]	 p0_rd_data_cnt;$/;"	n
+p0_rd_data_cnt	Reveal_Top.v	/^wire [17:0]	 p0_rd_data_cnt;$/;"	n
+p0_rd_en	Reveal_Top.bak.v	/^wire         p0_rd_en;$/;"	n
+p0_rd_en	Reveal_Top.v	/^wire         p0_rd_en;$/;"	n
+p1_din_pipe	Reveal_Top.bak.v	/^wire [31:0]  p1_din_pipe;$/;"	n
+p1_din_pipe	Reveal_Top.v	/^wire [31:0]  p1_din_pipe;$/;"	n
+p1_empty	Reveal_Top.bak.v	/^wire         p1_empty;$/;"	n
+p1_empty	Reveal_Top.v	/^wire         p1_empty;$/;"	n
+p1_full	Reveal_Top.bak.v	/^wire         p1_full;$/;"	n
+p1_full	Reveal_Top.v	/^wire         p1_full;$/;"	n
+p1_prg_full	Reveal_Top.bak.v	/^wire				 p1_prg_full;$/;"	n
+p1_prg_full	Reveal_Top.v	/^wire				 p1_prg_full;$/;"	n
+p1_rd_data_cnt	Reveal_Top.bak.v	/^wire [17:0]	 p1_rd_data_cnt;$/;"	n
+p1_rd_data_cnt	Reveal_Top.v	/^wire [17:0]	 p1_rd_data_cnt;$/;"	n
+p1_rd_en	Reveal_Top.bak.v	/^wire         p1_rd_en;$/;"	n
+p1_rd_en	Reveal_Top.v	/^wire         p1_rd_en;$/;"	n
+patternToSensors_v0	exp_ro/patternToSensors_v0.v	/^module patternToSensors_v0($/;"	m
+pcb_spi_target	Reveal_Top.bak.v	/^wire [7:0] pcb_spi_target;$/;"	n
+pcb_spi_target	Reveal_Top.v	/^wire [7:0] pcb_spi_target;$/;"	n
+pcb_spi_trigger	Reveal_Top.bak.v	/^wire pcb_spi_trigger;$/;"	n
+pcb_spi_trigger	Reveal_Top.v	/^wire pcb_spi_trigger;$/;"	n
+pi0_ep_dataout	Reveal_Top.bak.v	/^wire [31:0]  pi0_ep_dataout;$/;"	n
+pi0_ep_dataout	Reveal_Top.v	/^wire [31:0]  pi0_ep_dataout;$/;"	n
+pi0_ep_write	Reveal_Top.bak.v	/^wire         pi0_ep_write;$/;"	n
+pi0_ep_write	Reveal_Top.v	/^wire         pi0_ep_write;$/;"	n
+pipe0_in_empty	Reveal_Top.bak.v	/^wire 				 pipe0_in_empty;$/;"	n
+pipe0_in_empty	Reveal_Top.v	/^wire 				 pipe0_in_empty;$/;"	n
+pipe0_in_rd	Reveal_Top.bak.v	/^wire 				 pipe0_in_rd;$/;"	n
+pipe0_in_rd	Reveal_Top.v	/^wire 				 pipe0_in_rd;$/;"	n
+pipe0_in_rd_count	Reveal_Top.bak.v	/^wire [  6:0] pipe0_in_rd_count;$/;"	n
+pipe0_in_rd_count	Reveal_Top.v	/^wire [  6:0] pipe0_in_rd_count;$/;"	n
+pipe0_in_rd_data	Reveal_Top.bak.v	/^wire [255:0] pipe0_in_rd_data;$/;"	n
+pipe0_in_rd_data	Reveal_Top.v	/^wire [255:0] pipe0_in_rd_data;$/;"	n
+pipe0_in_valid	Reveal_Top.bak.v	/^wire 				 pipe0_in_valid;$/;"	n
+pipe0_in_valid	Reveal_Top.v	/^wire 				 pipe0_in_valid;$/;"	n
+pipe0_in_wr_count	Reveal_Top.bak.v	/^wire [  8:0] pipe0_in_wr_count;$/;"	n
+pipe0_in_wr_count	Reveal_Top.v	/^wire [  8:0] pipe0_in_wr_count;$/;"	n
+pipe0_out_full	Reveal_Top.bak.v	/^wire 				 pipe0_out_full;$/;"	n
+pipe0_out_full	Reveal_Top.v	/^wire 				 pipe0_out_full;$/;"	n
+pipe0_out_rd_count	Reveal_Top.bak.v	/^wire [  6:0] pipe0_out_rd_count;$/;"	n
+pipe0_out_rd_count	Reveal_Top.v	/^wire [  6:0] pipe0_out_rd_count;$/;"	n
+pipe0_out_wr	Reveal_Top.bak.v	/^wire 				 pipe0_out_wr;$/;"	n
+pipe0_out_wr	Reveal_Top.v	/^wire 				 pipe0_out_wr;$/;"	n
+pipe0_out_wr_count	Reveal_Top.bak.v	/^wire [  6:0] pipe0_out_wr_count;$/;"	n
+pipe0_out_wr_count	Reveal_Top.v	/^wire [  6:0] pipe0_out_wr_count;$/;"	n
+pipe0_out_wr_data	Reveal_Top.bak.v	/^wire [255:0] pipe0_out_wr_data;$/;"	n
+pipe0_out_wr_data	Reveal_Top.v	/^wire [255:0] pipe0_out_wr_data;$/;"	n
+pipe1_in_empty	Reveal_Top.bak.v	/^wire 				 pipe1_in_empty;$/;"	n
+pipe1_in_empty	Reveal_Top.v	/^wire 				 pipe1_in_empty;$/;"	n
+pipe1_in_rd	Reveal_Top.bak.v	/^wire 				 pipe1_in_rd;$/;"	n
+pipe1_in_rd	Reveal_Top.v	/^wire 				 pipe1_in_rd;$/;"	n
+pipe1_in_rd_count	Reveal_Top.bak.v	/^wire [  6:0] pipe1_in_rd_count;$/;"	n
+pipe1_in_rd_count	Reveal_Top.v	/^wire [  6:0] pipe1_in_rd_count;$/;"	n
+pipe1_in_rd_data	Reveal_Top.bak.v	/^wire [255:0] pipe1_in_rd_data;$/;"	n
+pipe1_in_rd_data	Reveal_Top.v	/^wire [255:0] pipe1_in_rd_data;$/;"	n
+pipe1_in_valid	Reveal_Top.bak.v	/^wire 				 pipe1_in_valid;$/;"	n
+pipe1_in_valid	Reveal_Top.v	/^wire 				 pipe1_in_valid;$/;"	n
+pipe1_in_wr_count	Reveal_Top.bak.v	/^wire [  8:0] pipe1_in_wr_count;$/;"	n
+pipe1_in_wr_count	Reveal_Top.v	/^wire [  8:0] pipe1_in_wr_count;$/;"	n
+pipe_in_data	Reveal_Top.bak.v	/^wire [255:0] pipe_in_data;$/;"	n
+pipe_in_data	Reveal_Top.v	/^wire [255:0] pipe_in_data;$/;"	n
+pipe_in_empty	Reveal_Top.bak.v	/^wire         pipe_in_empty;$/;"	n
+pipe_in_empty	Reveal_Top.v	/^wire         pipe_in_empty;$/;"	n
+pipe_in_full	Reveal_Top.bak.v	/^wire         pipe_in_full;$/;"	n
+pipe_in_full	Reveal_Top.v	/^wire         pipe_in_full;$/;"	n
+pipe_in_rd_count	Reveal_Top.bak.v	/^wire [6:0]   pipe_in_rd_count;$/;"	n
+pipe_in_rd_count	Reveal_Top.v	/^wire [6:0]   pipe_in_rd_count;$/;"	n
+pipe_in_read	Reveal_Top.bak.v	/^wire         pipe_in_read;$/;"	n
+pipe_in_read	Reveal_Top.v	/^wire         pipe_in_read;$/;"	n
+pipe_in_ready	Reveal_Top.bak.v	/^reg          pipe_in_ready;$/;"	r
+pipe_in_ready	Reveal_Top.v	/^reg          pipe_in_ready;$/;"	r
+pipe_in_valid	Reveal_Top.bak.v	/^wire         pipe_in_valid;$/;"	n
+pipe_in_valid	Reveal_Top.v	/^wire         pipe_in_valid;$/;"	n
+pipe_in_wr_count	Reveal_Top.bak.v	/^wire [9:0]   pipe_in_wr_count;$/;"	n
+pipe_in_wr_count	Reveal_Top.v	/^wire [9:0]   pipe_in_wr_count;$/;"	n
+pipe_out_data	Reveal_Top.bak.v	/^wire [255:0] pipe_out_data;$/;"	n
+pipe_out_data	Reveal_Top.v	/^wire [255:0] pipe_out_data;$/;"	n
+pipe_out_empty	Reveal_Top.bak.v	/^wire         pipe_out_empty;$/;"	n
+pipe_out_empty	Reveal_Top.v	/^wire         pipe_out_empty;$/;"	n
+pipe_out_full	Reveal_Top.bak.v	/^wire         pipe_out_full;$/;"	n
+pipe_out_full	Reveal_Top.v	/^wire         pipe_out_full;$/;"	n
+pipe_out_rd_count	Reveal_Top.bak.v	/^wire [9:0]   pipe_out_rd_count;$/;"	n
+pipe_out_rd_count	Reveal_Top.v	/^wire [9:0]   pipe_out_rd_count;$/;"	n
+pipe_out_ready	Reveal_Top.bak.v	/^reg          pipe_out_ready;$/;"	r
+pipe_out_ready	Reveal_Top.v	/^reg          pipe_out_ready;$/;"	r
+pipe_out_wr_count	Reveal_Top.bak.v	/^wire [6:0]   pipe_out_wr_count;$/;"	n
+pipe_out_wr_count	Reveal_Top.v	/^wire [6:0]   pipe_out_wr_count;$/;"	n
+pipe_out_write	Reveal_Top.bak.v	/^wire         pipe_out_write;$/;"	n
+pipe_out_write	Reveal_Top.v	/^wire         pipe_out_write;$/;"	n
+po0_ep_datain	Reveal_Top.bak.v	/^wire [31:0]  po0_ep_datain;$/;"	n
+po0_ep_datain	Reveal_Top.v	/^wire [31:0]  po0_ep_datain;$/;"	n
+po0_ep_read	Reveal_Top.bak.v	/^wire         po0_ep_read;$/;"	n
+po0_ep_read	Reveal_Top.v	/^wire         po0_ep_read;$/;"	n
+rd0_data	Reveal_Top.bak.v	/^wire [255:0] rd0_data;$/;"	n
+rd0_data	Reveal_Top.v	/^wire [255:0] rd0_data;$/;"	n
+rd0_valid	Reveal_Top.bak.v	/^wire rd0_valid;$/;"	n
+rd0_valid	Reveal_Top.v	/^wire rd0_valid;$/;"	n
+rd1_almost_full	Reveal_Top.bak.v	/^wire rd1_almost_full;$/;"	n
+rd1_almost_full	Reveal_Top.v	/^wire rd1_almost_full;$/;"	n
+rd_data_count	ADC/ADCtoFIFO_v0.v	/^    wire [20:0] rd_data_count;$/;"	n
+rd_test_cnt	exp_ro/patternToSensors_v0.v	/^	wire [11:0] rd_test_cnt;$/;"	n
+re_busy	Reveal_Top.bak.v	/^wire re_busy;$/;"	n
+re_busy	Reveal_Top.v	/^wire re_busy;$/;"	n
+readR_fastTimer	exp_ro/Readout_v0.v	/^	integer	readR_fastTimer;$/;"	r
+readR_fastTimer	exp_ro/Readout_v1_OLD.v	/^	integer	readR_fastTimer;$/;"	r
+readTimer	exp_ro/Readout_v0.v	/^	integer readTimer;$/;"	r
+readTimer	exp_ro/Readout_v1_OLD.v	/^	integer readTimer;$/;"	r
+reg	ADC/ADCparser.v	/^	output reg valid_o,$/;"	p
+reg	Misc/ADC/ADC_RO.v	/^    output reg      ADC1_SHR,$/;"	p
+reg	Misc/ADC/ADC_RO.v	/^    output reg      ADC2_SHR,$/;"	p
+reg	Misc/ADC/ADC_RO.v	/^    output reg      FIFO_IN_TRIG_DeSerial,$/;"	p
+reg	Misc/SPI/serializer.v	/^output reg CLK;$/;"	p
+reg	Misc/SPI/serializer.v	/^output reg LD_n;$/;"	p
+reg	Misc/SPI/serializer.v	/^output reg SRI;$/;"	p
+reg	Misc/SPI/serializer_ctrl.v	/^    output reg reset_out$/;"	p
+reg	Misc/SPI/serializer_ctrl.v	/^    output reg trigger_out,$/;"	p
+reg	Misc/SPI/wait_counter.v	/^	 output reg trigger;$/;"	p
+reg	XEM7310-A200/okLibrary.v	/^	output reg  [64:0]     okEH,$/;"	p
+reg	XEM7310-A75/okLibrary.v	/^	output reg  [64:0]     okEH,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg DES,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg EXP,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg MASK_EN,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg PIXDRAIN,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg PIXGLOB_RES,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg PIXGSUBC,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg PIXROWMASK,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg PIXVTG_GLOB,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg SYNC,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg [9:0]ROWADD,$/;"	p
+reg	exp_ro/Exposure_v1.v	/^  output reg trigger_o,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg DES,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg EN_STREAM,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg EXP,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg MASK_EN,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg PIXDRAIN,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg PIXGLOB_RES,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg PIXGSUBC,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg PIXROWMASK,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg PIXVTG_GLOB,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg STDBY,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg SYNC,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg [9:0]ROWADD,$/;"	p
+reg	exp_ro/Exposure_v2.v	/^  output reg trigger_o,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg CK_PH1,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg COL_L_EN,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg CP_COLMUX_IN,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg MUX_START,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg PGA_RES,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg PIXRES_L,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg PIXRES_R,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg PRECH_COL,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg READ_R,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg READ_S,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg SAMP_R,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg SAMP_S,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg STDBY,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg [7:0] ROWADD,$/;"	p
+reg	exp_ro/Readout_v0.v	/^	output reg re_busy,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg COL_L_EN,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg COL_PRECH,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg CP_MUX_IN,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg MUX_START,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg PGA_RES,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg PH1,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg PIXRES,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg READ_R,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg READ_S,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg SAMP_R,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg SAMP_S,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg [9:0] ROWADD,$/;"	p
+reg	exp_ro/Readout_v1.v	/^	output reg re_busy,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg CK_PH1,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg COL_L_EN,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg CP_COLMUX_IN,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg MUX_START,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg PGA_RES,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg PIXRES_L,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg PIXRES_R,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg PRECH_COL,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg READ_R,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg READ_S,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg SAMP_R,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg SAMP_S,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg STDBY,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg [9:0] ROWADD,$/;"	p
+reg	exp_ro/Readout_v1_OLD.v	/^	output reg re_busy,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg 				dat_valid,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg COL_L_EN,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg COL_PRECH,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg CP_MUX_IN,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg MUX_START,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg PGA_RES,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg PH1,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg PIXRES,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg READ_R,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg READ_S,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg SAMP_R,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg SAMP_S,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg [9:0] ROWADD,$/;"	p
+reg	exp_ro/Readout_v2.v	/^	output reg re_busy,$/;"	p
+reg	exp_ro/loadPattern_v0.v	/^	output reg FIFO_wr,$/;"	p
+reg	exp_ro/loadPattern_v0.v	/^	output reg pat_fifo_rd_en,$/;"	p
+reg	exp_ro/patternToSensors_v0.v	/^		output reg stream_en_o,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] NumPat,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] NumRow,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T1_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T1_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T2_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T2_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T3_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T3_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T4_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T4_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T5_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T5_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T6_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T6_r,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T7_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T8_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T9_e,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T_reset,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] T_stdby,      $/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] Texp_ctrl,$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] Tgl_res,      $/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] Tlat$/;"	p
+reg	varValueSelector.v	/^	output reg [31:0] varValueOut,		\/\/ Output Value of the variable$/;"	p
+regout0_q	XEM7310-A200/okLibrary.v	/^	wire [31:0] regout0_q;$/;"	n
+regout0_q	XEM7310-A75/okLibrary.v	/^	wire [31:0] regout0_q;$/;"	n
+regvalid_q	XEM7310-A200/okLibrary.v	/^	wire [31:0] regvalid_q;$/;"	n
+regvalid_q	XEM7310-A75/okLibrary.v	/^	wire [31:0] regvalid_q;$/;"	n
+rst	Reveal_Top.bak.v	/^wire rst;$/;"	n
+rst_cnt	Reveal_Top.v	/^reg [31:0] rst_cnt;$/;"	r
+ser_cnt_reset	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+ser_cnt_sub	Misc/SPI/serializer.v	/^reg en150,en300,ser_cnt_reset,ser_cnt_sub,data_init,data_shift;$/;"	r
+ser_counter	Misc/SPI/serializer.v	/^reg [5:0]ser_counter;$/;"	r
+ser_reset	Misc/SPI/SPI_top.v	/^    wire ser_trigger, ser_reset;$/;"	n
+ser_trigger	Misc/SPI/SPI_top.v	/^    wire ser_trigger, ser_reset;$/;"	n
+serializer	Misc/SPI/serializer.v	/^module serializer(CLK100MHZ,enable,DATA,Reset,SRI,CLK,LD_n);\/\/,CurrentState);$/;"	m
+serializer_ctrl	Misc/SPI/serializer_ctrl.v	/^module serializer_ctrl($/;"	m
+set_sub	exp_ro/Exposure_v1.v	/^  reg set_sub;$/;"	r
+set_sub	exp_ro/Exposure_v2.v	/^  reg set_sub;$/;"	r
+spi_word	Misc/SPI/SPI_top.v	/^    wire [15:0] spi_word;$/;"	n
+start_cnt	Misc/ADC/ADC_RO.v	/^    reg [7:0] start_cnt;$/;"	r
+start_trig	Misc/ADC/ADC_RO.v	/^    reg start_trig;$/;"	r
+state	exp_ro/loadPattern_v0.v	/^	integer state;$/;"	r
+stop_cnt	Reveal_Top.bak.v	/^reg [3:0] stop_cnt;$/;"	r
+stop_cnt	Reveal_Top.v	/^reg [3:0] stop_cnt;$/;"	r
+stop_sig	Reveal_Top.bak.v	/^reg stop_sig;$/;"	r
+stop_sig	Reveal_Top.v	/^reg stop_sig;$/;"	r
+sys_rst	Reveal_Top.v	/^reg sys_rst;$/;"	r
+target_in	Misc/SPI/SPI_top.v	/^    wire [7:0] target_in;$/;"	n
+temp_adc1	Misc/ADC/ADC_RO.v	/^    reg [47:0] temp_adc1;$/;"	r
+temp_adc2	Misc/ADC/ADC_RO.v	/^    reg [47:0] temp_adc2;$/;"	r
+temp_data1	Misc/ADC/ADC_RO.v	/^    reg [7:0] temp_data1 [5:0];$/;"	r
+temp_data2	Misc/ADC/ADC_RO.v	/^    reg [7:0] temp_data2 [5:0];$/;"	r
+testWireIn	Reveal_Top.bak.v	/^wire [31:0] testWireIn;$/;"	n
+testWireIn	Reveal_Top.v	/^wire [31:0] testWireIn;$/;"	n
+testWireOut	Reveal_Top.bak.v	/^wire [31:0] testWireOut;$/;"	n
+testWireOut	Reveal_Top.v	/^wire [31:0] testWireOut;$/;"	n
+testWireOut2	Reveal_Top.bak.v	/^wire [31:0] testWireOut2;$/;"	n
+timer	exp_ro/Readout_v0.v	/^	integer timer;		\/\/count clock cycles for timing$/;"	r
+timer	exp_ro/Readout_v1.v	/^	integer timer;		\/\/count clock cycles for timing$/;"	r
+timer	exp_ro/Readout_v1_OLD.v	/^	integer timer;		\/\/count clock cycles for timing$/;"	r
+timer	exp_ro/Readout_v2.v	/^	integer timer;		\/\/count clock cycles for timing$/;"	r
+trig40	Reveal_Top.bak.v	/^wire [31:0] trig40; \/\/triggers$/;"	n
+trig40	Reveal_Top.v	/^wire [31:0] trig40; \/\/triggers$/;"	n
+trig41	Reveal_Top.bak.v	/^wire [31:0] trig41; \/\/triggers$/;"	n
+trig41	Reveal_Top.v	/^wire [31:0] trig41; \/\/triggers$/;"	n
+trig_start	exp_ro/Exposure_v1.v	/^  reg trig_start;$/;"	r
+trig_start	exp_ro/Exposure_v2.v	/^  reg trig_start;$/;"	r
+trig_start	exp_ro/Readout_v0.v	/^	reg trig_start;		\/\/trigger readout start from handshaking state machine$/;"	r
+trig_start	exp_ro/Readout_v1.v	/^	reg trig_start;		\/\/trigger readout start from handshaking state machine$/;"	r
+trig_start	exp_ro/Readout_v1_OLD.v	/^	reg trig_start;		\/\/trigger readout start from handshaking state machine$/;"	r
+trig_start	exp_ro/Readout_v2.v	/^	reg trig_start;		\/\/trigger readout start from handshaking state machine$/;"	r
+ui_clk	Reveal_Top.v	/^wire ui_clk;$/;"	n
+valid	ADC/ADCtoFIFO_v0.v	/^	wire valid;$/;"	n
+valid1	ADC2FIFO_v0.v	/^    wire valid1;$/;"	n
+valid2	ADC2FIFO_v0.v	/^    wire valid2;$/;"	n
+valid_i	ADC/ADCtoFIFO_v0.v	/^	wire valid_i, valid_i_big;$/;"	n
+valid_i_big	ADC/ADCtoFIFO_v0.v	/^	wire valid_i, valid_i_big;$/;"	n
+valid_i_small	ADC/ADCtoFIFO_v0.v	/^	reg valid_i_small;$/;"	r
+valid_w	ADC/ADCtoFIFO_v0.v	/^	wire [2:0] valid_w;$/;"	n
+valid_wo	ADC/ADCtoFIFO_v0.v	/^	wire [2:0] valid_wo;$/;"	n
+varValueSelector	varValueSelector.v	/^module varValueSelector ($/;"	m
+wait_counter	Misc/SPI/wait_counter.v	/^module wait_counter(enable,clk,trigger);$/;"	m
+wdf_flag	ddr/ddr3_ctl_v0.v	/^reg wdf_flag;$/;"	r
+wdf_flag	ddr/ddr3_test_v1.v	/^reg wdf_flag;$/;"	r
+wdf_flag	ddr/ddr3_test_v3.v	/^reg wdf_flag;$/;"	r
+wire	ADC/ADCparser.v	/^	input wire bit_i,$/;"	p
+wire	ADC/ADCparser.v	/^	input wire clk,$/;"	p
+wire	ADC/ADCparser.v	/^	input wire valid_i,$/;"	p
+wire	ADC/ADCparser.v	/^	output wire [15:0] data_o  $/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	input	wire 			adc_clk0_i,   \/\/ for write  in charge channel 0 to 2$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	input	wire 			adc_gr0_valid,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	input  wire					p0_rd_clk,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	input  wire					p0_rd_en,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	output wire 				p0_empty,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	output wire 				p0_full,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	output wire 				p0_valid,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	output wire [255:0] 	        p0_data_o$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^	output wire [6:0]          p0_rd_data_cnt,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^  input	wire 			rst,$/;"	p
+wire	ADC/ADCtoFIFO_v0.v	/^  input	wire [2:0] ch_data_i,  \/\/ channel data in$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire 		dat_valid,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire 		rd_clk,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire 		rd_en,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      ADC1_DATA_CLK,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      ADC2_DATA_CLK,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      OK_CLK,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      OK_FIFO_OUT_TRIG,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      [7:0] ADC1_DATA_RAW,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      [7:0] ADC2_DATA_RAW,$/;"	p
+wire	ADC2FIFO_v0.v	/^    input wire      rst,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     FIFO_IN_TRIG,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     OK_FIFO_EMPTY,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     OK_FIFO_Start_Trig,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     [255:0] rd_data,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     [31:0] OK_FIFO_DATA_OUT,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     [6:0] rd_data_count$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     empty,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     full,$/;"	p
+wire	ADC2FIFO_v0.v	/^    output wire     valid,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      ADC1_DATA_CLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      ADC2_DATA_CLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      ADC_INCLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      CP_MUX_IN,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      FIFO_IN_CLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      MUX_START,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      OK_CLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      OK_FIFO_OUT_TRIG,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      RAM_FIFO_CLK,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      RAM_FIFO_RD_EN,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      [7:0] ADC1_DATA_RAW,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      [7:0] ADC2_DATA_RAW,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      clk_100,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    input wire      rst,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     FIFO_IN_CLK_DeSerial,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     FIFO_IN_TRIG,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     OK_FIFO_EMPTY,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     OK_FIFO_Start_Trig,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     RAM_FIFO_EMPTY,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     RAM_FIFO_FULL,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     RAM_FIFO_VALID,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [15:0] FIFO_IN_DATA1,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [15:0] FIFO_IN_DATA2,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [255:0] RAM_FIFO_DOUT,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [31:0] DEBUG_WIRE$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [31:0] OK_FIFO_DATA_OUT,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [47:0] FIFO_IN_DATA1_DeSerial,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [47:0] FIFO_IN_DATA2_DeSerial,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [6:0] RAM_FIFO_RD_COUNT,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [8:0] DEBUG,$/;"	p
+wire	Misc/ADC/ADC_RO.v	/^    output wire     [9:0] RAM_FIFO_WR_COUNT,$/;"	p
+wire	Misc/OneTimeSetup.v	/^    input wire CLK,$/;"	p
+wire	Misc/SPI/SPI_top.v	/^    input wire SPI_DOUT         \/\/input:    input to the FPGA from SPI slaves      $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    input wire [31:0] DIN,      \/\/input:    {DATA{15:0},6'b0,CPOL,CPHA,target[7:0]}$/;"	p
+wire	Misc/SPI/SPI_top.v	/^    input wire clk,             \/\/input:    reference clock                        $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    input wire trigger,         \/\/input:    {trigger to start the SPI}             $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    output wire SPI_CLK,        \/\/output:   based on CPOL,CPHA information of DIN  $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    output wire SPI_DIN,        \/\/output:   based on DATA information of DIN       $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    output wire [31:0] DOUT,    \/\/output:   {DESERIALIZED DATA FROM SPI_DOUT}      $/;"	p
+wire	Misc/SPI/SPI_top.v	/^    output wire [7:0] TARGET,   \/\/output:   based on target information of DIN     $/;"	p
+wire	Misc/SPI/serializer.v	/^input wire CLK100MHZ;$/;"	p
+wire	Misc/SPI/serializer.v	/^input wire Reset;$/;"	p
+wire	Misc/SPI/serializer.v	/^input wire enable;$/;"	p
+wire	Misc/SPI/serializer_ctrl.v	/^    input wire clk,$/;"	p
+wire	Misc/SPI/serializer_ctrl.v	/^    input wire trigger_in,$/;"	p
+wire	Misc/SPI/wait_counter.v	/^	 input wire clk;$/;"	p
+wire	Misc/SPI/wait_counter.v	/^	 input wire enable;$/;"	p
+wire	Misc/counter.v	/^    input wire clk,$/;"	p
+wire	Misc/counter.v	/^    output wire [N-1:0] dout$/;"	p
+wire	Reveal_Top.bak.v	/^	inout  wire         okAA,$/;"	p
+wire	Reveal_Top.bak.v	/^	inout  wire [31:0]  okUHU,$/;"	p
+wire	Reveal_Top.bak.v	/^	input  wire         sys_clk_n,$/;"	p
+wire	Reveal_Top.bak.v	/^	input  wire         sys_clk_p,$/;"	p
+wire	Reveal_Top.bak.v	/^	input  wire [4:0]   okUH,$/;"	p
+wire	Reveal_Top.bak.v	/^	output wire [2:0]   okHU,$/;"	p
+wire	Reveal_Top.bak.v	/^	output wire [7:0]   led,$/;"	p
+wire	Reveal_Top.bak.v	/^    input wire ADC1_DATA_CLK, input wire ADC2_DATA_CLK,     \/\/Output clocks from TI-ADC ICs$/;"	p
+wire	Reveal_Top.bak.v	/^    input wire PCB_SPI_DOUT,$/;"	p
+wire	Reveal_Top.bak.v	/^    input wire [7:0] ADC1_DATA, input wire [7:0] ADC2_DATA, \/\/Output data from TI-ADC ICs$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire ADC1_SHR, output wire ADC2_SHR,             \/\/Sample and hold control for TI-ADC ICs           $/;"	p
+wire	Reveal_Top.bak.v	/^    output wire ADC_CLK_OUT,                                \/\/Input clocks for TI-ADCs ICs$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire ADC_LDO_CLK,                                \/\/LDO ADC CLK$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire CK_PH1, output wire READ_R, output wire READ_S, \/\/PGA SPECIFIC$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire COL_L_EN, output wire STDBY,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire COL_PRECH,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire CP_COLMUX_IN, output wire MUX_START,            \/\/ANALOG OUTPUT MUX CONTROL$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire CS_ADC1, output wire CS_ADC2, output wire CS_ADC_LDO,   \/\/ADC$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire CS_PLL, output wire CS_IBIAS,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire CS_POT1, output wire CS_POT2, output wire RS_POT,       \/\/LDO POTS$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire DES, output wire SYNC, output wire RESET_N, $/;"	p
+wire	Reveal_Top.bak.v	/^    output wire EXP, output wire FPGA_MOD0, wire FPGA_MOD90,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire IS_SPI_DATA, output wire IS_SPI_CLK, output wire IS_SPI_UPLOAD,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire LC_EN$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire LaserIO_9, output wire LaserIO_11,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire MASK_EN,output wire CLKM, $/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PCB_SPI_DIN, output wire PCB_SPI_CLK,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PGA_RES, output wire SAMP_R, output wire SAMP_S,\/\/PGA SPECIFIC $/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PIXDRAIN, output wire PIXGLOB_RES, output wire PIXVTG_GLOB, output wire PIXRES, \/\/RESET$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PIXREAD_EN, output wire PIXLEFTBUCK_SEL,    \/\/READOUT$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PIX_GSUBC, output wire PIX_ROWMASK,         \/\/MASKING$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire PLL_ToF, output wire PLL_SYNC,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire RO_CLK_100,                             \/\/CLK to interanally latch readout signals$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire [16:1] mSTREAM,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire [20:1] TestIO,$/;"	p
+wire	Reveal_Top.bak.v	/^    output wire [9:0] ROWADD,                               \/\/MASKING and READOUT$/;"	p
+wire	Reveal_Top.v	/^	inout  wire         okAA,$/;"	p
+wire	Reveal_Top.v	/^	inout  wire [3 :0]  ddr3_dqs_n,$/;"	p
+wire	Reveal_Top.v	/^	inout  wire [3 :0]  ddr3_dqs_p,$/;"	p
+wire	Reveal_Top.v	/^	inout  wire [31:0]  ddr3_dq,$/;"	p
+wire	Reveal_Top.v	/^	inout  wire [31:0]  okUHU,$/;"	p
+wire	Reveal_Top.v	/^	input  wire         sys_clk_n,$/;"	p
+wire	Reveal_Top.v	/^	input  wire         sys_clk_p,$/;"	p
+wire	Reveal_Top.v	/^	input  wire [4:0]   okUH,$/;"	p
+wire	Reveal_Top.v	/^	input wire ADC2_DATA_CLK,     \/\/Output clocks from TI-ADC ICs$/;"	p
+wire	Reveal_Top.v	/^	input wire [7:0] ADC2_DATA, \/\/Output data from TI-ADC ICs$/;"	p
+wire	Reveal_Top.v	/^	output wire         ddr3_cas_n,$/;"	p
+wire	Reveal_Top.v	/^	output wire         ddr3_ras_n,$/;"	p
+wire	Reveal_Top.v	/^	output wire         ddr3_reset_n,$/;"	p
+wire	Reveal_Top.v	/^	output wire         ddr3_we_n,$/;"	p
+wire	Reveal_Top.v	/^	output wire ADC2_SHR,             \/\/Sample and hold control for TI-ADC ICs$/;"	p
+wire	Reveal_Top.v	/^	output wire CK_PH1,$/;"	p
+wire	Reveal_Top.v	/^	output wire CLKM,$/;"	p
+wire	Reveal_Top.v	/^	output wire COL_L_EN,$/;"	p
+wire	Reveal_Top.v	/^	output wire COL_PRECH,$/;"	p
+wire	Reveal_Top.v	/^	output wire CP_COLMUX_IN,$/;"	p
+wire	Reveal_Top.v	/^	output wire CS_ADC2,$/;"	p
+wire	Reveal_Top.v	/^	output wire CS_ADC_LDO,   \/\/ADC$/;"	p
+wire	Reveal_Top.v	/^	output wire CS_IBIAS,$/;"	p
+wire	Reveal_Top.v	/^	output wire CS_POT2,$/;"	p
+wire	Reveal_Top.v	/^	output wire DES,$/;"	p
+wire	Reveal_Top.v	/^	output wire EXP,$/;"	p
+wire	Reveal_Top.v	/^	output wire FPGA_MOD0,$/;"	p
+wire	Reveal_Top.v	/^	output wire FPGA_MOD90,$/;"	p
+wire	Reveal_Top.v	/^	output wire IS_SPI_CLK,$/;"	p
+wire	Reveal_Top.v	/^	output wire IS_SPI_DATA,$/;"	p
+wire	Reveal_Top.v	/^	output wire IS_SPI_UPLOAD,$/;"	p
+wire	Reveal_Top.v	/^	output wire LaserIO_11,$/;"	p
+wire	Reveal_Top.v	/^	output wire MASK_EN,$/;"	p
+wire	Reveal_Top.v	/^	output wire MUX_START,            \/\/ANALOG OUTPUT MUX CONTROL$/;"	p
+wire	Reveal_Top.v	/^	output wire PCB_SPI_CLK,$/;"	p
+wire	Reveal_Top.v	/^	output wire PGA_RES,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXDRAIN,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXGLOB_RES,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXLEFTBUCK_SEL,    \/\/READOUT$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXREAD_EN,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXRES, \/\/RESET$/;"	p
+wire	Reveal_Top.v	/^	output wire PIXVTG_GLOB,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIX_GSUBC,$/;"	p
+wire	Reveal_Top.v	/^	output wire PIX_ROWMASK,         \/\/MASKING$/;"	p
+wire	Reveal_Top.v	/^	output wire PLL_SYNC,$/;"	p
+wire	Reveal_Top.v	/^	output wire READ_R,$/;"	p
+wire	Reveal_Top.v	/^	output wire READ_S, \/\/PGA SPECIFIC$/;"	p
+wire	Reveal_Top.v	/^	output wire RESET_N,$/;"	p
+wire	Reveal_Top.v	/^	output wire RO_CLK_100,                             \/\/CLK to interanally latch readout signals$/;"	p
+wire	Reveal_Top.v	/^	output wire RS_POT,       \/\/LDO POTS$/;"	p
+wire	Reveal_Top.v	/^	output wire SAMP_R,$/;"	p
+wire	Reveal_Top.v	/^	output wire SAMP_S,\/\/PGA SPECIFIC$/;"	p
+wire	Reveal_Top.v	/^	output wire STDBY,$/;"	p
+wire	Reveal_Top.v	/^	output wire SYNC,$/;"	p
+wire	Reveal_Top.v	/^	output wire [0 :0]  ddr3_ck_n,$/;"	p
+wire	Reveal_Top.v	/^	output wire [0 :0]  ddr3_ck_p,$/;"	p
+wire	Reveal_Top.v	/^	output wire [0 :0]  ddr3_cke,$/;"	p
+wire	Reveal_Top.v	/^	output wire [0 :0]  ddr3_odt,$/;"	p
+wire	Reveal_Top.v	/^	output wire [14:0]  ddr3_addr,$/;"	p
+wire	Reveal_Top.v	/^	output wire [16:1] mSTREAM,$/;"	p
+wire	Reveal_Top.v	/^	output wire [2 :0]  ddr3_ba,$/;"	p
+wire	Reveal_Top.v	/^	output wire [2:0]   okHU,$/;"	p
+wire	Reveal_Top.v	/^	output wire [3 :0]  ddr3_dm,$/;"	p
+wire	Reveal_Top.v	/^	output wire [7:0]   led,$/;"	p
+wire	Reveal_Top.v	/^	output wire [9:0] ROWADD,                               \/\/MASKING and READOUT$/;"	p
+wire	Reveal_Top.v	/^    input wire ADC1_DATA_CLK,$/;"	p
+wire	Reveal_Top.v	/^    input wire PCB_SPI_DOUT,$/;"	p
+wire	Reveal_Top.v	/^    input wire [7:0] ADC1_DATA,$/;"	p
+wire	Reveal_Top.v	/^    output wire ADC1_SHR,$/;"	p
+wire	Reveal_Top.v	/^    output wire ADC_CLK_OUT,                                \/\/Input clocks for TI-ADCs ICs$/;"	p
+wire	Reveal_Top.v	/^    output wire ADC_LDO_CLK,                                \/\/LDO ADC CLK$/;"	p
+wire	Reveal_Top.v	/^    output wire CS_ADC1,$/;"	p
+wire	Reveal_Top.v	/^    output wire CS_PLL,$/;"	p
+wire	Reveal_Top.v	/^    output wire CS_POT1,$/;"	p
+wire	Reveal_Top.v	/^    output wire LC_EN$/;"	p
+wire	Reveal_Top.v	/^    output wire PCB_SPI_DIN,$/;"	p
+wire	Reveal_Top.v	/^    output wire PLL_ToF,$/;"	p
+wire	Reveal_Top.v	/^  output wire LaserIO_9,$/;"	p
+wire	Reveal_Top.v	/^  output wire [20:1] TestIO,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	inout  wire         okAA,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	inout  wire [31:0]  okUHU,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	input  wire [4:0]   okUH,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	input  wire [64:0]  okEH,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	input  wire [N*65-1:0] okEHx$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	output wire         dna_valid$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	output wire         okClk,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	output wire [112:0] okHE,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	output wire [2:0]   okHU,$/;"	p
+wire	XEM7310-A200/okLibrary.v	/^	output wire [56:0]  dna,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	inout  wire         okAA,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	inout  wire [31:0]  okUHU,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	input  wire [4:0]   okUH,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	input  wire [64:0]  okEH,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	input  wire [N*65-1:0] okEHx$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	output wire         dna_valid$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	output wire         okClk,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	output wire [112:0] okHE,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	output wire [2:0]   okHU,$/;"	p
+wire	XEM7310-A75/okLibrary.v	/^	output wire [56:0]  dna,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire CLKM,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] NUM_SUB,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T1,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T2,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T3,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T4,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T5,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T6,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T7,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T8,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T9$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] T_reset,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] Texp_ctrl,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire [31:0] Tgl_res,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire re_busy,$/;"	p
+wire	exp_ro/Exposure_v1.v	/^  input wire rst,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire CLKM,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] NUM_SUB,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T1,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T2,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T3,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T4,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T5,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T6,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T7,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T8,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T9$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T_reset,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] T_stdby,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] Texp_ctrl,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire [31:0] Tgl_res,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire re_busy,$/;"	p
+wire	exp_ro/Exposure_v2.v	/^  input wire rst,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] NUM_ROW$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] NUM_SAMPL,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] NUM_SAMPR,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T1,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T10,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T2,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T3,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T4,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T5L,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T5R,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T5_5,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T5_6,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T6,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T7,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T8,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T9,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T_PIX,$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire [31:0] T_ROW, \/\/TODO don't think I need this but I'll leave this here$/;"	p
+wire	exp_ro/Readout_v0.v	/^	input wire trigger_i,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] NUM_ROW$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T1,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T2,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T3,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T4,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T5,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire [31:0] T6,$/;"	p
+wire	exp_ro/Readout_v1.v	/^	input wire trigger_i,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] NUM_ROW$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] NUM_SAMPL,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] NUM_SAMPR,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T1,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T10,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T2,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T3,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T4,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T5L,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T5R,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T5_5,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T5_6,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T6,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T7,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T8,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T9,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T_PIX,$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire [31:0] T_ROW, \/\/TODO don't think I need this but I'll leave this here$/;"	p
+wire	exp_ro/Readout_v1_OLD.v	/^	input wire trigger_i,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire 			  adc_clk, \/\/ adc clock$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] NUM_ROW$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T1,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T2,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T3,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T4,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T5,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] T6,$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire [31:0] Tlat, \/\/ adc delay$/;"	p
+wire	exp_ro/Readout_v2.v	/^	input wire trigger_i,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire FIFO_empty,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire FIFO_full,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire [255:0] pat_in,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire [31:0] Num_Pat,			\/\/ Number of patterns applied to the imager.$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire camfifo_empty,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire camfifo_valid,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire clk,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	input wire rst,$/;"	p
+wire	exp_ro/loadPattern_v0.v	/^	output wire [255:0] Pat_out$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire [255:0] MSTREAM32,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire [31:0]Num_Pat,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire clk, 	\/\/clk for reading mstream$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire empty,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire reset,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire stream_clk,  \/\/clk for writing pattern$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire stream_en_i,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		input wire valid,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		output wire [9:0]MSTREAMOUT,$/;"	p
+wire	exp_ro/patternToSensors_v0.v	/^		output wire rd_en$/;"	p
+wire	varValueSelector.v	/^	input wire [31:0] varAddress,  		\/\/ Address of the variable whose value needs to be changed$/;"	p
+wire	varValueSelector.v	/^	input wire [31:0] varValueIn, 		\/\/ Input Value of the variable$/;"	p
+wire	varValueSelector.v	/^	input wire wr_en,  		\/\/ Address of the variable whose value needs to be changed$/;"	p
+wireNumPat	Reveal_Top.v	/^wire [31:0] wireNumPat;$/;"	n
+wireNumTri	Reveal_Top.bak.v	/^wire [31:0] wireNumTri;$/;"	n
+wireNumTri	Reveal_Top.v	/^wire [31:0] wireNumTri;$/;"	n
+wirerst	Reveal_Top.bak.v	/^wire [31:0] wirerst;$/;"	n
+wirerst	Reveal_Top.v	/^wire [31:0] wirerst;$/;"	n
+wr_count	Reveal_Top.v	/^wire [6:0]   wr_count;$/;"	n
+wr_en_f1	exp_ro/patternToSensors_v0.v	/^	wire wr_en_f1;$/;"	n
+wr_test_cnt	exp_ro/patternToSensors_v0.v	/^	wire [8:0] wr_test_cnt;$/;"	n
+xem7310_led	Reveal_Top.bak.v	/^function [7:0] xem7310_led;$/;"	f
+xem7310_led	Reveal_Top.v	/^function [7:0] xem7310_led;$/;"	f

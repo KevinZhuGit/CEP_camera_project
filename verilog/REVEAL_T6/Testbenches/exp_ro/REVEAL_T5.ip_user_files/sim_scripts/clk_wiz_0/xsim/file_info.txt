@@ -1,0 +1,3 @@
+clk_wiz_0_clk_wiz.v,verilog,xil_defaultlib,../../../../../../IP/clk_wiz_0/clk_wiz_0_clk_wiz.v,incdir="$ref_dir/../../../../../../../../../../../../Documents/Rain/T5/REVEAL_T5/src/verilog/REVEAL_T5/Work_Dir/REVEAL_T5.ip_user_files/ipstatic"incdir="../../../../../../../../../../../../Documents/Rain/T5/REVEAL_T5/src/verilog/REVEAL_T5/Work_Dir/REVEAL_T5.ip_user_files/ipstatic"
+clk_wiz_0.v,verilog,xil_defaultlib,../../../../../../IP/clk_wiz_0/clk_wiz_0.v,incdir="$ref_dir/../../../../../../../../../../../../Documents/Rain/T5/REVEAL_T5/src/verilog/REVEAL_T5/Work_Dir/REVEAL_T5.ip_user_files/ipstatic"incdir="../../../../../../../../../../../../Documents/Rain/T5/REVEAL_T5/src/verilog/REVEAL_T5/Work_Dir/REVEAL_T5.ip_user_files/ipstatic"
+glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -1,0 +1,1349 @@
+import time
+import re
+import logging
+import scipy.misc
+from fpga import api
+import numpy as np
+import cv2
+import os,sys
+from bitstring import BitArray
+from PIL import Image
+import numpngw
+
+loggingHandle = logging.basicConfig(format='%(levelname)-6s[%(filename)s:%(lineno)d] %(message)s'
+            ,level=logging.DEBUG)
+
+
+
+class T7(api):
+
+    address = {'mk_routine_rst': 0x00,
+               'wire_check_set': 0x01,
+                     'param_en': 0x02,
+                     'param_in': 0x03,
+                   'param_addr': 0x04,
+             'exp_subframe_en' : 0x05,
+           'exp_subframe_addr' : 0x06,
+             'exp_subframe_in' : 0x07,
+                     'chip_rst': 0x10,
+                 'wire_check_o': 0x20,
+                     'fifo_cnt': 0x21,
+                    'param_out': 0x22,
+                'comp_fifo_cnt': 0x23,
+            'exp_subframe_out' : 0x24,
+                     'exposure': 0x11,
+                      'pat_num': 0x12,
+                  'mem_pat_num': 0x14,
+                    'sys_start': 0x40,
+                     'mem_mode': 0x13,
+                      'trigger': 0x53,
+                    'fifo_flag': 0x6a,
+                       'mem_wr': 0x80,
+                      'ldo_spi': 0x81,
+                      'cis_spi': 0x82,
+                       'mem_rd': 0xA0,
+                        'image': 0xB0,
+                   'comp_image': 0xB1
+               }
+
+    param = {      'i2c_control': 0,
+                    'i2c_data': 1,
+                     'spi_control': 2,
+                    'RO_Tcolumn': 3,
+                    'RO_T1': 4,
+                    'RO_T2': 5,
+                    'RO_T3': 6,
+                    'RO_T4': 7,
+                    'RO_T5': 8,
+                   'RO_Treset': 9,
+                   'NUM_REP': 11,
+                   'NUM_GSUB': 12,
+                   'Tproj_dly': 13,
+                   'Tgl_res': 14,
+                   'Texp_ctrl': 15,
+                   'Tadd': 16,
+                   'Tdes2_d': 17,
+                   'Tdes2_w': 18,
+                   'Tmsken_d': 19,
+                   'Tmsken_w': 20,
+                   'Tdrain_w': 21,
+                   'Tgsub_w': 22,
+                   'Treset': 23,
+                   'TdrainR_d': 24,
+                   'TdrainF_d': 25,
+                   'TLedOn': 26,
+                   'Proj_trig_spacing': 27,
+                   'Proj_trig_width': 28,
+                   'Proj_trig_num': 29,
+                   'RO_T7': 30,
+                   'RO_T8': 31,
+                   'imgCountTrig': 32
+                   
+                    
+            }
+
+
+               # <  08  ><  08  >    <  08  ><  08  >
+    cis_spi_maskUpload = [ '0100111101001011', '0010001100000000', # 95:80:79:64
+                '0000000011110111', '1111111111111111', # 63:48:47:32
+                '1111000000000000', '0000000010000111', # 31:16:15:00
+                '0000000000000001', '0000000000000000'
+                ]
+
+    cis_spi_readout = [ '0100111101001011', '0010001100000000', # 95:80:79:64
+                '0000000011110111', '1111111111111111', # 63:48:47:32
+                '1111000000000000', '0000000010000111', # 31:16:15:00
+                '0000000000000010', '0000000000000000'
+              ]
+
+
+    
+    col, row, tab, ch = 108, 320, 2, 4 #ch should be changed to 17
+    frame_length = col*4*row*tab*2      #in bytes
+
+    comp_length  = col*row*(10+1+10+1+10)//8   #in bytes
+    comp_loss    = 27*32//8 # in bytes, loss of first few pixels of the frame in the interface fifo of the FPGA
+    CompArrangeOffset = 0
+
+    ldo_delay = 0.001
+    cis_delay = 2
+
+    imread_old_container = bytearray(frame_length)
+    compread_old_container = bytearray(comp_length)
+    
+    BLOCK_SIZE = 512
+
+    # trying to fix importing t4 from path outside of Cam_API_py and still have it work
+    # use module relative paths
+    black_img_file = os.path.join(os.path.dirname(__file__), 't6_black_image_avg.npy')
+    bright_img_file = os.path.join(os.path.dirname(__file__), 't6_bright_image_avg.npy')
+    gain_mat_file = os.path.join(os.path.dirname(__file__), 'gain_mat.npy')
+    gain_cali_file = os.path.join(os.path.dirname(__file__), 't6_gain_cali.npy')
+    img_map_file = os.path.join(os.path.dirname(__file__), 't6_img_map.npy')
+    comp_map_file = os.path.join(os.path.dirname(__file__), 't6_comp_map.npy')
+    mask_map_file = os.path.join(os.path.dirname(__file__), 't6_mask_map.npy')
+
+    black_flag = False
+    black_scale_flag = False
+    gain_flag = False
+    gain_scale_flag = False
+    scale_flag = False
+    MaskNumInMem=0
+    MaskNumForCam=0
+    MaskRepetition=0
+
+    def __init__(self, bitfile,reConfFPGA=True,loggingLevel=logging.DEBUG):
+
+        super(T7, self).__init__(bitfile)
+        logging.info("Bitfile: {}".format(bitfile))
+        self.CISConf(self.cis_spi_maskUpload)
+        time.sleep(self.cis_delay)
+        self.CISConf(self.cis_spi_readout)
+        time.sleep(self.cis_delay)
+        #corresponding pins: [VRES/VSEL, VSSRES/VDRN, VSSTG, VTG, VRST, VROWMASK, VDDPIX, AVDD33_ADC/AVDD33]
+        voltages = [3.2, 0.8, 0.8, 3.2, 3.2, 3.2, 3.2, 3.2]
+        self.ldo_config(voltages)
+        self.wire_in(self.address['exposure'], 1)
+        self.wire_in(self.address['pat_num'], 4)
+
+
+        # self.param_set(self.param['imgCountTrig'],3000)
+        
+        #self.param_set(self.param['Treset'], 42010) # 200MHz
+        #self.param_set(self.param['proj_dly'], 42000)
+        self.param_set(self.param['NUM_REP'], 1)
+        self.param_set(self.param['NUM_GSUB'], 1)
+        self.param_set(self.param['Tdrain_w'], 0)
+
+        self.param_set(self.param['Tgsub_w'], 100)
+        self.param_set(self.param['TdrainF_d'], 20)
+        self.param_set(self.param['TdrainR_d'], 10)
+        self.param_set(self.param['Texp_ctrl'], 1000)
+
+        #DELAY+WIDTH<=15
+        self.param_set(self.param['Tmsken_d'], 4)
+        self.param_set(self.param['Tmsken_w'], 11)
+
+        # pixel characterization, reset pix
+        #self.param_set(self.param['Select'], 6)
+        #self.param_set(self.param['Select'], 27)
+        #self.param_set(self.param['Select'], 31)
+        #self.param_set(self.param['ADDR'], 10) # select row number
+        # set camera slave mode, master mode have some issue
+        # self.param_set(self.param['Select'], 0x80000000)  # enable slave mode
+         # disable slave mode + default
+        #self.memory_test()
+
+        #self.param_set(self.param['numSubframes'], 15)
+
+        self.mapping = self.ImgMapCal()
+        self.compMapping = self.CompMapCal()
+
+        self.mkmapping = self.MaskMapCal()
+        if(os.path.exists(self.black_img_file)):
+            self.black_img = np.load(self.black_img_file)
+        if(os.path.exists(self.gain_cali_file)):
+            self.gain_cali = np.load(self.gain_cali_file)
+        if(os.path.exists(self.bright_img_file)):
+            self.bright_img = np.load(self.bright_img_file)
+            #self.coeff_mat = np.load(self.gain_cali_file)
+            #self.coeff_mat[324:] = self.coeff_mat[0:324]
+        
+
+###################################################
+
+
+
+        
+
+    def UploadMask(self, mask_file, MaskNum):
+        """
+        mask_file@in: mask file name and path
+        MaskNum@in: give mask number which will be set in memory control
+        """
+        # reset camera
+        self.wire_in(self.address['chip_rst'], 0x01)
+        logging.info("Camera Stopped.")
+        self.fmaskupload(mask_file)
+        logging.info("Mask {} uploaded.".format(mask_file))
+        self.wire_in(self.address['mem_pat_num'], MaskNum)
+        self.MaskNumInMem=MaskNum
+        logging.info("Mask #{}".format(MaskNum))
+
+    def UploadMaskDummy(self, mask_file, MaskNum):
+        """
+	Dummy version of the mask upload which sets all variables except uploading mask to memory
+        mask_file@in: mask file name and path
+        MaskNum@in: give mask number which will be set in memory control
+        """
+        # reset camera
+        self.wire_in(self.address['chip_rst'], 0x01)
+        logging.info("Camera Stopped.")
+	# self.fmaskupload(mask_file)
+        # memory mask upload mode
+        self.wire_in(self.address['mem_mode'], 0x01)
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        self.wire_in(self.address['mk_routine_rst'], 0x01)
+        logging.info("Mask {} was ***NOT*** uploaded.".format(mask_file))
+        self.wire_in(self.address['mem_pat_num'], MaskNum)
+        self.MaskNumInMem=MaskNum
+        logging.info("Mask #{}".format(MaskNum))
+
+    def readout_reset(self):
+        self.wire_in(self.address['chip_rst'], 0x01)
+        self.wire_in(self.address['chip_rst'], 0x00)
+        time.sleep(0.5)
+
+    def chip_reset(self):
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        self.wire_in(self.address['mk_routine_rst'], 0x00)
+        #self.wire_in(self.address['mask'], 0xfff)
+        self.wire_in(self.address['chip_rst'], 0x01)
+
+    def Pause(self):
+        self.wire_in(self.address['chip_rst'], 0x01)
+        logging.info("Camera Stopped.")
+
+    def Resume(self):
+        self.wire_in(self.address['chip_rst'], 0x00)
+        logging.info("Camera Stopped.")
+
+    def SetMaskParam(self, MaskNum, MaskRepNum=1):
+        """
+        MaskNum@in: set mask number applied in camera
+        MaskRepNum@in: each mask repetition time in camera
+        """
+        # reset camera
+        assert self.MaskNumInMem>0, "Please upload mask to camera first."
+        assert self.MaskNumInMem%MaskNum==0, "CamMask #{} should dividable by MemMask #{}".format(MaskNum, self.MaskNumInMem)
+        self.wire_in(self.address['pat_num'], MaskNum)
+        logging.info("Camera mask #{}".format(MaskNum))
+        self.MaskNumForCam=MaskNum
+        self.param_set(self.param['NUM_REP'], MaskRepNum)
+        logging.info("Camera mask repetition #{}".format(MaskRepNum))
+        self.MaskRepetition=MaskRepNum
+
+    def SetExposure(self, value):
+        """
+        value@in: exposure time in us
+        """
+        assert self.MaskNumForCam != 0, "Please set mask parameter to camera first."
+        assert self.MaskRepetition != 0, "Please set mask parameter to camera first."
+        logging.info("Setting Camera exposure #{}us ...".format(value))
+
+        maskuploadtime = 26195 # 26195ns for maskupload, 200MHz freq. 5n
+        SetAsClk = int((value*1000-maskuploadtime*self.MaskRepetition)/5-2)
+
+        assert SetAsClk > 0, "Exposure time should larger than {}us".format((10+maskuploadtime*self.MaskRepetition)/1000)
+
+        self.wire_in(self.address['exposure'], SetAsClk)
+        logging.info("Camera exposure setting finished. #{} clk".format(SetAsClk))
+
+    def SetSubframeExposure(self, values):
+        """
+        values@in: exposure times in us; assumed to be 15 or fewer in length
+        """
+        # Check that input/setup is valid
+        assert self.MaskNumForCam != 0, "Please set mask parameter to camera first."
+        assert self.MaskRepetition != 0, "Please set mask parameter to camera first."
+        assert type(values) is not str and hasattr(values, '__len__'), "Subframe exposure values not properly inputted."
+        num_subframes = len(values)
+        assert num_subframes == self.MaskNumForCam*self.MaskRepetition, "Insufficient number of exposure times provided."
+        # assert num_subframes <= 15, "Too many subframe exposure times provided."  # only works with 15 for now
+
+        subframe_index = 1  # Python array starts at 0, but Verilog starts at 1
+        while (subframe_index <= min(num_subframes,15)):
+            value = values[subframe_index-1]
+            logging.info("Setting Camera exposure #{}us for subframe #{}...".format(value, subframe_index))
+
+            maskuploadtime = 26195 # 26195ns for maskupload, 200MHz freq. 5n
+            SetAsClk = int((value*1000-maskuploadtime*self.MaskRepetition)/5-2)
+
+            assert SetAsClk > 0, "Exposure time should larger than {}us".format((10+maskuploadtime*self.MaskRepetition)/1000)
+
+            self.exp_subframe_set(addr=subframe_index, value=SetAsClk)
+            logging.info("Camera subframe #{} exposure setting finished. #{} clk".format(subframe_index, SetAsClk))
+
+            subframe_index += 1
+
+    def SetSubframeReadout(self,clkm_base=7e6,tx_clk=100e6):
+        #Working setup for TX=100MHz CLKMi = CLK_7/2
+        self.compFIFOTrig = 108*320-2
+        self.param_set(self.param['compFIFOTrig'],self.compFIFOTrig)
+        self.param_set(self.param['ADDR'],100) # constant row address
+        # self.param_set(self.param['Select'], 0x0000003F)  # disable slave mode + Constant leftbuck_sel + toggle bias_en + constantRowInExp
+        # self.param_set(self.param['Select'], 0x00000018)  # disable slave mode + always reset
+        # self.param_set(self.param['Select'], 0x00000016)  # disable slave mode + only left bucket [... 0001 0110]
+        self.param_set(self.param['Select'], 0x00008000)  # disable slave mode
+        # self.param_set(self.param['Select'], 0x00000014)  # disable slave mode
+        # self.param_set(self.param['Select'], 0x00001814)  # disable slave mode + reset right bucket
+        self.param_set(self.param['constMask'], 0x800F0018)
+        self.param_set(self.param['Tdes2_d'], 3)
+
+        # self.param_set(self.param['clk_period'], 2) #Divide 7MHz clock
+        # self.param_set(self.param['clk_period'], 56) #Divide 200MHz clock
+        self.param_set(self.param['clk_period'], 18) #Divide 200MHz clock
+
+
+
+        self.param_set(self.param['Tbuck_comp'],650)
+        self.param_set(self.param['T1_comp'],1)
+        self.param_set(self.param['T2_comp'],1)
+        self.param_set(self.param['T3_comp'],600)
+        self.param_set(self.param['T4_comp'],10)
+        self.param_set(self.param['T5_comp'],600)
+        self.param_set(self.param['T6_comp'],5)
+        self.param_set(self.param['T7_comp'],606)
+        self.param_set(self.param['T8_comp'],10)
+        self.param_set(self.param['T9_comp'],20)
+
+
+        slack23 = 598 # minimum value is 108+t9-t1-t2
+        slack37 = 6
+        slack67 = 1
+        slack8  = 34
+        t1      = 1
+        t2      = 1
+        t3      = t1+t2+slack23
+        t4      = 10
+        t8      = 10
+        t7      = t3+slack37
+        t6      = 5
+        t5      = t7 - t6 - slack67
+        t9      = 20  # cannot be changed
+        tbuck   = t3 + slack37 + t8 + slack8
+
+        slack23 = 100 # minimum value is 108+t9-t1-t2-t4
+        slack37 = 6
+        slack67 = 1
+        slack74 = 5
+        slack4  = 10
+        t1      = 18
+        t2      = 11
+        t3      = t1+t2+slack23
+        t4      = slack37 + slack74
+        t8      = 10
+        t7      = t3+slack37
+        t6      = 8
+        t5      = t7 - t6 - slack67
+        # t5      = 110
+        t9      = 19  # cannot be changed
+        tbuck   = t3 + t4 + slack4
+
+        assert tbuck>=t9+self.col
+        assert t1+t2<=tbuck
+        assert t3+t4<=tbuck
+        assert t5+t6<=tbuck
+        # assert t7+t8<=tbuck
+
+        assert t1+t2<t3
+        assert t3<t7
+        assert t5+t6<t7
+        assert t7<t3+t4
+
+        # only to debug subframe readout
+        self.param_set(self.param['Tbuck_comp'],tbuck)
+        self.param_set(self.param['T1_comp'],t1)
+        self.param_set(self.param['T2_comp'],t2)
+        self.param_set(self.param['T3_comp'],t3)
+        self.param_set(self.param['T4_comp'],t4)
+        self.param_set(self.param['T5_comp'],t5)
+        self.param_set(self.param['T6_comp'],t6)
+        self.param_set(self.param['T7_comp'],t7)
+        self.param_set(self.param['T8_comp'],t8)
+        self.param_set(self.param['T9_comp'],t9)
+
+
+
+    def LedSetup(self,LedNum=1, LedDly=1, LedExp=100, LedSeq=int('87654321',16), LedOn=True):
+        """
+        LedNum@in: # of led will be ON. MAX 8
+        LedDly@in: delay time for LED ON after receiving trigger signal. # us (each clk 5ns)
+        LedExp@in: Led ON time. # us (each clk 5ns)
+        LedOn@in: Control LED effective or not
+        LedSeq@in: '87654321' bit # correspond to LED #; number itself correspond to trigger #
+
+        LED parameter setting according to exposure paramters.
+        Make sure LED only turns on during sub-frame level or frame level according to applications
+
+        """
+        LED0 = LedSeq&int('F',16)
+        assert LED0<=8, "#1 LED trigger from 1~8 LED, not {}".format(LED0)
+        LED1 = LedSeq>>4&int('F',16)
+        assert LED1<=8, "#2 LED trigger from 1~8 LED, not {}".format(LED1)
+        LED2 = LedSeq>>8&int('F',16)
+        assert LED2<=8, "#3 LED trigger from 1~8 LED, not {}".format(LED2)
+        LED3 = LedSeq>>12&int('F',16)
+        assert LED3<=8, "#4 LED trigger from 1~8 LED, not {}".format(LED3)
+        LED4 = LedSeq>>16&int('F',16)
+        assert LED4<=8, "#5 LED trigger from 1~8 LED, not {}".format(LED4)
+        LED5 = LedSeq>>20&int('F',16)
+        assert LED5<=8, "#6 LED trigger from 1~8 LED, not {}".format(LED5)
+        LED6 = LedSeq>>24&int('F',16)
+        assert LED6<=8, "#7 LED trigger from 1~8 LED, not {}".format(LED6)
+        LED7 = LedSeq>>28&int('F',16)
+        assert LED7<=8, "#8 LED trigger from 1~8 LED, not {}".format(LED7)
+
+        self.param_set(self.param['LedNum'], LedNum)
+        logging.info("LED #{}".format(LedNum))
+        self.param_set(self.param['LedExp'], int(LedExp*1000/5))
+        logging.info("LED exposure {} us".format(LedExp))
+        self.param_set(self.param['LedDly'], int(LedDly*1000/5))
+        logging.info("LED delay {} us".format(LedDly))
+        self.param_set(self.param['LedSeq'], LedSeq)
+        logging.info("LED flash sequence {} {} {} {} {} {} {} {}".format(LED0, LED1, LED2, LED3, LED4, LED5, LED6, LED7))
+        if LedOn:
+            self.param_set(self.param['LedCtl'], 0)
+            logging.info("LED ON")
+        else:
+            self.param_set(self.param['LedCtl'], 0xffffffff)
+            logging.info("LED OFF")
+
+    def getimg(self, mode='raw'):
+        """
+        mode = 'raw'/'black'
+        """
+        assert mode == 'raw' or 'black', "No {} mode. 'raw' or 'black'".format(mode)
+
+        if mode == 'raw':
+            self.showMode()
+        if mode == 'black':
+            self.showMode(black_scale=True)
+
+        return self.arrange(self.imread())
+
+    def nothing(self):
+        pass
+
+    def imshow(self, numbers = None):
+
+        img_name = 'image'
+        cv2.namedWindow(img_name)
+        cv2.createTrackbar('Zoom', img_name, 10, 30, self.nothing)
+
+        while True:
+
+            factor = cv2.getTrackbarPos('Zoom',img_name)
+            if factor == 0: factor = 1
+
+            #img=self.arrange(self.imread())
+            img=self.getimg()
+
+            img_scaled = cv2.resize(img,None,fx=factor/10, fy=factor/10,
+                                    interpolation = cv2.INTER_LINEAR)
+
+            cv2.imshow(img_name, img_scaled)
+
+            k=cv2.waitKey(1)
+            if k==27: break
+
+        cv2.destroyAllWindows()
+
+#######################################################
+
+    def showMode(self, black=False, black_scale=False, gain=False, gain_scale=False, scale=False):
+        if black or black_scale and os.path.exists(self.black_img_file):
+            if black_scale:
+                self.black_scale_flag = True
+            else:
+                self.black_flag = True
+            print("Black calliberation On")
+        elif gain or gain_scale and os.path.exists(self.gain_cali_file):
+            if gain_scale:
+                self.gain_scale_flag = True
+            else:
+                self.gain_flag = True
+            print("Black calliberation On")
+            print("Gain calliberation On")
+        elif scale:
+            print("Normal scale On")
+            self.scale_flag = True
+        else:
+            print("Raw image On")
+
+    def SPIConf(self, bitstring):
+       arr = np.array(list(bitstring[0]), dtype='|S1')
+       for i in range(1,len(bitstring),1):
+           arr = np.vstack((arr,np.array(list(bitstring[i]), dtype='|S1')))
+       arr=arr.reshape(-1,32)
+       arrange = np.flip(np.arange(16).reshape(2,-1), axis=1).flatten()
+       arrange = np.hstack((np.arange(16,32,1),arrange))
+       arr = arr[:,arrange]
+       arr = np.tile(arr, 4)
+       p = arr.flatten().tobytes()
+       pattern = bytearray(int(p[i:i+8],2) for i in range(0, len(p), 8))
+       print(pattern)
+       #set VREF_EN = 1 (active high) and POT_WP = 1 (active low)
+       self.param_set(self.param['spi_control'], 0x03)
+       #send reset signal to the spi module
+       self.wire_in(0x10, 1)
+       #deassert the reset signal
+       self.wire_in(0x10, 0)
+       #send the spi data
+       self.write(self.address['ldo_spi'], pattern)
+
+         
+
+
+    def io_expander(self, command, data0, data1, address, rd_wr):
+           data_out = command | (data1 << 8) | (data0 << 16) | (address << 24) | (rd_wr << 31)
+           self.param_set(self.param['i2c_data'], data_out)
+           #send reset signal
+           self.wire_in(0x10, 1)
+           #wait for 1 second
+           time.sleep(self.ldo_delay)
+           #send start signal and deassert the reset signal
+           self.wire_in(0x10, 0)
+           self.param_set(self.param['i2c_control'], 1)
+
+
+
+        
+    def voltageToPotValue(self, V_out):
+        V_fb = 0.6
+        R_w = 75
+        R_total = 10000
+        R_ratio = V_out / V_fb - 1
+        R_2 = R_total / (1 + R_ratio)
+        N = (R_2 - R_w) * 256 // R_total
+        N = int(N)
+        return N
+
+
+
+    def ldo_config(self, voltages):
+        rd_wr = 0x0
+        command = 0x06
+        address = 0b0100000
+        data0 = 0x0
+        data1 = 0x0
+        #configure the IO expander pins as output
+        self.io_expander(command, data0, data1, address, rd_wr)
+        time.sleep(self.ldo_delay)
+        command = 0x02
+        data0 = 0xff
+        data1 = 0xff
+        self.io_expander(command, data0, data1, address, rd_wr)
+     
+        #voltages: ip array of size 8
+                #[POT1_00, POT1_01, POT1_10, POT1_11, POT2_00, POT2_01, POT2_10, POT2_11]
+     
+        spi_place_holder_bytes_01 = ['00010000', '01110000', '01100000', '00000000','00000000', '01100000', '00010000', '01110000'] # fill correct values here
+        spi_place_holder_byte_02  = '00111110' # this is updated based on voltage
+        spi_place_holder_byte_03  = '00000001' # this is constant
+        spi_place_holder_byte_04  = '00000000' # this is constant
+        
+
+        for i in range(8):
+            v = voltages[i]
+            spi_place_holder_byte_02 = self.voltageToPotValue(v)
+            spi_place_holder_byte_02 = '{0:08b}'.format(spi_place_holder_byte_02)
+            spi_for_v = [spi_place_holder_bytes_01[i], spi_place_holder_byte_02, spi_place_holder_byte_03, spi_place_holder_byte_04]
+            data1 = 0x7f
+            if(i<4):
+             data1 = 0xbf
+            command = 0x02
+            self.io_expander(command, data0, data1, address, rd_wr)
+            time.sleep(self.ldo_delay)
+            self.SPIConf(spi_for_v)
+            time.sleep(self.ldo_delay)
+            data1 = 0xff
+            self.io_expander(command, data0, data1, address, rd_wr)
+            time.sleep(self.ldo_delay)
+
+
+    def CISConf(self, data):
+        self.wire_in(self.address['chip_rst'], 0b10)
+        self.wire_in(self.address['chip_rst'], 0)
+        arr = np.array(list(data[0]), dtype='|S1')
+        for i in range(1,len(data),1):
+            arr = np.vstack((arr,np.array(list(data[i]), dtype='|S1')))
+        arr=arr.reshape(-1,32)
+        # correct inverted captured image
+        arrange = np.flip(np.arange(32*3),axis=0) # vertical flip
+        data = arr[:3,:].flatten()
+        data = data[arrange].reshape(-1,32)
+        arr = np.vstack((data,arr[3,:]))
+
+        arrange = np.arange(32).reshape(4,-1)[[3,2,1,0],:]
+        arr = arr[:,arrange.flatten()]
+
+        p = arr.flatten().tobytes()
+        pattern = bytearray(int(p[i:i+8],2) for i in range(0, len(p), 8))
+        print(len(pattern))
+        self.write(self.address['cis_spi'], pattern)
+
+    def ImgMapCal(self):
+        if os.path.exists(self.img_map_file):
+            imgmap = np.load(self.img_map_file)
+            print("Loading exist image mapping data...")
+        else:
+            imgmap = np.arange(self.tab*self.row*self.col*self.ch).reshape(-1,3)
+            #imgmap = np.arange(self.tab*self.row*107*self.ch).reshape(-1,3)
+            imgmap = np.concatenate(np.vsplit(imgmap,self.row*self.tab),axis=1)
+            imgmap = imgmap.transpose().reshape(-1,self.col*self.ch*self.tab)
+            #imgmap = imgmap.transpose().reshape(-1,107*self.ch*self.tab)
+            np.save(self.img_map_file,imgmap)
+            print("Calculating image mapping data...")
+
+        return imgmap
+
+    def CompMapCal(self):
+        # if os.path.exists(self.comp_map_file):
+        if(0):
+            compmap = np.load(self.comp_map_file)
+            print("Loading exist image mapping data...")
+        else:
+            compmap = np.arange(1*self.row*self.col*self.ch).reshape(-1,3)
+            compmap = np.concatenate(np.vsplit(compmap,self.row*1),axis=1)
+            compmap = compmap.transpose().reshape(-1,self.col*self.ch*1)
+
+            offset      = 10         # this is because data from the serializer is as follows
+            fpgaShift   = -1 # amount of right shift done in hdrpatternsToSensor
+            '''
+                10 9 8 ... 2 1 24 23 22 ... 11 38 37   ...  25 52...
+                <--   10   -->|<--  14bits -->|<--  14bits -->|<--
+            '''
+
+
+            for i in range(self.ch):
+                c1 = i*self.col     # start of columns in a channel
+                ci = i*self.col     # start of columns in a 14-bit comparator bank
+                c2 = (i+1)*self.col # end of columns in a channel
+                
+                
+
+                # flip first 10 columns
+                compmap[:,ci:ci+offset] = np.flip(compmap[:,ci:ci+offset],axis=1)
+                ci = ci+offset
+                # flip every following 14 columns
+                for i in range((self.col-offset)//14):
+                    compmap[:,ci:ci+14] = np.flip(compmap[:,ci:ci+14],axis=1)
+                    ci = ci+14
+
+                compmap[:,c1:c2]=np.flip(compmap[:,c1:c2],axis=1)
+
+            compmap=np.clip((compmap+fpgaShift*self.ch),0,1*self.row*self.col*self.ch-1)
+
+            np.save(self.comp_map_file,compmap)
+            print("Calculating image mapping data...")
+
+
+        return compmap
+
+
+    def MaskMapCal(self,width=512, ch_num=16):
+        if os.path.exists(self.mask_map_file):
+            imgmap = np.load(self.mask_map_file)
+            print("Loading exist mask mapping data...")
+        else:
+            a = np.arange(width)
+            a = np.concatenate((a[64:],a[:64]))
+            ch_width = int(width/ch_num)
+            imgmap = a[0::ch_width]
+            for i in range(1,ch_width):
+                imgmap = np.concatenate((imgmap, a[i::ch_width]))
+            np.save(self.mask_map_file,imgmap)
+            print("Calculating mask mapping data...")
+        return imgmap
+
+    def average_cal(self, time=100, save=False, dir='./image/ave/'):
+        """
+        calculate the average value of image
+        """
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+
+        black_img = np.zeros([self.row,self.col*self.ch*self.tab])
+
+        for i in range(time):
+            black_img += self.arrange(self.imread())
+        black_img /= time
+        print(black_img)
+        np.save(self.black_img_file,black_img)
+
+    def black_cal(self, time=100):
+        """
+        Cover camera lens and calculate the average value of black level
+        """
+        black_img = np.zeros([self.row,self.col*self.ch*self.tab])
+        for i in range(time):
+            self.compread_all_frames()
+            black_img += self.arrange(self.imread())
+        black_img /= time
+        print(black_img)
+        np.save(self.black_img_file,black_img)
+
+
+    def gain_cal(self, num_samps=100):
+        cal_mat_gain = np.zeros([self.row,self.col*self.ch*self.tab],dtype=np.float32)
+        if (os.path.exists(self.black_img_file)==False):
+            # print(~os.path.exists("./image/black_level_calib.npy"))
+            print("Perform black level calibration first")
+        else :
+            for i in range(num_samps):
+                cal_mat_gain += self.arrange(self.imread())
+
+            cal_mat_gain = cal_mat_gain/num_samps
+            cal_mat_gain = self.offst_mat - cal_mat_gain
+            col_gain_mean = np.mean(cal_mat_gain,0)
+            med_gain = np.median(col_gain_mean[10:300])
+            coeff_mat = med_gain/col_gain_mean
+            print(coeff_mat)
+            np.save(self.gain_mat_file,coeff_mat)
+
+    def gain_cal2d(self,num_samps=100):
+        bright_img = np.zeros([self.row,self.col*self.ch*self.tab],dtype=np.float32)
+        if (os.path.exists(self.black_img_file)==False):
+            # print(~os.path.exists("./image/black_level_calib.npy"))
+            print("Perform black level calibration first")
+        else :
+            for i in range(num_samps):
+                bright_img += self.arrange_raw(self.imread())
+
+            # #Black calibrated averaged output
+            # bright_img  = self.black_img - bright_img/num_samps
+            # bright_img[bright_img<0] = 0
+            # med_gain    = np.median(bright_img[:240,:])
+            # gain_arr    = med_gain/bright_img
+            # print(med_gain,gain_arr)
+            # np.save(self.gain_cali_file,gain_arr)
+
+        np.save(self.bright_img_file, bright_img/num_samps)
+
+
+
+    def param_set(self, addr, value):
+        self.wire_in(self.address['param_en'], 0)
+        self.wire_in(self.address['param_addr'], addr)
+        self.wire_in(self.address['param_in'], value)
+        self.wire_in(self.address['param_en'], 1)
+        self.wire_in(self.address['param_en'], 0)
+        if self.wire_out(self.address['param_out']) != value:
+            logging.error("Parameter set failed. A.{}/V.{}".format(addr,value))
+            exit(1)
+            
+
+    def exp_subframe_set(self, addr, value):
+        self.wire_in(self.address['exp_subframe_en'], 0)
+        self.wire_in(self.address['exp_subframe_addr'], addr)
+        self.wire_in(self.address['exp_subframe_in'], value)
+        self.wire_in(self.address['exp_subframe_en'], 1)
+        self.wire_in(self.address['exp_subframe_en'], 0)
+        if self.wire_out(self.address['exp_subframe_out']) != value:
+            logging.error("Subframe exposure time set failed. A.{}/V.{}".format(addr,value))
+            exit(1)
+
+
+    def wire_in_check(self, addr, value):
+        self.wire_in(addr, value)
+        self.wire_check(addr, value)
+
+    def wire_check(self, addr, value):
+        self.wire_in(self.address['wire_check_set'], addr)
+        cnt = 0
+        #while self.wire_out(self.address['wire_check_o']) != value:
+        #    self.wire_in(addr, value)
+        #    cnt += 1
+        #    if(cnt > 10):
+        #        logging.error("Wire check failed. A.{}/V.{}".format(addr,value))
+        #        exit(1)
+
+    def memory_test(self, msk_size=320*64,msk_num=10):
+        # set mask number
+        self.wire_in(self.address['pat_num'], msk_num)
+        self.wire_in(self.address['mem_pat_num'], msk_num)
+        # memory readback mode
+        self.wire_in(self.address['mem_mode'], 0x00)
+        # reset
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        # write mode
+        self.wire_in(self.address['mk_routine_rst'], 0x02)
+
+        times = msk_size*msk_num
+        target = bytearray(os.urandom(times))
+        result = bytearray(times)
+
+        self.block_write(self.address['mem_wr'], self.BLOCK_SIZE, target)
+
+        # read mode
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        self.wire_in(self.address['mk_routine_rst'], 0x01)
+        self.block_read(self.address['mem_rd'], self.BLOCK_SIZE, result)
+
+        for i in range(times):
+            if result[i] != target[i]:
+                logging.error("Memory Test failed. Total:{} No.{}". \
+                              format(times,i))
+                for j in range(10):
+                    logging.error("Memory Test failed. R:{:02x}/T:{:02x}". \
+                                  format(result[i+j],target[j]))
+                exit(1)
+        logging.info("Memory Test passed.")
+
+
+
+
+
+    def fmaskupload(self, file_name):
+        assert isinstance(file_name, str), "Need a file name"
+        assert file_name.lower().endswith('.bmp'), "Wrong file type, should be .bmp"
+
+        pattern = self.loadMask(file_name)
+        result = bytearray(len(pattern))
+
+        # reset
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        # write mode
+        self.wire_in(self.address['mk_routine_rst'], 0x02)
+        self.block_write(self.address['mem_wr'], self.BLOCK_SIZE, pattern)
+        # read mode
+        self.wire_in(self.address['mk_routine_rst'], 0x01)
+
+        # check ddr3 calibration finished.
+        while True:
+            self.dev.UpdateTriggerOuts()
+            if self.istriggered(self.address['fifo_flag'], 0x08):
+                break;
+            else:
+                logging.info("DDR3 calibrating...")
+                time.sleep(1)
+
+
+        # memory readback mode
+        #self.wire_in(self.address['mem_mode'], 0x00)
+        #self.wire_in(self.address['mk_routine_rst'], 0x04)
+        #self.wire_in(self.address['mk_routine_rst'], 0x01)
+        #length = self.block_read(self.address['mem_rd'], self.BLOCK_SIZE, result)
+        #logging.info("Read back length: {}".  format(length))
+
+        #for i in range(len(pattern)):
+        #    if result[i] != pattern[i]:
+        #        logging.error("Memory Test failed. Total:{} No.{}". \
+        #                      format(len(pattern),i))
+        #        for j in range(10):
+        #            logging.error("Memory Test failed. R:{:02x}/T:{:02x}". \
+        #                          format(result[i+j],pattern[i+j]))
+        #        exit(1)
+        #logging.info("Memory Test passed.")
+
+        # memory mask upload mode
+        self.wire_in(self.address['mem_mode'], 0x01)
+        self.wire_in(self.address['mk_routine_rst'], 0x04)
+        self.wire_in(self.address['mk_routine_rst'], 0x01)
+
+
+    def loadMask(self, filename, row=320, ch_num=16):
+        """
+        row: 2D image row number
+        """
+        file = open(filename, 'rb') #open bmp file
+        file.seek(10,0)
+        offset = int.from_bytes(file.read(4), 'little') #where the first pixel starts
+        file.seek(18, 0)
+        width = int.from_bytes(file.read(4), 'little')
+        file.seek(22,0)
+        height = int.from_bytes(file.read(4), 'little')
+
+        print("2D image row size: {}".format(row))
+        print("mask data size: {}x{}".format(height, width))
+        print("mask numbers: {:f}".format(height/row))
+
+        print(height%row)
+        assert height%row == 0, "Wrong mask data size"
+        imageSize = int(width * height / 8) #in bytes. Using 1 bit per pixel (black or white)
+
+        pattern = bytearray(imageSize)
+        mask = bytearray(imageSize)
+
+        file.seek(offset, 0)
+        mask = file.read(imageSize)
+        file.close()
+
+        toBin = BitArray(bytes=mask).bin
+        toArray = np.array(list(toBin),dtype='|S1').reshape(height, width)
+        p = toArray[:, self.mkmapping]
+        p = p.flatten().tobytes()
+        pattern = bytearray(int(p[i:i+8],2) for i in range(0, len(p), 8))
+
+        # resize bytearray to fit blockwrite length
+        size = (int(imageSize/512)+1)*512 - imageSize
+        logging.info("Added Size: {}".format(imageSize/512.))
+        #extra = pattern + pattern + pattern+ pattern+ pattern+ pattern+ pattern+ pattern+ bytearray(size)
+        extra = pattern+ bytearray(size)
+        print("data arragement finished.")
+
+        return pattern
+        #return extra
+
+
+
+    def arrange1(self, image):
+        col, row, tab, ch = 108, 320, 2, 3
+
+        r_margin = np.full((tab, col*ch), 2**16-1)
+        c_margin = np.full((row*tab+tab, 2), 2**16-1)
+        temp=np.frombuffer(image, dtype=np.uint16)[:tab*row*col*4].reshape(-1,4)
+        img=np.concatenate(np.vsplit(temp[:,:ch],row*tab),axis=1).transpose().reshape(-1,col*ch)
+        img=np.concatenate((img, r_margin), axis=0)
+        img=np.concatenate((c_margin, img), axis=1)
+
+        i = np.arange(row*tab+tab)
+        i = np.concatenate((i[0::tab], i[1::tab]))
+        #return img[i,:]
+        return self.image_scale(img[i,:])
+
+    def arrange(self, image):
+        #temp=np.frombuffer(image, dtype=np.uint16)[:tab*row*col*4].reshape(-1,4)
+        #img=np.concatenate(np.vsplit(temp[:,:ch],row*tab),axis=1).transpose().reshape(-1,col*ch*tab)
+        #img=np.concatenate(np.vsplit(temp[:,:ch],row*tab),axis=1).transpose().reshape(-1,col*ch)
+        # get image data
+        #temp=np.frombuffer(image, dtype=np.uint16)[:self.tab*self.row*self.col*4]
+        temp=np.frombuffer(image, dtype=np.uint16)
+        # delete dummy data
+        temp = temp.reshape(-1,4)[:,:self.ch].flatten()
+        # mapping data
+        img = temp[self.mapping]
+        #print(" ".join('{:08b}'.format(x) for x in img[1,4:14]))
+        #print(img[1][:10])
+
+        logging.debug(np.mean(img[:,6:312]))
+        # logging.debug(" ".join('{:014b}'.format(x) for x in img[1,4:14]))
+
+        # correct left right flip in each individual bucket
+        img_yflip = np.zeros(img.shape)
+        img_yflip[:,:324] = img[:,:324][:,::-1]
+        img_yflip[:,324:] = img[:,324:][:,::-1]
+
+        if(self.gain_flag):
+            logging.debug("gain")
+            return self.image_scale2(img_yflip)
+            #return self.image_scale2(img)
+        elif(self.gain_scale_flag):
+            logging.debug("gain scale")
+            return self.image_scale4(img_yflip)
+            #return self.image_scale4(img)
+        elif(self.black_flag):
+            logging.debug("black")
+            return self.image_scale1(img_yflip)
+            #return self.image_scale1(img)
+        elif(self.black_scale_flag):
+            logging.debug("black scale")
+            return self.image_scale3(img_yflip)
+            #return self.image_scale3(img)
+        elif(self.scale_flag):
+            logging.debug("normal scale")
+            return self.image_scale(img_yflip)
+            #return self.image_scale(img)
+        else:
+            logging.debug("raw")
+            return img_yflip
+            #return img
+
+    def arrange_raw(self, image):
+        # col, row, tab, ch = 108, 320, 2, 3
+        # get image data
+        temp=np.frombuffer(image, dtype=np.uint16)
+
+        # delete dummy data
+        temp = temp.reshape(-1,4)[:,:self.ch].flatten()
+
+        # mapping data
+        img = temp[self.mapping]
+
+        # img[gray,:] = img[:,:]
+        # print(" ".join('{:014b}'.format(x) for x in img[1,4:14]))
+        # print([bin(i) for i in img[1][:10]])
+
+        logging.debug(np.mean(img[:,6:312]))
+
+        # correct left right flip in each individual bucket
+        img_yflip         = np.zeros(img.shape)
+        img_yflip[:,:324] = img[:,:324][:,::-1]
+        img_yflip[:,324:] = img[:,324:][:,::-1]
+
+        # return img_yflip
+        return img
+
+    def arrange_comp(self, image):
+        logging.debug("arrange_comp received container of size {}".format(len(image)))
+        # refer to figure in <REPO>/doc/Reports/comptofifo_data_arrangement.png
+        image = np.flip(np.reshape(image, [-1,4]),axis=1) # rearrange FIFO output from 7-0,15-8,23-16,31-24 to 31-0
+
+        image = np.unpackbits(image,axis=1) # convert to the 32 bits
+
+        image = np.concatenate((np.zeros((image.shape[0],1),dtype=np.uint8),image),axis=1) # add extra zeros at the start to equally divide
+
+        # at this step each row contains data as 0-ch3[9:0]-0-ch2[9:0]-0-ch1[9:0]
+        compOffset = max(0,self.lostCompWord+self.CompArrangeOffset)
+        try:
+            image[compOffset:,:] = image[:-compOffset,:] # shift data to account for loss faced in FIFO
+        except:
+            logging.debug("compOffset too high: {}".format(str(compOffset)))
+        image[0:compOffset,:] = 0
+
+
+        image = image.reshape(-1,11) # separate each channel        
+        image = np.packbits(image,axis=1).astype(np.uint16) # this converts bits to 8-bit decimial in big endian
+        image = (image[:,0]*2**3 + image[:,1]//2**5).reshape(-1,3)
+
+        # at this step each row contains 3 values from ch3,ch2,ch1
+
+
+        temp  = image.flatten()
+        # # mapping data
+        img = temp[self.compMapping]
+
+
+        # # correct left right flip in each individual bucket
+        img_yflip         = np.zeros(img.shape)
+        img_yflip[:,:324] = img[:,:324][:,::-1]
+        img_yflip[:,324:] = img[:,324:][:,::-1]
+
+        # return img
+        return img_yflip
+
+    def arrange_comp_all_frames(self,image):
+        # image: is the raw bytearray read from the fpga
+
+        # Losing some pixels in the interface fifo in FPGA
+        assert len(image) ==(self.comp_length - self.comp_loss)
+        # "input size({:d}) does not match image length({:d}) considering loss of({:d}) ".format(len(image), self.comp_length - self.comp_loss, self.comp_loss)
+
+        imgAll = np.zeros((self.row,self.col*self.ch),dtype=np.uint16)
+
+
+        for i in range(self.MaskRepetition*self.MaskNumForCam):
+            imgAll[i,:,:] = self.arrange_comp(image[i*self.comp_length:(i+1)*self.comp_length])
+
+        return imgAll
+
+
+
+    def image_scale(self, image, dynamic=False):
+        #min = 100.
+        #max = 3000.
+        min = 100.
+        max = 4000.
+
+        if(dynamic):
+            min = np.percentile(np.concatenate((image[:,:320],image[:,324:644]),axis=1),5)
+            max = np.percentile(image,95)
+
+        img_tmp = 255 - (np.clip(image, min, max)-min)*255/(max-min)
+
+        # img_tmp = image%255
+        # img_tmp = image*255./max
+        # img_tmp[img_tmp<=min*255./max] = 0
+        # img_tmp[img_tmp>=255] = 255
+        # img_tmp = 255-img_tmp
+
+        return img_tmp.astype(np.uint8)
+
+    def image_scale1(self,image):
+        max = 3500
+        img_tmp = image
+        img_tmp[img_tmp<0] = 0
+        img_tmp[img_tmp>max] = max
+        #img_tmp = self.black_img.astype(np.float32) - img_tmp.astype(np.float32);
+        img_tmp = self.black_img.astype(np.uint16) - img_tmp.astype(np.uint16);
+        #return img_tmp.astype(np.uint16)
+        return img_tmp
+
+    def image_scale3(self,image):
+        max_scale = 3000;
+        #max_scale = 500;
+        #max_scale = 2000;
+        #max_scale = 255;
+        img_tmp = self.black_img.astype(np.float32) - image.astype(np.float32);
+        img_tmp[img_tmp<200] = 0
+
+        logging.debug("AVG: left {:07.2f}".format(np.mean(img_tmp[:,:324])))
+        logging.debug("AVG: right{:07.2f}".format(np.mean(img_tmp[:,324:])))
+
+        img_tmp = img_tmp*255./max_scale
+        #img_tmp = img_tmp*255./np.max(img_tmp)
+        img_tmp[img_tmp>=255] = 255
+        #print(np.max(img_tmp))
+        return img_tmp.astype(np.uint8)
+
+    def image_scale2(self,image):
+        img_tmp = self.image_scale1(image) - self.gain_cali[:,:,0]
+        img_tmp = img_tmp*self.gain_cali[:,:,1]
+        img_tmp = img_tmp+self.gain_cali[:,:,2]
+        return img_tmp
+
+    def image_scale4(self,image):
+        max_scale = 500;
+        img_tmp = self.image_scale2(image)
+        img_tmp[img_tmp<0] = 0
+        img_tmp = img_tmp*255./max_scale
+        img_tmp[img_tmp>=255] = 255
+        return img_tmp.astype(np.uint8)
+
+
+    def image_scale6(self,image,gain=False,black=True,dynamic=False,max_scale = 3000):
+        
+        [row,col,tab] = [self.row, self.col*self.ch, self.tab]
+
+        x1 = self.black_img.astype(np.float32)
+        y1 = np.median(x1)
+
+        y2 = np.zeros((row,col*tab)) # target median
+
+        if(gain):
+            # assert black==True, "Black cal must be ON if gain needs to be ON"
+            x2 = self.bright_img.astype(np.float32)
+            y2_left  = np.median(x2[:,:col].flatten()) # target median left tap
+            y2_right = np.median(x2[:,col:].flatten()) # target median right tap
+
+            y2[:,:col] = y2_left
+            y2[:,col:] = y2_right
+
+            # y2 = np.median(x2)
+
+            m = (y2-y1)/(x2-x1)
+            c = y1-(y2-y1)/(x2-x1)*x1
+
+            logging.debug(np.mean(m[100:110,100:110]))
+            img = m*image + c
+            img = y1 - img
+            img[img<0] = 0
+
+        elif(black):
+            img = self.black_img - image
+            img[img<0] = 0
+        elif(dynamic):
+            min_lvl = np.percentile(np.concatenate((image[:,:320],image[:,324:644]),axis=1),5)
+            max_lvl = np.percentile(image,95)
+            img = 2**16-1 - (np.clip(image, min_lvl, max_lvl)-min_lvl)*(2**16-1)/(max_lvl-min_lvl)
+            return img.astype(np.uint16)
+        else:
+            img = image.astype(np.float32)
+        # Clip values between 0 and 3000 and scale to 0 to 2**16-1
+        img = (np.clip(img,0,max_scale)*(2**16-1)/max_scale).astype(np.uint16)
+
+        return img
+
+
+    def imread(self):
+        container = bytearray(self.frame_length)
+        cnt = 0
+        cnt1=1
+        #self.trigger_in(self.address['trigger'], 0)
+        while True:
+
+            #time.sleep(0.05)
+            self.dev.UpdateTriggerOuts()
+            if self.istriggered(self.address['fifo_flag'], 0x02):
+                logging.debug("fifo_cnt: "+str(self.wire_out(self.address['fifo_cnt'])))
+                self.dev.UpdateTriggerOuts()
+                self.read(self.address['image'], container)
+                #print("".join('{:02x}'.format(x) for x in container[:8]))
+                #print(" ".join('{:08b}'.format(x) for x in container[:8]))
+                #toBin = BitArray(bytes=container).bin
+                #print(toBin[:16]+" "+toBin[16:32]+" "+toBin[32:48]+" "+toBin[48:64])
+                #self.trigger_in(self.address['trigger'], 0)
+                self.imread_old_container = container
+                return container
+
+            cnt += 1
+            #self.state_check();
+            if cnt % 1000 == 999:
+                bt=self.wire_out(self.address['fifo_cnt'])
+                print("fifo_cnt: "+str(bt))
+                print(cnt1)
+                cnt1 += 1
+                print("empty: "+str(self.istriggered(self.address['fifo_flag'], 0x04)))
+                print("prg_full: "+str(self.istriggered(self.address['fifo_flag'], 0x02)))
+                print("full: "+str(self.istriggered(self.address['fifo_flag'], 0x01)))
+                #self.read(self.address['image'], container)
+                return self.imread_old_container
+
+
+    def imread2(self):
+        container0 = bytearray(int(self.frame_length/2))
+        container1 = bytearray(int(self.frame_length/2))
+        cnt = 0
+        cnt1=1
+        flag=False
+        while True:
+
+            time.sleep(0.000001)
+            self.dev.UpdateTriggerOuts()
+            if self.istriggered(self.address['fifo_flag'], 0x02):
+                #print("fifo_cnt: "+str(self.wire_out(self.address['fifo_cnt'])))
+                self.dev.UpdateTriggerOuts()
+                if flag:
+                    self.read(self.address['image'], container1)
+                    return container0 + container1
+                else:
+                    self.read(self.address['image'], container0)
+                    flag = True
+
+            cnt += 1
+            #self.state_check();
+            if cnt % 1000 == 999:
+                bt=self.wire_out(self.address['fifo_cnt'])
+                print("fifo_cnt: "+str(bt))
+                print(cnt1)
+                cnt1 += 1
+                print("empty: "+str(self.istriggered(self.address['fifo_flag'], 0x04)))
+                print("prg_full: "+str(self.istriggered(self.address['fifo_flag'], 0x02)))
+                print("full: "+str(self.istriggered(self.address['fifo_flag'], 0x01)))
+                print("flag: ")
+                #self.read(self.address['image'], container)
+
+    def compread_one_frame(self):
+        container = bytearray(self.comp_length)
+        cnt = 0
+        cnt1=1
+        #self.trigger_in(self.address['trigger'], 0)
+        while True:
+
+            #time.sleep(0.05)
+            self.dev.UpdateTriggerOuts()
+            if self.istriggered(self.address['fifo_flag'], 0x10):
+                logging.info("comp_fifo_cnt: "+str(self.wire_out(self.address['comp_fifo_cnt'])))
+                self.read(self.address['comp_image'], container)
+                return container
+
+            cnt += 1
+            #self.state_check();
+            if cnt % 1000 == 999:
+                cnt1 += 1
+                time.sleep(1/10000)
+                logging.debug("Stuck at cnt1: {:03d}".format(cnt1))
+                # return container
+    def compread_all_frames(self,timeout=1):
+        assert self.MaskNumForCam != 0, "Please set mask parameter to camera first."
+        assert self.MaskRepetition != 0, "Please set mask parameter to camera first."
+
+        container = bytearray(self.comp_length)
+        loss = 8*self.comp_loss # lost no. of words of data in interface fifo
+        self.lostCompWord = 0
+
+        tic = time.time()
+        while(1):
+            totalWordsInFiFo = self.wire_out(self.address['comp_fifo_cnt'])
+            # time.sleep(0.05)
+            if((totalWordsInFiFo)>= 320*108 - 1024*2 - 32):# not very efficient trigger                
+                # logging.info("comp_fifo_cnt: "+str(self.wire_out(self.address['comp_fifo_cnt'])))
+                self.lostCompWord = self.col*self.row - totalWordsInFiFo
+                self.read(self.address['comp_image'], container)
+                self.compread_old_container = container
+
+                if(totalWordsInFiFo>320*108):
+                    self.flushfifo(self.address['comp_fifo_cnt'], self.address['comp_image'])
+
+                return container
+
+
+            maxTimeout = timeout #timeout before returning zeros
+            toc = time.time()-tic
+            if(toc>maxTimeout):
+                logging.debug("TIMEOUT ({:3.1f}s): Returning all zeros".format(maxTimeout))
+                return self.compread_old_container
+
+
+    def flushfifo(self,wireadd=0x23,fifoadd=0xb1):
+        while(1):
+            time.sleep(0.01)
+            size = self.wire_out(wireadd)
+            if(size > 0):
+                # container = bytearray((size-1)*4)
+                container = bytearray(2**16)
+                self.read(fifoadd,container)
+            else:
+                return 0
+
+    def imsave(self, image, dir, filename,full=False):
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+        #pattern =re.compile(".png")
+        #if pattern.match(filename):
+
+        if filename.find(".png")!=-1:
+            #print(image.dtype)
+            if full:
+                numpngw.write_png(dir+filename,image)
+            else:
+                #scipy.misc.imsave(dir+filename,image)
+                cv2.imwrite(dir+filename, image)
+        #pattern =re.compile(".npy")
+        #if pattern.match(filename):
+        if filename.find(".npy")!=-1:
+            #print(image.dtype)
+            np.save(dir+filename,image)
+
+    def proj_trig_gen (self, spacing, width, num):
+        self.param_set(self.param['Proj_trig_spacing'], spacing)
+        self.param_set(self.param['Proj_trig_width'], width)
+        self.param_set(self.param['Proj_trig_num'], num)
+        
+        
+
+
+
+if __name__ == "__main__":
+
+    #bitfile = "./bitfile/t4/Reveal_Top_multi3.bit"
+    bitfile="bitfile/Reveal_Top_3.bit"
+    # bitfile="bitfile/Reveal_Top.bit"
+
+    t6=T6(bitfile)
+    # t6.param_set(self.param['Select'], 0x80000000)  # disable slave mode
+    # t6.fmaskupload("./maskfile/t4_merge.bmp")
+    # t6.set_exposure(10000)
+    # t6.set_pattern_num(10)
+
+    input("Press enter after SPI")
+
+    t6.UploadMaskDummy('',10)
+    t6.SetMaskParam(5,2)
+    t6.SetExposure(2000)
+    t6.readout_reset()
+    t6.gain_flag = False
+    t6.black_flag = False
+    t6.black_scale_flag = False
+    t6.imshow()

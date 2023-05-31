@@ -1,0 +1,12 @@
+#########
+#Exclude all
+#########
+*
+
+#########
+#Except
+#########
+!.gitignore
+#GUI Project 
+!*.xpr
+!*.bit
