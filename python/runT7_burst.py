@@ -401,15 +401,15 @@ if __name__ == '__main__':
     TADC = 20
     t6.param_set(t6.param['ADC1_TADC'],     TADC)
     t6.param_set(t6.param['ADC1_T2_1'],     int(TADC*16))   # > TADC*14
-    t6.param_set(t6.param['ADC1_T2_0'],     int(TADC*16)+20)
-    t6.param_set(t6.param['ADC1_T3'],       int(TADC*16))
-    t6.param_set(t6.param['ADC1_T4'],       int(TADC*17))     # > TADC*14
-    t6.param_set(t6.param['ADC1_T5'],       4)  # should be 5/6 with new voltages
+    t6.param_set(t6.param['ADC1_T2_0'],     int(TADC*16)+40)
+    t6.param_set(t6.param['ADC1_T3'],       int(TADC*18))
+    t6.param_set(t6.param['ADC1_T4'],       int(TADC*19))     # > TADC*14
+    t6.param_set(t6.param['ADC1_T5'],       4)  # try 5/6 when using 1.2V level shifter
     t6.param_set(t6.param['ADC1_T6'],       1)    #  =1
     t6.param_set(t6.param['ADC1_T7'],       30)   #  > 20
-    t6.param_set(t6.param['ADC1_T8'],       2)     # 2 needs 1.8V
-    t6.param_set(t6.param['ADC1_T9'],       2+20)  # 3 needs 1.2/1.3V
-    t6.param_set(t6.param['ADC1_Tcolumn'],  int(TADC*17 + 30*14 + 4)) #T4 + T7*12 + T5
+    t6.param_set(t6.param['ADC1_T8'],       2)     # 2 needs 1.8V, 3 needs 1.2V
+    t6.param_set(t6.param['ADC1_T9'],       2+20) 
+    t6.param_set(t6.param['ADC1_Tcolumn'],  int(TADC*19 + 30*14 + 4)) #T4 + T7*12 + T5
     t6.param_set(t6.param['ADC1_NUM_ROW'],  rows_test+1)
 
     t6.param_set(t6.param['ADC2_NUM_ROW'],  int(rows_sub_img+1))

@@ -203,11 +203,9 @@ class T6(api):
         logging.info("Bitfile: {}".format(bitfile))
         if(reConfFPGA):        
             ### NEW ADDEDD - 18-08-2022 - Ayandev
-            voltages = [3.9, 0.8, 0.6, 4, # VRES/VSEL, VSSRES/VDRN,  VSSTG,       VTG
-                        3.3, 3.3, 4, 3.3] #    VRST,     VROWMASK,   VDDPIX, AVDD33_ADC/AVDD33]    
+            voltages = [3.3, 0.8, 0.6, 3.3, # VRES/VSEL, VSSRES/VDRN,  VSSTG,       VTG
+                        3.3, 3.3, 2.5, 3.3] #    VRST,     VROWMASK,   VDDPIX, AVDD33_ADC/AVDD33]    
             
-            #voltages[1] = 1.3
-            #voltages[6] = 2.6
             
             self.ldo_config(voltages)
             ############################            
