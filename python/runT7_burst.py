@@ -103,7 +103,7 @@ def getImg(cam,rows):
 
 
 def getSubImg(cam,NSUB):
-    pread=bytearray(int(680*480*256/255*NSUB/8));
+    pread=bytearray(int(680*480*256/255*NSUB/8))
     t6.read(0xa3,pread)
 
     mean = (1-cam.arrange_adc2(pread))*(2**16-1)
@@ -221,30 +221,64 @@ def exit_handler(cam):
 def demux(img):
     """
     img@ip: input image of size 480x1360
-    final_img@op: Demultiplexed image of size 480x1360
+    final_img@op: demultiplexed image of size 480x1280
+    burst_video@op: demultiplexed video frames of tap 1 stacked as 64*(60x80)
 
-    HARD CODED FOR BURST 8x8 mask
+    image size 480x1280 because of 30 dead cols on LHS and 10 dead cols on RHS
     """
 
     step = 8
     v_step = 480 // step
-    h_step = 680 // step
+    h_step = 640 // step
 
-    col_offset = 680 #tap1 tap2 separation
+    col_offset = 680 #tap1 tap2 separation for ip img
 
-
-    final_img = img.copy()
-    burst_video = np.zeros((128, v_step, h_step), dtype=np.uint16)
+    final_img = np.zeros((480, 1280), dtype=np.uint16)
+    burst_video = np.zeros(((step**2), v_step, h_step), dtype=np.uint16)
 
     for i in range(step):
         for j in range(step):
             # tap 2
-            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::step, j:col_offset:step]
-            burst_video[step*i + j, :, :] = img[i::step, j:col_offset:step]
+            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::step, (j+30):(col_offset-10):step]
             # tap 1
-            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = img[i::step, (col_offset+j)::step]
-            burst_video[step*i + j + 64, :, :] = img[i::step, (col_offset+j)::step]
+            final_img[i*v_step:(i+1)*v_step, (col_offset-40)+j*h_step:(col_offset-40)+(j+1)*h_step] = img[i::step, (col_offset+30+j):(1360-10):step]
+            burst_video[i*step+j,:,:] =  img[i::step, (col_offset+30+j):(2*col_offset-10):step]
+        
 
+    return [final_img, burst_video]
+
+
+def demux2(img):
+    '''
+    Demux to remove repeated columns from bitfile expansion
+
+    final_img@ size of 480x1024
+    burst_img size of 60x64
+    '''
+    
+    copy = np.concatenate((img[:,30:670], img[:,710:1350]), axis=1)
+    ind = np.arange(1280).reshape(64,20).T
+    ind[[0,1,18,19]] = 0
+    ind = ind[~np.all(ind == 0, axis = 1)].T
+    copy = copy[:,ind.flatten()]  #copy.T[ind].T
+
+    step = 8
+    v_step = 480 // step
+    h_step = 512 // step
+    col_offset = 512
+
+    final_img = np.zeros((480, 1024), dtype=np.uint16)
+    burst_video = np.zeros(((step**2), v_step, h_step), dtype=np.uint16)
+
+    for i in range(step):
+        for j in range(step):
+            # tap 2
+            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = copy[i::step, j:col_offset:step]
+            # tap 1
+            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = copy[i::step, col_offset+j::step]
+            burst_video[i*step+j,:,:] =  copy[i::step, col_offset+j::step]
+
+    
     return [final_img, burst_video]
 
 
@@ -257,10 +291,10 @@ if __name__ == '__main__':
 
 
     # =========== MASK FILES =============
-    #maskfile    = 'maskfile/t7_burst_8x8.bmp'
+    maskfile    = 'maskfile/t7_burst_8x8.bmp'
     #maskfile    = 'maskfile/t7_allOne_100x.bmp'
     #maskfile    = 'maskfile/t7_gradient_masks_256.bmp'
-    maskfile    = 'maskfile/T7_diagonal_mask_100x.bmp'
+    #maskfile    = 'maskfile/T7_diagonal_mask_100x.bmp'
     #maskfile    = 'maskfile/T7_diagonal_mask_inv_100x.bmp'
 
 
@@ -294,9 +328,9 @@ if __name__ == '__main__':
         row_start           = 0
         trigWaitTime        = 8172
     if(1):
-        subFrameNum = 100          # Number of subframes
-        exposure    = 278         # =(exposure time(us) per subframe)/2. must be larger than 26.2*repNum. Sorry it's kinda weird right now
-        numSubRO    = 60
+        subFrameNum = 64          # Number of subframes
+        exposure    = 100         # =(exposure time(us) per subframe)/2. must be larger than 26.2*repNum. Sorry it's kinda weird right now
+        numSubRO    = 64
         rows_sub_img = int(480)
         adc2_PerCh  = 20
 
@@ -370,7 +404,7 @@ if __name__ == '__main__':
     t6.param_set(t6.param['ADC1_T2_0'],     int(TADC*16)+20)
     t6.param_set(t6.param['ADC1_T3'],       int(TADC*16))
     t6.param_set(t6.param['ADC1_T4'],       int(TADC*17))     # > TADC*14
-    t6.param_set(t6.param['ADC1_T5'],       4)                # > TADC*14
+    t6.param_set(t6.param['ADC1_T5'],       4)  # should be 5/6 with new voltages
     t6.param_set(t6.param['ADC1_T6'],       1)    #  =1
     t6.param_set(t6.param['ADC1_T7'],       30)   #  > 20
     t6.param_set(t6.param['ADC1_T8'],       2)     # 2 needs 1.8V
@@ -406,7 +440,7 @@ if __name__ == '__main__':
 
     t6.param_set(t6.param['Tgsub_w'],       100)  # 10 -> 200
     t6.param_set(t6.param['Tmsken_d'],      4)  # 3 -> 21, typical 4
-    t6.param_set(t6.param['Tmsken_w'],      14)  # 1 -> 15, typical 14
+    t6.param_set(t6.param['Tmsken_w'],      11)  # 1 -> 15, typical 14
     t6.param_set(t6.param['Tdes2_d'],       2)    # this is very sensitive, only 2 works
     t6.param_set(t6.param['Tdes2_w'],       4)    #typical 4
 
@@ -445,7 +479,8 @@ if __name__ == '__main__':
 
     # =========== Demux Video Buffer  =============
     buffer_size     = 5*64
-    video_buffer    = np.zeros((buffer_size, 60, 85), dtype=np.uint16)     # hard coded for 8x8 burst mask
+    video_buffer    = np.zeros((buffer_size, 60, 80), dtype=np.uint16)     # hard coded for 8x8 burst mask
+    #video_buffer    = np.zeros((buffer_size, 60, 64), dtype=np.uint16)     # if using demux2
     write_ptr       = 0
     read_ptr        = 0
 
@@ -497,7 +532,7 @@ if __name__ == '__main__':
                 [demux_img, demux_video] = demux(blackCal_img)
 
                 if write_ptr < buffer_size:
-                    video_buffer[write_ptr:write_ptr+64, :, :] = demux_video[64:, :, :]
+                    video_buffer[write_ptr:write_ptr+64,:,:] = demux_video[:,:,:]
                     write_ptr += 64
                 if read_ptr < buffer_size:
                     read_ptr += 1
