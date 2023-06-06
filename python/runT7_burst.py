@@ -399,7 +399,7 @@ if __name__ == '__main__':
     TADC = 20
     t6.param_set(t6.param['ADC1_TADC'],     TADC)
     t6.param_set(t6.param['ADC1_T2_1'],     int(TADC*16))   # > TADC*14
-    t6.param_set(t6.param['ADC1_T2_0'],     int(TADC*16)+40)
+    t6.param_set(t6.param['ADC1_T2_0'],     int(TADC*18))
     t6.param_set(t6.param['ADC1_T3'],       int(TADC*18))
     t6.param_set(t6.param['ADC1_T4'],       int(TADC*19))     # > TADC*14
     t6.param_set(t6.param['ADC1_T5'],       4)  # try 5/6 when using 1.2V level shifter

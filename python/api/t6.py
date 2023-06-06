@@ -204,7 +204,7 @@ class T6(api):
         if(reConfFPGA):        
             ### NEW ADDEDD - 18-08-2022 - Ayandev
             voltages = [3.3, 0.8, 0.6, 3.3, # VRES/VSEL, VSSRES/VDRN,  VSSTG,       VTG
-                        3.3, 3.3, 2.5, 3.3] #    VRST,     VROWMASK,   VDDPIX, AVDD33_ADC/AVDD33]    
+                        3.3, 3.3, 2.6, 3.3] #    VRST,     VROWMASK,   VDDPIX, AVDD33_ADC/AVDD33]    
             
             
             self.ldo_config(voltages)
