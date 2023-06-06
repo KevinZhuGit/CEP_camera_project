@@ -322,7 +322,7 @@ assign ADC_MUX_SEL  = 0;
 	assign TX_CLKi2 = clk_200;
 	assign TX_CLKi = clk_100;
 	assign ADC_CLKi = clk_7;
-	assign CLKMi = clk_100;
+//	assign CLKMi = clk_100;
 //	assign CLKMi = clk_50;
 //	assign CLKMi = clk_25;
 
@@ -721,7 +721,7 @@ patternToSensors_v0 u_patternToSensors(
 		.adc1_start_trigger (adc1_start_trigger),
 		.adc1_busy 			(adc1_busy),
 
-		.adc2_start_trigger (adc2_start_trigger),
+		.adc2_start_trigger (adc2_start_trigger & adc2_en),
 		.adc2_busy 			(adc2_busy),
 		
 		.TX_CLK				(TX_CLKi),
@@ -1159,14 +1159,14 @@ assign testBus7[9:1] = {mem_write_en, mem_write_data[8:1]};
 
 //assign TEST_IO[1] = Select[11] ? (Select[1] ? testBus6[1]: testBus7[1]): (Select[1] ? adc_fifo_empty: ODDCOL_EN);
 assign TEST_IO[1] = contrastLED;
-assign TEST_IO[2] = Select[12] ? (Select[1] ? testBus6[2]: testBus7[2]): (Select[2] ? COL_PRECH_12     : PIX_LEFTBUCK_SEL);
-assign TEST_IO[3] = Select[13] ? (Select[1] ? testBus6[3]: testBus7[3]): (Select[3] ? adc_fifo_rd_en   : ADC_DATA_VALID);
-assign TEST_IO[4] = Select[14] ? (Select[1] ? testBus6[4]: testBus7[4]): (Select[4] ? ADC_RST          : LOAD_IN);
-assign TEST_IO[5] = Select[15] ? (Select[1] ? testBus6[5]: testBus7[5]): (Select[5] ? COL_PRECH_12     : RST_BAR_LTCHD);
-assign TEST_IO[6] = Select[16] ? (Select[1] ? testBus6[6]: testBus7[6]): (Select[6] ? DIGOUT[9]        : adc2_start_trigger);
-assign TEST_IO[7] = Select[17] ? (Select[1] ? testBus6[7]: testBus7[7]): (Select[7] ? DIGOUT[10]       : re_busy);
-assign TEST_IO[8] = Select[18] ? (Select[1] ? testBus6[8]: testBus7[8]): (Select[8] ? TX_CLKi          : re1bit_busy);
-assign TEST_IO[9] = Select[19] ? (Select[1] ? testBus6[9]: testBus7[9]): (Select[9] ? PIX_LEFTBUCK_SEL : MASK_EN);
+assign TEST_IO[2] = Select[12] ? (Select[1] ? testBus1[2]: testBus7[2]): (Select[2] ? COL_PRECH_12     : PIX_LEFTBUCK_SEL);
+assign TEST_IO[3] = Select[13] ? (Select[1] ? testBus1[3]: testBus7[3]): (Select[3] ? adc_fifo_rd_en   : ADC_DATA_VALID);
+assign TEST_IO[4] = Select[14] ? (Select[1] ? testBus1[4]: testBus7[4]): (Select[4] ? ADC_RST          : LOAD_IN);
+assign TEST_IO[5] = Select[15] ? (Select[1] ? testBus1[5]: testBus7[5]): (Select[5] ? COL_PRECH_12     : RST_BAR_LTCHD);
+assign TEST_IO[6] = Select[16] ? (Select[1] ? testBus1[6]: testBus7[6]): (Select[6] ? DIGOUT[9]        : adc2_start_trigger);
+assign TEST_IO[7] = Select[17] ? (Select[1] ? testBus1[7]: testBus7[7]): (Select[7] ? DIGOUT[10]       : re_busy);
+assign TEST_IO[8] = Select[18] ? (Select[1] ? testBus1[8]: testBus7[8]): (Select[8] ? TX_CLKi          : re1bit_busy);
+assign TEST_IO[9] = Select[19] ? (Select[1] ? testBus1[9]: testBus7[9]): (Select[9] ? PIX_LEFTBUCK_SEL : MASK_EN);
 
 assign DIGOUT_IN[17:1] = Select[29] ? DIGOUT_TEST  : DIGOUT   ;
 assign ADC2FIFO_CLK = 	{4{TX_CLKi}}; //Select[30] ? {4{TX_CLKi}} : DCLK[4:1] ;
@@ -1176,8 +1176,10 @@ assign COL_EN             = 1;
 assign PIXRES 			  = 0;
 assign VREF_ADC_EN        = 1;
 
-assign PIX_LEFTBUCK_SEL   = Select[21] ? Select[22] :  PIX_LEFTBUCK_SEL_t7 ; 
-assign PIX_RIGHTBUCK_SEL  = Select[23] ? Select[24] :  PIX_LEFTBUCK_SEL_t7 ; 
+assign PIX_LEFTBUCK_SEL   = Select[21] ? 1 :  PIX_LEFTBUCK_SEL_t7; 
+assign PIX_RIGHTBUCK_SEL  = Select[21] ? 0 :  ~PIX_LEFTBUCK_SEL_t7;
+
+assign CLKMi 			  = Select[22] ? clk_50: clk100;
 
 assign adc1_en            = Select[25];
 assign adc2_en            = Select[26];
