@@ -218,7 +218,7 @@ def exit_handler(cam):
     print("adc2_spacing-------: {}".format(adc2_spacing))
 
 
-def demux(img):
+def demux(img, n):
     """
     img@ip: input image of size 480x1360
     final_img@op: demultiplexed image of size 480x1280
@@ -227,22 +227,21 @@ def demux(img):
     image size 480x1280 because of 30 dead cols on LHS and 10 dead cols on RHS
     """
 
-    step = 8
-    v_step = 480 // step
-    h_step = 640 // step
+    v_step = 480 // n
+    h_step = 640 // n
 
     col_offset = 680 #tap1 tap2 separation for ip img
 
     final_img = np.zeros((480, 1280), dtype=np.uint16)
-    burst_video = np.zeros(((step**2), v_step, h_step), dtype=np.uint16)
+    burst_video = np.zeros(((n**2), v_step, h_step), dtype=np.uint16)
 
-    for i in range(step):
-        for j in range(step):
+    for i in range(n):
+        for j in range(n):
             # tap 2
-            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::step, (j+30):(col_offset-10):step]
+            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::n, (29+n-j):(col_offset-10):n]
             # tap 1
-            final_img[i*v_step:(i+1)*v_step, (col_offset-40)+j*h_step:(col_offset-40)+(j+1)*h_step] = img[i::step, (col_offset+30+j):(1360-10):step]
-            burst_video[i*step+j,:,:] =  img[i::step, (col_offset+30+j):(2*col_offset-10):step]
+            final_img[i*v_step:(i+1)*v_step, (col_offset-40)+j*h_step:(col_offset-40)+(j+1)*h_step] = img[i::n, (col_offset+29+n-j):1350:n]
+            burst_video[i*n+j,:,:] =  img[i::n, (col_offset+29+n-j):1350:n]
         
 
     return [final_img, burst_video]
@@ -262,21 +261,20 @@ def demux2(img):
     ind = ind[~np.all(ind == 0, axis = 1)].T
     copy = copy[:,ind.flatten()]  #copy.T[ind].T
 
-    step = 8
-    v_step = 480 // step
-    h_step = 512 // step
+    v_step = 480 // n
+    h_step = 512 // n
     col_offset = 512
 
     final_img = np.zeros((480, 1024), dtype=np.uint16)
-    burst_video = np.zeros(((step**2), v_step, h_step), dtype=np.uint16)
+    burst_video = np.zeros(((n**2), v_step, h_step), dtype=np.uint16)
 
-    for i in range(step):
-        for j in range(step):
+    for i in range(n):
+        for j in range(n):
             # tap 2
-            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = copy[i::step, j:col_offset:step]
+            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = copy[i::n, (n-1-j):col_offset:n]
             # tap 1
-            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = copy[i::step, col_offset+j::step]
-            burst_video[i*step+j,:,:] =  copy[i::step, col_offset+j::step]
+            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = copy[i::n, (col_offset+n-1-j)::n]
+            burst_video[i*n+j,:,:] =  copy[i::n, (col_offset+n-1-j)::n]
 
     
     return [final_img, burst_video]
@@ -529,11 +527,16 @@ if __name__ == '__main__':
                             # crop_loc = [r1,c1,r2,c2], crop = True, 
                             max_scale=2048,f=f)
                 
-                [demux_img, demux_video] = demux(blackCal_img)
+                [demux_img, demux_video] = demux(blackCal_img, 8)
 
-                if write_ptr < buffer_size:
+                while write_ptr < buffer_size:
                     video_buffer[write_ptr:write_ptr+64,:,:] = demux_video[:,:,:]
                     write_ptr += 64
+
+                    raw_adc1,raw_adc2=getADCs(t6,row,NSUB=numSubRO,adc1_en=adc1_en,adc2_en=adc2_en)
+                    img_adc1,img_adc2=arrangeImg(t6,raw_adc1,raw_adc2,rows_adc1=rows_test,rows_adc2=rows_sub_img,adc2_PerCh=adc2_PerCh)
+                    blackCal_img = showImg(raw, cam=t6, show=True, img=img_adc1, black=True, dynamic=False, max_scale=2048,f=f)
+                    [demux_img, demux_video] = demux(blackCal_img, 8)
                 if read_ptr < buffer_size:
                     read_ptr += 1
                 else:
