@@ -1027,11 +1027,32 @@ class T6(api):
 
         img11 = np.concatenate([img10[:,0,:],img10[:,1,:]],axis=1)
         tics.append(['img11',time.time()])
+
+        img12 = img11
+
+        # 2x ODDCOL_EN time
+        # img12 = np.zeros(img11.shape, dtype=np.uint16)
+        # img12[:,1:680:2] = img11[:,0:680:2]
+        # img12[:,0:680:2] = img11[:,680::2]
+        # img12[:,681::2] = img11[:,1:680:2]
+        # img12[:,680::2] = img11[:,681::2]
+
+        # 2x ROWADD cycles
+        img12 = np.zeros(img11.shape, dtype=np.uint16)
+        img12[0::2,1:680:2] = img11[:240,0:680:2]
+        img12[1::2,1:680:2] = img11[:240,680::2]
+        img12[0::2,0:680:2] = img11[240:,0:680:2]
+        img12[1::2,0:680:2] = img11[240:,680::2]
+
+        img12[0::2,681::2] = img11[:240,1:680:2]
+        img12[1::2,681::2] = img11[:240,681::2]
+        img12[0::2,680::2] = img11[240:,1:680:2]
+        img12[1::2,680::2] = img11[240:,681::2]
         
         # for i in range(1,len(tics)):
         #     logging.info("arrange_raw_t7 {}:{}".format(tics[i][0],(tics[i][1]-tics[i-1][1])*1000))
 
-        return img11
+        return img12
 
     def arrange_adc2(self, image, rows=480, ADCsPerCh=20):
         tics = [['img0',time.time()]]
