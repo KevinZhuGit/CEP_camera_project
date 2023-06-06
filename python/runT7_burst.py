@@ -247,7 +247,7 @@ def demux(img, n):
     return [final_img, burst_video]
 
 
-def demux2(img):
+def demux2(img, n):
     '''
     Demux to remove repeated columns from bitfile expansion
 
@@ -470,6 +470,8 @@ if __name__ == '__main__':
     raw ='C2B' ;cv2.namedWindow(raw)
     cv2.createTrackbar('Zoom', raw, 5, 40, nothing); f=1
     hdr='C2B_(HDR2LDR)';cv2.namedWindow(hdr) # this may or may not work well/it is not working
+    # create bright callibration window
+    brightCal_win = 'BRIGHT CAL'; cv2.namedWindow(brightCal_win)
     # create demuxed image and video windows
     demux_img_win = 'DEMUX IMAGE'; cv2.namedWindow(demux_img_win)
     demux_video_win = 'DEMUX VIDEO'; cv2.namedWindow(demux_video_win)
@@ -526,6 +528,8 @@ if __name__ == '__main__':
                             # drawLines = True,
                             # crop_loc = [r1,c1,r2,c2], crop = True, 
                             max_scale=2048,f=f)
+                
+                brightCal_img = showImg(brightCal_win, cam=t6, show=True, img=img_adc1, black=True, gain=True, max_scale=2048, f=f)
                 
                 [demux_img, demux_video] = demux(blackCal_img, 8)
 

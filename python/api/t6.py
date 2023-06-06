@@ -1117,7 +1117,7 @@ class T6(api):
 
     def image_scale6(self,image,gain=False,black=True,dynamic=False,max_scale = 3000):
         
-        [row,col,tab] = [self.row, self.col*self.ch, self.tab]
+        [row,col,tab] = [480, 680, self.tab]
 
         x1 = self.black_img.astype(np.float32)
         y1 = np.median(x1)
@@ -1127,8 +1127,8 @@ class T6(api):
         if(gain):
             # assert black==True, "Black cal must be ON if gain needs to be ON"
             x2 = self.bright_img.astype(np.float32)
-            y2_left  = np.median(x2[:,:col].flatten()) # target median left tap
-            y2_right = np.median(x2[:,col:].flatten()) # target median right tap
+            y2_left  = np.median(x2[:,30:col-10].flatten()) # target median left tap
+            y2_right = np.median(x2[:,col+30:2*col-10].flatten()) # target median right tap
 
             y2[:,:col] = y2_left
             y2[:,col:] = y2_right
