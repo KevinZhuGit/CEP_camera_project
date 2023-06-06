@@ -148,7 +148,7 @@ def showImg(win,img,cam=None,show=True,\
         # cv2.imshow(win,img)
         img = img
     elif(gain):
-        img = cam.image_scale6(img,gain=gain, black=black, max_scale=2**13-1)
+        img = cam.image_scale6(img,gain=gain, black=black, max_scale=max_scale)
     elif(black):
         img = cam.image_scale6(img,gain=False,black=True,max_scale=max_scale)
     elif(dynamic):
