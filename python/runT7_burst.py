@@ -247,38 +247,6 @@ def demux(img, n):
     return [final_img, burst_video]
 
 
-def demux2(img, n):
-    '''
-    Demux to remove repeated columns from bitfile expansion
-
-    final_img@ size of 480x1024
-    burst_img size of 60x64
-    '''
-    
-    copy = np.concatenate((img[:,30:670], img[:,710:1350]), axis=1)
-    ind = np.arange(1280).reshape(64,20).T
-    ind[[0,1,18,19]] = 0
-    ind = ind[~np.all(ind == 0, axis = 1)].T
-    copy = copy[:,ind.flatten()]  #copy.T[ind].T
-
-    v_step = 480 // n
-    h_step = 512 // n
-    col_offset = 512
-
-    final_img = np.zeros((480, 1024), dtype=np.uint16)
-    burst_video = np.zeros(((n**2), v_step, h_step), dtype=np.uint16)
-
-    for i in range(n):
-        for j in range(n):
-            # tap 2
-            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = copy[i::n, (n-1-j):col_offset:n]
-            # tap 1
-            final_img[i*v_step:(i+1)*v_step, col_offset+j*h_step:col_offset+(j+1)*h_step] = copy[i::n, (col_offset+n-1-j)::n]
-            burst_video[i*n+j,:,:] =  copy[i::n, (col_offset+n-1-j)::n]
-
-    
-    return [final_img, burst_video]
-
 
 
 if __name__ == '__main__':
@@ -480,7 +448,6 @@ if __name__ == '__main__':
     # =========== Demux Video Buffer  =============
     buffer_size     = 5*64
     video_buffer    = np.zeros((buffer_size, 60, 80), dtype=np.uint16)     # hard coded for 8x8 burst mask
-    #video_buffer    = np.zeros((buffer_size, 60, 64), dtype=np.uint16)     # if using demux2
     write_ptr       = 0
     read_ptr        = 0
 
@@ -531,7 +498,7 @@ if __name__ == '__main__':
                 
                 brightCal_img = showImg(brightCal_win, cam=t6, show=True, img=img_adc1, black=True, gain=True, max_scale=2048, f=f)
                 
-                [demux_img, demux_video] = demux(blackCal_img, 8)
+                [demux_img, demux_video] = demux(brightCal_img, 8)
 
                 while write_ptr < buffer_size:
                     video_buffer[write_ptr:write_ptr+64,:,:] = demux_video[:,:,:]
@@ -539,8 +506,8 @@ if __name__ == '__main__':
 
                     raw_adc1,raw_adc2=getADCs(t6,row,NSUB=numSubRO,adc1_en=adc1_en,adc2_en=adc2_en)
                     img_adc1,img_adc2=arrangeImg(t6,raw_adc1,raw_adc2,rows_adc1=rows_test,rows_adc2=rows_sub_img,adc2_PerCh=adc2_PerCh)
-                    blackCal_img = showImg(raw, cam=t6, show=True, img=img_adc1, black=True, dynamic=False, max_scale=2048,f=f)
-                    [demux_img, demux_video] = demux(blackCal_img, 8)
+                    brightCal_img = showImg(brightCal_win, cam=t6, show=True, img=img_adc1, black=True, gain=True, max_scale=2048, f=f)
+                    [demux_img, demux_video] = demux(brightCal_img, 8)
                 if read_ptr < buffer_size:
                     read_ptr += 1
                 else:
