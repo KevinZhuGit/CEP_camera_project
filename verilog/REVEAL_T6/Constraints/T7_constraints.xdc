@@ -318,56 +318,56 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LC_EN}]
 set_property PACKAGE_PIN      P5 [get_ports {CS_IBIAS}]
 set_property IOSTANDARD LVCMOS33 [get_ports {CS_IBIAS}]
 # MC2-16
-set_property PACKAGE_PIN      P6 [get_ports {Z_B35_L24P}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L24P}]
+#set_property PACKAGE_PIN      P6 [get_ports {Z_B35_L24P}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L24P}]
 # MC2-17
-set_property PACKAGE_PIN      P4 [get_ports {Z_B35_L21N}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L21N}]
+#set_property PACKAGE_PIN      P4 [get_ports {Z_B35_L21N}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L21N}]
 # MC2-18
-set_property PACKAGE_PIN      N5 [get_ports {Z_B35_L24N}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L24N}]
+#set_property PACKAGE_PIN      N5 [get_ports {Z_B35_L24N}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L24N}]
 # MC2-19
 set_property PACKAGE_PIN      N4 [get_ports {DAC_EN}]
 set_property IOSTANDARD LVCMOS33 [get_ports {DAC_EN}]
 # MC2-20
-set_property PACKAGE_PIN      P2 [get_ports {Z_B35_L22P}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L22P}]
+#set_property PACKAGE_PIN      P2 [get_ports {Z_B35_L22P}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L22P}]
 # MC2-21
 set_property PACKAGE_PIN      N3 [get_ports {CS_DAC}]
 set_property IOSTANDARD LVCMOS33 [get_ports {CS_DAC}]
 # MC2-22
-set_property PACKAGE_PIN      N2 [get_ports {Z_B35_L22N}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L22N}]
+#set_property PACKAGE_PIN      N2 [get_ports {Z_B35_L22N}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L22N}]
 # MC2-23
 set_property PACKAGE_PIN      L5 [get_ports {MSTREAM[16]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[16]}]
 # MC2-24
-set_property PACKAGE_PIN      R13 [get_ports {Z_B35_L20P}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20P}]
+#set_property PACKAGE_PIN      R13 [get_ports {Z_B35_L20P}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20P}]
 # MC2-25
 set_property PACKAGE_PIN      L4 [get_ports {MSTREAM18}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM18}]
 # MC2-26
-set_property PACKAGE_PIN      P1 [get_ports {Z_B35_L20N}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20N}]
+#set_property PACKAGE_PIN      P1 [get_ports {Z_B35_L20N}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20N}]
 # MC2-27
 set_property PACKAGE_PIN      M6 [get_ports {ROWADD[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ROWADD[0]}]
 # MC2-28
-set_property PACKAGE_PIN      M3 [get_ports {Z_B35_L16P}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L16P}]
+#set_property PACKAGE_PIN      M3 [get_ports {Z_B35_L16P}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L16P}]
 # MC2-29
 set_property PACKAGE_PIN      M5 [get_ports {ROWADD[8]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ROWADD[8]}]
 # MC2-30
-set_property PACKAGE_PIN      M2 [get_ports {Z_B35_L16N}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L16N}]
+#set_property PACKAGE_PIN      M2 [get_ports {Z_B35_L16N}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L16N}]
 # MC2-31
 set_property PACKAGE_PIN      M1 [get_ports {ROWADD[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ROWADD[1]}]
 # MC2-32
-set_property PACKAGE_PIN      K6 [get_ports {Z_B35_L17P}]
-set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L17P}]
+#set_property PACKAGE_PIN      K6 [get_ports {Z_B35_L17P}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L17P}]
 # MC2-33
 set_property PACKAGE_PIN      L1 [get_ports {ADC_BIAS_EN_PRE}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ADC_BIAS_EN_PRE}]
