@@ -222,9 +222,10 @@ def demux(img, n):
     """
     img@ip: input image of size 480x1360
     final_img@op: demultiplexed image of size 480x1280
-    burst_video@op: demultiplexed video frames of tap 1 stacked as 64*(60x80)
+        30 dead columns LHS, 10 dead columns RHS
+    burst_video@op: demultiplexed video frames of tap 1 of size 60x80
 
-    image size 480x1280 because of 30 dead cols on LHS and 10 dead cols on RHS
+    n should evenly divide 480 or will have issues
     """
 
     v_step = 480 // n
@@ -237,11 +238,14 @@ def demux(img, n):
 
     for i in range(n):
         for j in range(n):
+            r1, r2, = i*v_step, (i+1)*v_step
+            c1, c2 = j*h_step, (j+1)*h_step
+
             # tap 2
-            final_img[i*v_step:(i+1)*v_step, j*h_step:(j+1)*h_step] = img[i::n, (29+n-j):(col_offset-10):n]
+            final_img[r1:r2, c1:c2] = img[n-1-i::n, 30+j:(col_offset-10):n]
             # tap 1
-            final_img[i*v_step:(i+1)*v_step, (col_offset-40)+j*h_step:(col_offset-40)+(j+1)*h_step] = img[i::n, (col_offset+29+n-j):1350:n]
-            burst_video[i*n+j,:,:] =  img[i::n, (col_offset+29+n-j):1350:n]
+            final_img[r1:r2, 640+c1:640+c2] = img[n-1-i::n, (col_offset+30+j):1350:n]
+            burst_video[i*n+j,:,:] =  img[n-1-i::n, (col_offset+30+j):1350:n]
         
 
     return [final_img, burst_video]
