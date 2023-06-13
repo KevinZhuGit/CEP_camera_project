@@ -217,14 +217,14 @@ set_property IOSTANDARD LVCMOS33 [get_ports {SPI_CLK}]
 set_property PACKAGE_PIN      AA6 [get_ports {MSTREAM[15]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[15]}]
 # MC1-45
-set_property PACKAGE_PIN      Y3 [get_ports {SPI_RO_UPLOAD}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SPI_RO_UPLOAD}]
+set_property PACKAGE_PIN      Y3 [get_ports {SPI_SS_READOUT}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_SS_READOUT}]
 # MC1-46
 set_property PACKAGE_PIN      AA8 [get_ports {MSTREAM[14]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[14]}]
 # MC1-47
-set_property PACKAGE_PIN      AA3 [get_ports {SPI_MASK_UPLOAD}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SPI_MASK_UPLOAD}]
+set_property PACKAGE_PIN      AA3 [get_ports {SPI_SS_MASK_UPLOAD}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SPI_SS_MASK_UPLOAD}]
 # MC1-48
 set_property PACKAGE_PIN      AB8 [get_ports {MSTREAM[13]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[13]}]
@@ -268,8 +268,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {TX_CLK_IN}]
 set_property PACKAGE_PIN      AA1 [get_ports {ADC_CLK}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ADC_CLK}]
 # MC1-64
-set_property PACKAGE_PIN      Y13 [get_ports {RST_BAR_LATCHED}]
-set_property IOSTANDARD LVCMOS33 [get_ports {RST_BAR_LATCHED}]
+set_property PACKAGE_PIN      Y13 [get_ports {RST_BAR_LTCHD}]
+set_property IOSTANDARD LVCMOS33 [get_ports {RST_BAR_LTCHD}]
 # MC1-65
 set_property PACKAGE_PIN      AB1 [get_ports {MSTREAM[5]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[5]}]
@@ -345,8 +345,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[16]}]
 #set_property PACKAGE_PIN      R13 [get_ports {Z_B35_L20P}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20P}]
 # MC2-25
-set_property PACKAGE_PIN      L4 [get_ports {MSTREAM18}]
-set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM18}]
+set_property PACKAGE_PIN      L4 [get_ports {MSTREAM[18]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[18]}]
 # MC2-26
 #set_property PACKAGE_PIN      P1 [get_ports {Z_B35_L20N}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20N}]
@@ -372,8 +372,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {ROWADD[1]}]
 set_property PACKAGE_PIN      L1 [get_ports {ADC_BIAS_EN_PRE}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ADC_BIAS_EN_PRE}]
 # MC2-34
-set_property PACKAGE_PIN      J6 [get_ports {PIX_GLOB_RESR}]
-set_property IOSTANDARD LVCMOS33 [get_ports {PIX_GLOB_RESR}]
+set_property PACKAGE_PIN      J6 [get_ports {PIX_GLOB_RES_R}]
+set_property IOSTANDARD LVCMOS33 [get_ports {PIX_GLOB_RES_R}]
 # MC2-37
 set_property PACKAGE_PIN      K2 [get_ports {RST_N_PRE}]
 set_property IOSTANDARD LVCMOS33 [get_ports {RST_N_PRE}]
@@ -396,8 +396,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {PIXREAD_EN}]
 set_property PACKAGE_PIN      J1 [get_ports {DIGOUT[4]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {DIGOUT[4]}]
 # MC2-44
-set_property PACKAGE_PIN      H5 [get_ports {PIX_GLOB_RESL}]
-set_property IOSTANDARD LVCMOS33 [get_ports {PIX_GLOB_RESL}]
+set_property PACKAGE_PIN      H5 [get_ports {PIX_GLOB_RES_L}]
+set_property IOSTANDARD LVCMOS33 [get_ports {PIX_GLOB_RES_L}]
 # MC2-45
 set_property PACKAGE_PIN      H3 [get_ports {DIGOUT[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {DIGOUT[1]}]
