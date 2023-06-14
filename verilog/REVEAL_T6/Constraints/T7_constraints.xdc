@@ -136,8 +136,8 @@ set_property IOSTANDARD LVCMOS15 [get_ports {led[*]}]
 set_property PACKAGE_PIN      W9 [get_ports {TEST_IO[5]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {TEST_IO[5]}]
 # MC1-16
-set_property PACKAGE_PIN      V9 [get_ports {TEST_IO[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {TEST_IO[0]}]
+set_property PACKAGE_PIN      V9 [get_ports {CAM_TG}]
+set_property IOSTANDARD LVCMOS33 [get_ports {CAM_TG}]
 # MC1-17
 set_property PACKAGE_PIN      Y9 [get_ports {TEST_IO[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {TEST_IO[6]}]
@@ -432,7 +432,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {MASK_EN}]
 set_property PACKAGE_PIN      E3 [get_ports {DIGOUT[8]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {DIGOUT[8]}]
 # MC2-58
-set_property PACKAGE_PIN      D2 [get_ports {PIX_DRAIN}]
+set_property PACKAGE_PIN      D1 [get_ports {PIX_DRAIN}]
 set_property IOSTANDARD LVCMOS33 [get_ports {PIX_DRAIN}]
 # MC2-59
 set_property PACKAGE_PIN      B1 [get_ports {DIGOUT[9]}]
@@ -524,8 +524,8 @@ set_output_delay -add_delay -min -clock [get_clocks {TXCLK}]  -0.5 [get_ports {L
 
 
 set_false_path -through [get_pins -hierarchical -filter { PARENT_CELL =~  "*varValueSelect*" && DIRECTION == "OUT" }]
-set_false_path -through [get_ports [list VREF_EN POT_WP PIXVTG_GLOB PIX_GLOB_RES_L PIX_GLOB_RES_R PIX_RES]]
-set_false_path -through [get_ports [ list CAM_TG IO_SCL IO_SDA ]]
+set_false_path -through [get_ports [list VREF_EN PIXVTG_GLOB PIX_GLOB_RES_L PIX_GLOB_RES_R PIX_RES]]
+set_false_path -through [get_ports [list CAM_TG]]
 
 # DRAM ########################################################################
 set_property PACKAGE_PIN N18 [get_ports {ddr3_dq[0]}]
