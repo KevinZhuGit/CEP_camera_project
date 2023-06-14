@@ -49,25 +49,25 @@ module Reveal_Top
 	output wire         ddr3_reset_n, 
 
 
-   // 
-
-	inout wire         IO_SDA,
-	inout wire         IO_SCL,
-	output wire         SCLK,
-	 inout wire         SDI,
-	 input wire         SDO,
-	 input wire         SDO_REFGEN_ADC,
+   // SDI
+	output wire        	SCLK,
+	inout wire         	SDI,
+	input wire         	SDO,
+	input wire         	SDO_REFGEN_ADC,
 
 	output wire         VREF_EN,
-	output wire         VREF_ADC_EN,
-	output wire         POT_WP,
 	
 	output wire         SPI_DIN,
 	output wire         SPI_CLK,
 	output wire         SPI_SS_MASK_UPLOAD, //active low
 	output wire         SPI_SS_READOUT, //active low
 	
+	output wire			CS_POT1,
+	output wire			CS_POT2, 
+	output wire			CS_POT3, 
+
 	output wire         LC_EN,
+
 
    // Reset
 	output wire         PIX_GLOB_RES_R,
@@ -75,8 +75,7 @@ module Reveal_Top
 	output wire         PIXRES,
 
    // Masking
-	output wire [20:1 ] MSTREAM,
-	output wire         MSTREAM_MUX_SEL,
+	output wire [20:1]	MSTREAM,
 	output wire         DES2ND,
 	output wire         EN_STREAM,
 	output wire         CLKM,
@@ -89,7 +88,7 @@ module Reveal_Top
 
 	output wire         DEC_EN,
 	output wire         DEC_SEL,
-	output wire [ 8:0 ] ROWADD,
+	output wire [8 :0]  ROWADD,
 
    // Readout conversion
 	output wire         PIXREAD_EN,
@@ -105,32 +104,28 @@ module Reveal_Top
 	output wire         ADC_RST,
 
    // Readout data transfer
-	 input wire [17:1 ] DIGOUT,
-	 input wire [4 :1 ] DCLK,
+	input wire [17:1 ] 	DIGOUT,
+	input wire [4 :1 ] 	DCLK,
 	output wire         TX_CLK_IN,
 	output wire         RST_BAR_LTCHD,
-	output wire         ADC_MUX_SEL,
 	output wire         ANA_MUX_RST,
 
    // Not using these signals at the moment
-	 input wire         DIGMUX_OUT2,
-	 input wire         DIGMUX_OUT1,
-	 input wire         RP_VALID_ACC,
-	 input wire         MUX2_15A,
-	 input wire         MUX2_13A,
-	 input wire         MUX2_11A,
-	 input wire         MUX2_9A,
-	 input wire         MUX2_16A,
-     input wire         MUX2_14A,
- 	 input wire         MUX2_12A,
-	 input wire         MUX2_10A,
-	output wire         SH_R,
-	 input wire [4 :1 ] ADCCLK_OUT,
-	output wire         ADCCLK_IN,
+	input wire         	DIGMUX_OUT2,
+	input wire         	DIGMUX_OUT1,
+	input wire         	RP_VALID_ACC,
+	input wire         	MUX2_15A,
+	input wire         	MUX2_13A,
+	input wire         	MUX2_11A,
+	input wire         	MUX2_9A,
+	input wire         	MUX2_16A,
+	input wire         	MUX2_14A,
+	input wire         	MUX2_12A,
+	input wire         	MUX2_10A,
+	input wire [4 :1 ] 	ADCCLK_OUT,
 	
 	output wire [9:1 ] TEST_IO,
 	input  wire CAM_TG
-
 );
 
 wire  PROJ_TRG;
@@ -294,53 +289,51 @@ assign down2      = trig40[2];
 assign PIXREAD_EN  = 1'b1;
 
 assign LC_EN        = 0;
-assign LC_EN2       = 0;
-assign MSTREAM_MUX_SEL = 0;
-assign ADC_MUX_SEL  = 0;
 
 
-	wire rd_enable;
-	wire re_busy;
-	wire ex_trigger;
+wire rd_enable;
+wire re_busy;
+wire ex_trigger;
 
-	wire PIXLEFTBUCK_SEL_i;
+wire PIXLEFTBUCK_SEL_i;
 
-	wire clk_400;
-	wire clk_200;
-	wire clk_100;
-	wire clk_150;
-	wire clk_50;
-	wire clk_25;
-	wire clk_14;
-	wire clk_7;
+wire clk_400;
+wire clk_200;
+wire clk_100;
+wire clk_150;
+wire clk_50;
+wire clk_25;
+wire clk_14;
+wire clk_7;
 
-	wire TX_CLKi;
-	wire TX_CLKi2;
-	wire CLKMi;
-	wire ADC_CLK;
+wire TX_CLKi;
+wire TX_CLKi2;
+wire CLKMi;
+wire ADC_CLK;
 
-	assign TX_CLKi2 = clk_200;
-	assign TX_CLKi = clk_100;
-	assign ADC_CLKi = clk_7;
+assign TX_CLKi2 = clk_200;
+assign TX_CLKi = clk_100;
+assign ADC_CLKi = clk_7;
 //	assign CLKMi = clk_100;
 //	assign CLKMi = clk_50;
 //	assign CLKMi = clk_25;
+//  CLKMi assignment in the TEST_IO section
 
-  clk_wiz_0 clk_inst (
-      .clk_in1(clk), //100MHz
-      .clk_200(clk_200), //200MHz
-      .clk_100(clk_100), //100MHz
-      .clk_150(clk_150), //150MHZ
-      .clk_14(clk_14), 
-      .clk_7(clk_7),
-      .clk_50(clk_50),
-      .clk_25(clk_25)
-  );
+clk_wiz_0 clk_inst (
+	.clk_in1(clk), //100MHz
+	.clk_200(clk_200), //200MHz
+	.clk_100(clk_100), //100MHz
+	.clk_150(clk_150), //150MHZ
+	.clk_14(clk_14), 
+	.clk_7(clk_7),
+	.clk_50(clk_50),
+	.clk_25(clk_25)
+);
 
-  clk_wiz_1 clk1_inst (
-      .clk_in1(clk), //100MHz
-      .clk_400(clk_400) //400MHz
-  );
+clk_wiz_1 clk1_inst (
+	.clk_in1(clk), //100MHz
+	.clk_400(clk_400) //400MHz
+);
 
 
 reg [31:0] rst_cnt;
@@ -798,7 +791,6 @@ patternToSensors_v0 u_patternToSensors(
 	assign mem_write_en        	= rowmapwire[31]								;
 
 
-    assign ADCCLK_IN = 0;
 
 	wire [31:0] T_DEC_SEL_0, T_DEC_SEL_1, T_DEC_EN_0, T_DEC_EN_1, T_DONE_1;
 	wire [9:0]  ROWADD_DEC;
@@ -1023,7 +1015,7 @@ patternToSensors_v0 u_patternToSensors(
 		.UNIT_SUB_IMG_SIZE(UNIT_SUB_IMG_SIZE),
 		.N_SUBREADOUTS(N_SUBREADOUTS),
 		.SPI_CONTROL(SPI_CONTROL),
-		.I2C_DATA(I2C_DATA),
+		.I2C_DATA(I2C_DATA),	//I2C no longer used for new T7 board
 		.I2C_CONTROL(I2C_CONTROL),
 		.ROWADD_INCRMNT(ROWADD_INCRMNT),
 		.TrigWaitTime(TrigWaitTime),
@@ -1034,50 +1026,16 @@ patternToSensors_v0 u_patternToSensors(
     );
 
 
-
-  //i2c module instantiation 
-    
-      wire i_enable, i_rw;
-      wire [15:0] i_mosi_data;
-      wire [7:0] i_reg_addr;
-      wire [6:0] i_device_addr;   
-      wire [15:0] o_miso_data;
-      wire o_busy;
-      
-      localparam i_divider = 16'd4999;
-      
-      assign IO_SDA 		= io_sda;
-      assign IO_SCL 		= io_scl;
-      assign i_enable 		= I2C_CONTROL[0];
-      assign i_rw 			= I2C_DATA[31];
-      assign i_reg_addr 	= I2C_DATA[7:0];
-      assign i_mosi_data 	= I2C_DATA[23:8];
-      assign i_device_addr 	= I2C_DATA[30:24];
-    
-    i2c_master #(.DATA_WIDTH(16),.REG_WIDTH(8),.ADDR_WIDTH(7)) 
-	        i2c_master_inst(
-	            .i_clk(clk),
-	            .i_rst(wirerst[0]),
-	            .i_enable(i_enable),
-	            .i_rw(i_rw),
-	            .i_mosi_data(i_mosi_data),
-	            .i_reg_addr(i_reg_addr),
-	            .i_device_addr(i_device_addr),
-	            .i_divider(i_divider),
-	            .o_miso_data(o_miso_data),
-	            .o_busy(o_busy),
-	            .io_sda(io_sda),
-	            .io_scl(io_scl)
-	        );
-	        
     //* spi module instantiation
-	
-
-
 	wire [7:0] SPI_SS, CIS_SPI_SS;
 	wire CPOL, CPHA, CPOL_sensor, CPHA_sensor;
-	assign CS_POT2 = SPI_SS[0];
-	assign CS_POT1= SPI_SS[1];
+	
+	//assign CS_POT2 = SPI_SS[0];
+	//assign CS_POT1= SPI_SS[1];
+	assign CS_POT1 = 0;
+	assign CS_POT2 = 0;
+	assign CS_POT3 = 0;
+
     assign CS_VREFP = SPI_SS[2];
     assign CS_VREFN = SPI_SS[3];
 
@@ -1088,16 +1046,16 @@ patternToSensors_v0 u_patternToSensors(
 
 	assign SPI_SS_READOUT 		= CIS_SPI_SS[0];
 	assign SPI_SS_MASK_UPLOAD 	= CIS_SPI_SS[1];
-  //////// spi laptop control
 
+  	//////// spi laptop control
 	wire ldo_wr_en;
 	wire [31:0] ldo_wr_data;
 	wire cis_wr_en;
 	wire [31:0] cis_wr_data;
 
-
-	assign POT_WP 	= SPI_CONTROL[0];
+	//assign POT_WP 	= SPI_CONTROL[0];
 	assign VREF_EN 	= SPI_CONTROL[1];
+
 
 	spi_master_v1 #(
 		.NUM(1),
@@ -1153,9 +1111,6 @@ assign testBus4[9:1] = app_addr[11:3];
 assign testBus5[9:1] = sub_img_cnt[8:0];
 assign testBus6[9:1] = {mem_write_en, mem_write_addr[8:1]};
 assign testBus7[9:1] = {mem_write_en, mem_write_data[8:1]};
-//assign TEST_IO[9:1] =  Select[12] ? 
-//					  (Select[11] ? testBus4[9:1]: testBus3[9:1]) : 
-//					  (Select[11] ? testBus2[9:1]: testBus1[9:1]);  
 
 //assign TEST_IO[1] = Select[11] ? (Select[1] ? testBus6[1]: testBus7[1]): (Select[1] ? adc_fifo_empty: ODDCOL_EN);
 assign TEST_IO[1] = contrastLED;
@@ -1174,12 +1129,13 @@ assign ADC2FIFO_CLK = 	{4{TX_CLKi}}; //Select[30] ? {4{TX_CLKi}} : DCLK[4:1] ;
 assign STDBY12            = 0;
 assign COL_EN             = 1;
 assign PIXRES 			  = 0;
-assign VREF_ADC_EN        = 1;
 
 assign PIX_LEFTBUCK_SEL   = Select[21] ? 1 :  PIX_LEFTBUCK_SEL_t7; 
 assign PIX_RIGHTBUCK_SEL  = Select[21] ? 0 :  ~PIX_LEFTBUCK_SEL_t7;
 
 assign CLKMi 			  = Select[22] ? clk_50: clk100;
+
+// Select[23] and Select[24] free
 
 assign adc1_en            = Select[25];
 assign adc2_en            = Select[26];
