@@ -120,35 +120,11 @@ class T6(api):
                          'TLEDWait': 75
             }
 
-    spi = [ 
-            #      8|8    ,      8|8
-            # target|value, target,clk_edge_select
-            # CS_POT2
-            '0000000000111110', '0000000100000000', #VDDPIX 3.3
-            '0000000100111101', '0000000100000000', #AVDD33 3.3
-            '0000001000111101', '0000000100000000', #AVDD33_QUANT 3.3
-            '0000001101101100', '0000000100000000', #VDDCMP 1.9
-            # '0000001111111101', '0000000100000000',   #VDDCMP 3.3
-            
-            # CS_POT1
-            '0000000000111111', '0000001000000000',   #VDDTG 3.3
-            # '0000000001001000', '0000001000000000',   # 1.9<VDDTG<3.3
-            # '0000000001101100', '0000001000000000',   #VDDTG 1.9
-            '0000000111111111', '0000001000000000', #VSSTG 0.8 May need to connect to ground
-            '0000001000111111', '0000001000000000', #VDDRES 3.22
-            '0000001111111111', '0000001000000000', #VSSRES 0.8 May need to connect to ground
-
-            #VREF LDO
-            #   2|  4 | 10    ,         8|8
-            #  00|CTRL|data   ,    target| clk_edge_select
-            # VREFP
-            '0001110000000010', '0000100000000010',
-            '0000010001000111', '0000100000000010',
-
-            # VREFN
-            '0001110000000010', '0000010000000010',
-            '0000011111111111', '0000010000000010']
-
+    
+    # voltages for LDO
+    voltages = np.array([3.3, 0.8, 0.6, 3.3,  # VRES/VSEL, VSSRES/VDRN, VSSTG, VTG
+                         3.3, 3.3, 2.6, 3.3,  # VRST, VROWMASK, VDDPIX, AVDD33_ADC/AVDD33
+                         3.3, 3.3, 3.3, 3.3]) # ...............................  
     
     # this is 96-bit on chip. To configure mask upload settings
     cis_spi_mu = [  '0100001000110000', '0000000000000000', # 95:80, 79:64
@@ -202,13 +178,8 @@ class T6(api):
         super(T6, self).__init__(bitfile)
         logging.info("Bitfile: {}".format(bitfile))
         if(reConfFPGA):        
-            ### NEW ADDEDD - 18-08-2022 - Ayandev
-            voltages = [3.3, 0.8, 0.6, 3.3, # VRES/VSEL, VSSRES/VDRN,  VSSTG,       VTG
-                        3.3, 3.3, 2.6, 3.3] #    VRST,     VROWMASK,   VDDPIX, AVDD33_ADC/AVDD33]    
-            
-            
-            self.ldo_config(voltages)
-            ############################            
+
+            self.LDOConf(self.voltages)           
             time.sleep(1)
             self.CISConf(self.cis_spi_mu)
             time.sleep(1)
@@ -433,27 +404,56 @@ class T6(api):
         else:
             print("Raw image On")
 
-    def SPIConf(self, bitstring):
-       arr = np.array(list(bitstring[0]), dtype='|S1')
-       for i in range(1,len(bitstring),1):
-           arr = np.vstack((arr,np.array(list(bitstring[i]), dtype='|S1')))
-       arr=arr.reshape(-1,32)
-       arrange = np.flip(np.arange(16).reshape(2,-1), axis=1).flatten()
-       arrange = np.hstack((np.arange(16,32,1),arrange))
 
-       arr = arr[:,arrange]
-       arr = np.tile(arr, 4)
-       p = arr.flatten().tobytes()
-       pattern = bytearray(int(p[i:i+8],2) for i in range(0, len(p), 8))
-       print(pattern)
-       #set VREF_EN = 1 (active high) and POT_WP = 1 (active low)
-       self.param_set(self.param['spi_control'], 0x03)
-       #send reset signal to the spi module
-       self.wire_in(0x10, 1)
-       #deassert the reset signal
-       self.wire_in(0x10, 0)
-       #send the spi data
-       self.write(self.address['ldo_spi'], pattern)
+    def LDOConf(self, voltages):
+        '''
+        Takes in voltage values used to set LDOs on board and configures
+        byte stream to send to SPI_master module.
+        ----------------------------------------------------------
+        Variables
+
+        SlaveSel:  1-hot encoded mask for chip select
+        Addr:      8 bit pattern for DAC addr. Ordered as 0,0,0...A2,A1,A0
+        Voltage:   8 bit pattern to control LDO voltage. Ordered from Msb -> Lsb
+        Mode:      Currently unused in SPI_master. Can be used to change SPI mode later
+                   for different CPOL and CPAH configurations.
+        ------------------------------------------------------------
+        Output to SPI_master
+        
+        words are formatted as { SS | Mode | Voltage | Addr } in python
+        FPGA flips byte order so words recieved as { Addr | Voltage | Mode | SS } by SPI_master
+        '''
+    
+    
+        # SPI order as { SS | Mode | Voltage | Addr } per row
+        SPI = np.array([
+            # CS_1
+            '00000001', '00000000', '________', '00000000',
+            '00000001', '00000000', '________', '00000001',
+            '00000001', '00000000', '________', '00000010',
+            '00000001', '00000000', '________', '00000011',
+            # CS_2
+            '00000010', '00000000', '________', '00000000',
+            '00000010', '00000000', '________', '00000001',
+            '00000010', '00000000', '________', '00000010',
+            '00000010', '00000000', '________', '00000011',
+            # CS_3
+            '00000100', '00000000', '________', '00000000',
+            '00000100', '00000000', '________', '00000001',
+            '00000100', '00000000', '________', '00000010',
+            '00000100', '00000000', '________', '00000011'
+        ])
+
+        
+        # get 0->255 int that gives voltage out 
+        voltages = np.rint((voltages/5)*256).astype(int)    
+        # convert int to 8'b binary representation
+        for i in range(len(voltages)):
+            SPI[4*i+2] = np.binary_repr(voltages[i], width=8)
+        
+        # convert to bytes to send out to FPGA
+        byte_pattern = bytes(int(SPI[i],2) for i in range(len(SPI)))
+        self.write(self.address['ldo_spi'], byte_pattern)
 
 
     def CISConf(self, data):
@@ -476,73 +476,6 @@ class T6(api):
         pattern = bytearray(int(p[i:i+8],2) for i in range(0, len(p), 8))
         print(len(pattern))
         self.write(self.address['cis_spi'], pattern)
-
-    ### NEW ADDED - 18-08-2022 - Ayandev
-
-    def voltageToPotValue(self, V_out):
-        V_fb = 0.6
-        N = (V_fb/V_out)*256
-        return np.ceil(N-1)
-
-
-
-    def ldo_config(self,voltages):
-        rd_wr = 0x0
-        command = 0x06
-        address = 0b0100000
-        data0 = 0x0
-        data1 = 0x0
-        #configure the IO expander pins as output
-        self.io_expander(command, data0, data1, address, rd_wr)
-        time.sleep(self.ldo_delay)
-        command = 0x02
-        data0 = 0xff
-        data1 = 0xff
-        self.io_expander(command, data0, data1, address, rd_wr)
-     
-        #voltages: ip array of size 8
-                #[POT1_00, POT1_01, POT1_10, POT1_11, POT2_00, POT2_01, POT2_10, POT2_11]
-     
-        spi_place_holder_bytes_01 = ['00010000', '01110000', '01100000', '00000000','00000000', '01100000', '00010000', '01110000'] # fill correct values here
-        #corresponding pins:         [VRES/VSEL, VSSRES/VDRN, VSSTG, VTG, VRST, VROWMASK, VDDPIX, AVDD33_ADC/AVDD33]    
-        #spi_place_holder_byte_02  = ['00101111', '10111111', '10111111', '00001111', '00101111', '00101111', '00101111', '00101111']
-        spi_place_holder_byte_02  = '00101111' 
-        spi_place_holder_byte_03  = '00000001' # this is constant
-        spi_place_holder_byte_04  = '00000000' # this is constant
-        
-
-        for i in range(8):
-            v = voltages[i]
-            spi_place_holder_byte_02 = int(self.voltageToPotValue(v))
-            spi_place_holder_byte_02 = '{0:08b}'.format(spi_place_holder_byte_02)
-            spi_for_v = [spi_place_holder_bytes_01[i], spi_place_holder_byte_02, spi_place_holder_byte_03, spi_place_holder_byte_04]
-            spi_for_v = spi_for_v*1
-            data1 = 0x7f
-            if(i<4):
-             data1 = 0xbf
-            command = 0x02
-            self.io_expander(command, data0, data1, address, rd_wr)
-            time.sleep(self.ldo_delay)
-            self.SPIConf(spi_for_v)
-            time.sleep(self.ldo_delay)
-            data1 = 0xff
-            self.io_expander(command, data0, data1, address, rd_wr)
-            time.sleep(self.ldo_delay)
-
-    def io_expander(self, command, data0, data1, address, rd_wr):
-           
-
-           data_out = command | (data1 << 8) | (data0 << 16) | (address << 24) | (rd_wr << 31)
-           self.param_set(self.param['i2c_data'], data_out)
-           #send reset signal
-           self.wire_in(0x10, 1)
-           #wait for 1 second
-           time.sleep(self.ldo_delay)
-           #send start signal and deassert the reset signal
-           self.wire_in(0x10, 0)
-           self.param_set(self.param['i2c_control'], 1)
-    ################  NEW ADDED - 18-08-2022 - Ayandev
-
 
 
     def ImgMapCal(self):
