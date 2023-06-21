@@ -122,9 +122,9 @@ class T6(api):
 
     
     # voltages for LDO
-    voltages = np.array([3.3, 0.8, 0.6, 3.3,  # VRES/VSEL, VSSRES/VDRN, VSSTG, VTG
-                         3.3, 3.3, 2.6, 3.3,  # VRST, VROWMASK, VDDPIX, AVDD33_ADC/AVDD33
-                         3.3, 3.3, 3.3, 3.3]) # ...............................  
+    voltages = np.array([3.3, 3.3, 3.3, 3.3,  # CS1
+                         3.3, 3.3, 3.3, 3.3,  # CS2
+                         3.3, 3.3, 3.3, 3.3]) # CS3
     
     # this is 96-bit on chip. To configure mask upload settings
     cis_spi_mu = [  '0100001000110000', '0000000000000000', # 95:80, 79:64
@@ -178,8 +178,8 @@ class T6(api):
         super(T6, self).__init__(bitfile)
         logging.info("Bitfile: {}".format(bitfile))
         if(reConfFPGA):        
-
-            self.LDOConf(self.voltages)           
+            time.sleep(1)
+            self.LDOConf(self.voltages)         
             time.sleep(1)
             self.CISConf(self.cis_spi_mu)
             time.sleep(1)
@@ -424,7 +424,7 @@ class T6(api):
         FPGA flips byte order so words recieved as { Addr | Voltage | Mode | SS } by SPI_master
         '''
     
-    
+
         # SPI order as { SS | Mode | Voltage | Addr } per row
         SPI = np.array([
             # CS_1
@@ -444,15 +444,14 @@ class T6(api):
             '00000100', '00000000', '________', '00000011'
         ])
 
-        
         # get 0->255 int that gives voltage out 
-        voltages = np.rint((voltages/5)*256).astype(int)    
+        voltages = np.rint(128/voltages).astype(int)    
         # convert int to 8'b binary representation
         for i in range(len(voltages)):
             SPI[4*i+2] = np.binary_repr(voltages[i], width=8)
         
         # convert to bytes to send out to FPGA
-        byte_pattern = bytes(int(SPI[i],2) for i in range(len(SPI)))
+        byte_pattern = bytearray(int(SPI[i],2) for i in range(len(SPI)))
         self.write(self.address['ldo_spi'], byte_pattern)
 
 

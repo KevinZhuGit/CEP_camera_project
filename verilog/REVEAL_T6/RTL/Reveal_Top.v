@@ -1030,19 +1030,15 @@ patternToSensors_v0 u_patternToSensors(
 	wire [7:0] SPI_SS, CIS_SPI_SS;
 	wire CPOL, CPHA, CPOL_sensor, CPHA_sensor;
 	
-	//assign CS_POT2 = SPI_SS[0];
-	//assign CS_POT1= SPI_SS[1];
-	assign CS_POT1 = 0;
-	assign CS_POT2 = 0;
-	assign CS_POT3 = 0;
+	assign CS_POT2 = SPI_SS[0];
+	assign CS_POT1 = SPI_SS[1];
+	assign CS_POT3 = SPI_SS[2];
 
-    assign CS_VREFP = SPI_SS[2];
-    assign CS_VREFN = SPI_SS[3];
-
-	assign IBIAS_POT = SPI_SS[4];
-	assign RS_POT = 1;
-	assign CS_ADC1 = SPI_SS[5];
-	assign CS_ADC2 = SPI_SS[6];
+    //assign CS_VREFP = SPI_SS[2];
+    //assign CS_VREFN = SPI_SS[3];
+	//assign IBIAS_POT = SPI_SS[4];
+	//assign CS_ADC1 = SPI_SS[5];
+	//assign CS_ADC2 = SPI_SS[6];
 
 	assign SPI_SS_READOUT 		= CIS_SPI_SS[0];
 	assign SPI_SS_MASK_UPLOAD 	= CIS_SPI_SS[1];
@@ -1057,12 +1053,9 @@ patternToSensors_v0 u_patternToSensors(
 	assign VREF_EN 	= SPI_CONTROL[1];
 
 
-	spi_master_v1 #(
-		.NUM(1),
-		.CLK_RATIO(800),
-		.SS_SPACE(30)
-	) i_ldo (
-				.rst(wirerst[0]),
+	spi_master_ldo i_ldo 
+	(
+		.rst(wirerst[0]),
         .clk(clk), 
         .wr_clk(okClk), 
         .wr_en(ldo_wr_en), 
