@@ -110,7 +110,10 @@ module Readout_Merge(
 	localparam  S_setRow                = 32'b1<<1;
 	localparam	S_startRepeat			= 32'b1<<2;
 	localparam	S_repeat				= 32'b1<<3;
-	localparam  S_wait                  = 32'b1<<4;
+	localparam  S_wait                  = 32'b1<<4; 
+	
+	
+	
 
 	wire [31:0] Tcolumn, T1, T2_1, T2_0, T3, T4, T5, T6, T7, T8, T9, TADC, NUM_ROW, T_RO_Wait;
 	assign Tcolumn     = adc1_busy ? ADC1_Tcolumn     : ADC2_Tcolumn     ;
@@ -194,7 +197,8 @@ module Readout_Merge(
 				end
 				
 				S_setRow: begin // set DEC_EN and DEC_SEL to load ROW_ADDRESS
-					if(ROWADD_i[9:0] == (NUM_ROW[9:0]-1))
+					//if(ROWADD_i[9:0] >= (NUM_ROW[9:0]-1))
+					if(ROWADD >= NUM_ROW)
 						state1 <= S_wait;
 					else
 						state1 		<= SET_ROW_DONE ? S_startRepeat : S_setRow;
@@ -210,9 +214,9 @@ module Readout_Merge(
 				
 				S_repeat: begin
 					if(timer1 == Tcolumn) begin
-						if(i_am_adc1)
-							state1     <= (ROWADD_phase==2'b11) ? S_setRow : S_startRepeat;
-						else if(i_am_adc2) 
+//						if(i_am_adc1)
+//							state1     <= (ROWADD_phase==2'b11) ? S_setRow : S_startRepeat;
+//						else if(i_am_adc2) 
 							state1     <= (ROWADD_phase[0]==1'b1) ? S_setRow : S_startRepeat; // only one bucket.
 	//						state1     <= (ROWADD_phase==2'b11) ? S_setRow : S_startRepeat; // for both buckets
 					end else begin
@@ -449,17 +453,22 @@ module Readout_Merge(
 			re_busy         <= re_busy_i;
 			
 			// ADC control
-			ROWADD 			<= ROWADD_i;
+//			ROWADD 			<= ROWADD_i;
+            if (i_am_adc1)
+                ROWADD      <= (ADC_COUNTER[10:1] >= NUM_ROW) ? ADC_COUNTER[10:1]- (NUM_ROW-1) : ADC_COUNTER[10:1];
+			else
+			    ROWADD      <= ROWADD_i;
 			SET_ROW			<= SETROW_i;
-			// for two buckets
-//			PIXLEFTBUCK_SEL <= ROWADD_phase[1];
-//			COLL_EN			<= ROWADD_phase[1];
+
 			
 			// for single bucket			
-			PIXLEFTBUCK_SEL <= i_am_adc1 ? ROWADD_phase[1] : 1;
-			COLL_EN			<= i_am_adc1 ? ROWADD_phase[1] : 1;
+//			PIXLEFTBUCK_SEL <= i_am_adc1 ? ROWADD_phase[1] : 1;
+//			COLL_EN			<= i_am_adc1 ? ROWADD_phase[1] : 1;
+            PIXLEFTBUCK_SEL <= ROWADD_phase[0];
+            COLL_EN         <= ROWADD_phase[0];
 
-            ODDCOL_EN 		<= ROWADD_phase[0];
+//            ODDCOL_EN 		<= ROWADD_phase[0];
+            ODDCOL_EN       <= (ADC_COUNTER[10:1] > NUM_ROW);
 			ADC_CLK			<= ADC_CLK_i;
 			ADC_RST      	<= ADC_RST_i;
 			PRECH_COL       <= PRECH_COL_i;
@@ -475,6 +484,9 @@ module Readout_Merge(
 			ADC_BIAS_EN		<= ADC_BIAS_EN_i;
 			PIXRES			<= PIXRES_i;
 	end
+	
+	wire [10:0] ADC_COUNTER;
+	assign ADC_COUNTER = {ROWADD_i[8:0], ROWADD_phase[1:0]};
 
     	
 endmodule

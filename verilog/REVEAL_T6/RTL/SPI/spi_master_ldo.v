@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module spi_master_v2 (
+module spi_master_ldo (
 	input wire rst,
 	input wire clk,
 	input wire wr_clk,
