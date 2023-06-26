@@ -257,7 +257,8 @@ if __name__ == '__main__':
 
     # =========== BIT FILES =============
     #bitfile       = "bitfile/Reveal_Top_t7_based_on_t6_06.08.bit"
-    bitfile     = 'bitfile/Reveal_Top_t7_based_on_t6_roberto_ADC2_EN_03.bit'
+    #bitfile     = 'bitfile/Reveal_Top_t7_based_on_t6_roberto_ADC2_EN_03.bit'
+    bitfile     = 'bitfile/T7_06.26.bit'
 
 
     # =========== MASK FILES =============
