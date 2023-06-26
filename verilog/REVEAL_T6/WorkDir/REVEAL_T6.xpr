@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="60" Path="/nobackup/RahulGulve/Home/Documents/Project/CameraSystems/T6/src/verilog/REVEAL_T6/WorkDir/REVEAL_T6.xpr">
+<Project Version="7" Minor="60" Path="C:/Users/kevin/OneDrive/Documents/CameraSoftware/T7_based_on_T6_Kevin/src/verilog/REVEAL_T6/WorkDir/REVEAL_T6.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="dcd363246ba04d15baeaa489405303ae"/>
@@ -43,6 +43,7 @@
     <Option Name="SimulatorGccVersionRiviera" Val="9.3.0"/>
     <Option Name="SimulatorGccVersionActiveHdl" Val="9.3.0"/>
     <Option Name="BoardPart" Val=""/>
+    <Option Name="SourceMgmtMode" Val="DisplayOnly"/>
     <Option Name="ActiveSimSet" Val="sim_2"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
@@ -63,13 +64,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="125"/>
-    <Option Name="WTModelSimExportSim" Val="125"/>
-    <Option Name="WTQuestaExportSim" Val="125"/>
+    <Option Name="WTXSimExportSim" Val="126"/>
+    <Option Name="WTModelSimExportSim" Val="126"/>
+    <Option Name="WTQuestaExportSim" Val="126"/>
     <Option Name="WTIesExportSim" Val="109"/>
-    <Option Name="WTVcsExportSim" Val="125"/>
-    <Option Name="WTRivieraExportSim" Val="125"/>
-    <Option Name="WTActivehdlExportSim" Val="125"/>
+    <Option Name="WTVcsExportSim" Val="126"/>
+    <Option Name="WTRivieraExportSim" Val="126"/>
+    <Option Name="WTActivehdlExportSim" Val="126"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -87,21 +88,28 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../IP/fifo_w32_16_r16_32_ib/fifo_w32_16_r16_32_ib.xci">
+      <File Path="$PPRDIR/../IP/fifo_w64_512_r256_128.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../IP/fifo_w256_128_r256_128_standard.xcix">
+      <File Path="$PPRDIR/../IP/fifo_w64_512_r256_128/fifo_w64_512_r256_128.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../IP/fifo_w256_128_r256_128_standard/fifo_w256_128_r256_128_standard.xci">
+      <File Path="$PPRDIR/../IP/fifo_w128_256_r256_128.xcix">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../IP/fifo_w128_256_r256_128/fifo_w128_256_r256_128.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -136,6 +144,27 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../IP/fifo_w32_16_r16_32_ib/fifo_w32_16_r16_32_ib.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../IP/fifo_w256_128_r256_128_standard.xcix">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../IP/fifo_w256_128_r256_128_standard/fifo_w256_128_r256_128_standard.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../RTL/ADC/ADCparser.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -164,6 +193,27 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../RTL/Misc/Proj_Trig_Gen.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../RTL/exp_ro/Readout_1bit_T7.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../RTL/exp_ro/Readout_Full_T7.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../RTL/exp_ro/Readout_Merge.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -171,7 +221,21 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../RTL/Readout_v1_T7.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../RTL/ddr/ddr3_test_v3.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../RTL/Misc/divideSignal.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -186,6 +250,13 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../RTL/Misc/iamTriggered.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../RTL/led_ctl.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -290,7 +361,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../RTL/spi_master_v1.v">
+      <File Path="$PPRDIR/../RTL/SPI/spi_master_ldo.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -318,94 +389,8 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../IP/dist_mem_w9_d2048.xcix">
+      <File Path="$PPRDIR/../RTL/SPI/spi_master_v1.v">
         <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../IP/dist_mem_w9_d2048/dist_mem_w9_d2048.xci">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/exp_ro/Readout_1bit_T7.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/exp_ro/Readout_Full_T7.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/Readout_v1_T7.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../IP/fifo_w128_256_r256_128.xcix">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../IP/fifo_w128_256_r256_128/fifo_w128_256_r256_128.xci">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../IP/fifo_w64_512_r256_128.xcix">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../IP/fifo_w64_512_r256_128/fifo_w64_512_r256_128.xci">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/led_ctl.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/Misc/Proj_Trig_Gen.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../RTL/Misc/divideSignal.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -427,7 +412,6 @@
       </File>
       <File Path="$PPRDIR/../RTL/Misc/foo.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -441,7 +425,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_ro_full_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -457,6 +440,20 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../IP/dist_mem_w9_d2048.xcix">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../IP/dist_mem_w9_d2048/dist_mem_w9_d2048.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="Reveal_Top"/>
@@ -464,14 +461,14 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/../Constraints/counter_example.xdc">
+      <File Path="$PPRDIR/../Constraints/T7_constraints.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
       <Config>
-        <Option Name="TargetConstrsFile" Val="$PPRDIR/../Constraints/counter_example.xdc"/>
+        <Option Name="TargetConstrsFile" Val="$PPRDIR/../Constraints/T7_constraints.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
@@ -486,7 +483,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/ToFMOD/tb_ToFModGen.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -494,7 +490,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/mappings.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -502,7 +497,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/parameters.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -510,67 +504,56 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okBTPipeIn.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okBTPipeOut.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okHost.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okPipeIn.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okPipeOut.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okTriggerIn.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okTriggerOut.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okWireIn.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okWireOR.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okWireOut.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/ddr/wiredly.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -578,7 +561,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/ddr/ddr3_model_parameters.vh">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
           <Attr Name="IsVisible" Val="1"/>
@@ -586,7 +568,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/ddr/ddr3_model.sv">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -594,7 +575,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/ddr/Reveal_Top_ddr3_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -602,7 +582,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/T5_Readout_v4_timing_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -610,7 +589,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/readout_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -618,7 +596,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/T5_Readout_timing_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -626,7 +603,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/misc/SPI/tb_SPI_TOP.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -634,7 +610,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/T5_Exposure_timing_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -642,7 +617,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_ro_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -650,7 +624,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -658,7 +631,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/misc/tb_syntax.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -666,14 +638,12 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/okRegisterBridge.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../Testbenches/simOnly_OPALKELLY_USB3/glbl.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -744,7 +714,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/misc/dist_mem_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -752,7 +721,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_ro_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -760,7 +728,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_ro_v0_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -768,7 +735,6 @@
       </File>
       <File Path="$PPRDIR/../Testbenches/exp_ro/exp_ro_v5_tb.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -786,7 +752,6 @@
       </File>
       <File Path="$PPRDIR/../RTL/exp_ro/patternToSensors_v0_T4.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -794,7 +759,6 @@
       </File>
       <File Path="$PPRDIR/../RTL/Readout_v1_T7.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -971,14 +935,11 @@
     <Simulator Name="Questa">
       <Option Name="Description" Val="Questa Advanced Simulator"/>
     </Simulator>
-    <Simulator Name="Xcelium">
-      <Option Name="Description" Val="Xcelium Parallel Simulator"/>
-    </Simulator>
-    <Simulator Name="VCS">
-      <Option Name="Description" Val="Verilog Compiler Simulator (VCS)"/>
-    </Simulator>
     <Simulator Name="Riviera">
       <Option Name="Description" Val="Riviera-PRO Simulator"/>
+    </Simulator>
+    <Simulator Name="ActiveHDL">
+      <Option Name="Description" Val="Active-HDL Simulator"/>
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="19">
@@ -987,11 +948,11 @@
         <StratHandle Name="Flow_PerfOptimized_high" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design">
           <Option Id="Directive">7</Option>
-          <Option Id="NoCombineLuts">1</Option>
-          <Option Id="FsmExtraction">1</Option>
           <Option Id="ResourceSharing">2</Option>
-          <Option Id="KeepEquivalentRegisters">1</Option>
           <Option Id="ShregMinSize">5</Option>
+          <Option Id="NoCombineLuts">1</Option>
+          <Option Id="KeepEquivalentRegisters">1</Option>
+          <Option Id="FsmExtraction">1</Option>
         </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -1069,7 +1030,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/C:/Users/bayaz/OneDrive/Belgeler/GitHub/REVEAL_T6/src/verilog/REVEAL_T6/WorkDir/REVEAL_T6.srcs/utils_1/imports/impl_1" AutoRQSDir="$PPRDIR/C:/Users/bayaz/OneDrive/Belgeler/GitHub/REVEAL_T6/src/verilog/REVEAL_T6/WorkDir/REVEAL_T6.srcs/utils_1/imports/impl_1">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
@@ -1086,7 +1047,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_ExtraTimingOpt" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Includes alternate algorithms for timing-driven optimization" AutoIncrementalCheckpoint="false" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Reveal_Top.dcp" Directive="RuntimeOptimized" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_ExtraTimingOpt" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt">
+    <Run Id="impl_ExtraTimingOpt" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Includes alternate algorithms for timing-driven optimization" AutoIncrementalCheckpoint="false" IncrementalCheckpoint="$PPRDIR/../../../../../../../../../../nobackup/RahulGulve/Home/Documents/Project/CameraSystems/T6/src/verilog/REVEAL_T6/WorkDir/REVEAL_T6.srcs/utils_1/imports/synth_1/Reveal_Top.dcp" Directive="RuntimeOptimized" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Performance_ExtraTimingOpt" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
@@ -1105,7 +1066,6 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Timing Closure Reports" Flow="Vivado Implementation 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
@@ -1212,7 +1172,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_ExtraTimingOpt_copy_1" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Each implementation step trades design performance for better runtime. Physical optimization (phys_opt_design) is disabled." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt/impl_ExtraTimingOpt_copy_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt/impl_ExtraTimingOpt_copy_1">
+    <Run Id="impl_ExtraTimingOpt_copy_1" Type="Ft2:EntireDesign" Part="xc7a75tfgg484-1" ConstrsSet="constrs_1" Description="Each implementation step trades design performance for better runtime. Physical optimization (phys_opt_design) is disabled." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_ExtraTimingOpt_copy_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt_copy_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_ExtraTimingOpt_copy_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Flow_RuntimeOptimized" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
@@ -1231,36 +1191,37 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Timing Closure Reports" Flow="Vivado Implementation 2019" CtrlBit="true">
-        <ReportConfig DisplayName="DRC - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_drc_0" Spec="report_drc" RunStep="opt_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="DRC - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_drc_0" Spec="report_drc" RunStep="opt_design" ReportFile="opt_report_drc_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="opt_report_drc_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="opt_report_drc_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Utilization - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_utilization_0" Spec="report_utilization" RunStep="opt_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Utilization - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_utilization_0" Spec="report_utilization" RunStep="opt_design" ReportFile="opt_report_utilization_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="opt_report_utilization_0.pb"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Methodolog - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_methodology_0" Spec="report_methodology" RunStep="opt_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Methodolog - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_methodology_0" Spec="report_methodology" RunStep="opt_design" ReportFile="opt_report_methodology_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="opt_report_methodology_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="opt_report_methodology_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="opt_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Timing Summary - Opt Design" Name="impl_ExtraTimingOpt_copy_1_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="opt_design" ReportFile="opt_report_timing_summary_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="opt_report_timing_summary_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="opt_report_timing_summary_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="IO - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_io_0" Spec="report_io" RunStep="place_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="IO - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_io_0" Spec="report_io" RunStep="place_design" ReportFile="place_report_io_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Incremental Reuse - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="place_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Incremental Reuse - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="place_design" ReportFile="place_report_incremental_reuse_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_timing_summary_0" Spec="report_timing_summary" RunStep="place_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Timing Summary - Place Design" Name="impl_ExtraTimingOpt_copy_1_place_report_timing_summary_0" Spec="report_timing_summary" RunStep="place_design" ReportFile="place_report_timing_summary_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="place_report_timing_summary_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="place_report_timing_summary_0.rpx"/>
         </ReportConfig>
         <ReportConfig DisplayName="Timing Summary - Post-Place Phys Opt Design" Name="impl_ExtraTimingOpt_copy_1_phys_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="phys_opt_design" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="10"/>
@@ -1273,52 +1234,52 @@
           <ReportConfigOption Name="logic_level_distribution" Type="" Value="true"/>
           <ReportConfigOption Name="max_paths" Type="" Value="100"/>
         </ReportConfig>
-        <ReportConfig DisplayName="implementation_log" Name="impl_ExtraTimingOpt_copy_1_route_implementation_log_0" Spec="" RunStep="route_design">
+        <ReportConfig DisplayName="implementation_log" Name="impl_ExtraTimingOpt_copy_1_route_implementation_log_0" Spec="" RunStep="route_design" ReportFile="Reveal_Top.vdi">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Utilization - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_utilization_0" Spec="report_utilization" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Utilization - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_utilization_0" Spec="report_utilization" RunStep="route_design" ReportFile="route_report_utilization_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_utilization_0.pb"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Clock Utilization - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_clock_utilization_0" Spec="report_clock_utilization" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Clock Utilization - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_clock_utilization_0" Spec="report_clock_utilization" RunStep="route_design" ReportFile="route_report_clock_utilization_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="DRC - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_drc_0" Spec="report_drc" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="DRC - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_drc_0" Spec="report_drc" RunStep="route_design" ReportFile="route_report_drc_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_drc_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="route_report_drc_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Power - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_power_0" Spec="report_power" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Power - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_power_0" Spec="report_power" RunStep="route_design" ReportFile="route_report_power_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_power_summary_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="route_report_power_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Route Status - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_route_status_0" Spec="report_route_status" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Route Status - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_route_status_0" Spec="report_route_status" RunStep="route_design" ReportFile="route_report_route_status_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_route_status_0.pb"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_timing_summary_0" Spec="report_timing_summary" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Timing Summary - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_timing_summary_0" Spec="report_timing_summary" RunStep="route_design" ReportFile="route_report_timing_summary_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="10"/>
           <ReportConfigOption Name="warn_on_violation" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_timing_summary_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="route_report_timing_summary_0.rpx"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Design Analysis - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_design_analysis_0" Spec="report_design_analysis" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Design Analysis - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_design_analysis_0" Spec="report_design_analysis" RunStep="route_design" ReportFile="route_report_design_analysis_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="congestion" Type="" Value="true"/>
           <ReportConfigOption Name="timing" Type="" Value="true"/>
           <ReportConfigOption Name="logic_level_distribution" Type="" Value="true"/>
           <ReportConfigOption Name="max_paths" Type="" Value="100"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Qor Suggestions - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_qor_suggestions_0" Spec="report_qor_suggestions" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Qor Suggestions - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_qor_suggestions_0" Spec="report_qor_suggestions" RunStep="route_design" ReportFile="route_report_qor_suggestions_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="100"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Incremental Reuse - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="route_design" Version="1" Minor="0">
+        <ReportConfig DisplayName="Incremental Reuse - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="route_design" ReportFile="route_report_incremental_reuse_0.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Bus Skew - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_bus_skew_0" Spec="report_bus_skew" RunStep="route_design" Version="1" Minor="1">
+        <ReportConfig DisplayName="Bus Skew - Route Design" Name="impl_ExtraTimingOpt_copy_1_route_report_bus_skew_0" Spec="report_bus_skew" RunStep="route_design" ReportFile="route_report_bus_skew_0.rpt" Version="1" Minor="1">
           <ReportConfigOption Name="warn_on_violation" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
+          <ReportConfigOutputOption Name="pb" Type="string" Value="route_report_bus_skew_0.pb"/>
+          <ReportConfigOutputOption Name="rpx" Type="string" Value="route_report_bus_skew_0.rpx"/>
         </ReportConfig>
         <ReportConfig DisplayName="Timing Summary - Post-Route Phys Opt Design" Name="impl_ExtraTimingOpt_copy_1_post_route_phys_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="post_route_phys_opt_design" Version="1" Minor="0">
           <ReportConfigOption Name="max_paths" Type="" Value="10"/>
@@ -1331,10 +1292,10 @@
           <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
           <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
         </ReportConfig>
-        <ReportConfig DisplayName="report_webtalk" Name="impl_ExtraTimingOpt_copy_1_bitstream_report_webtalk_0" Spec="" RunStep="write_bitstream">
+        <ReportConfig DisplayName="report_webtalk" Name="impl_ExtraTimingOpt_copy_1_bitstream_report_webtalk_0" Spec="" RunStep="write_bitstream" ReportFile="usage_statistics_webtalk.html">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="implementation_log" Name="impl_ExtraTimingOpt_copy_1_bitstream_implementation_log_0" Spec="" RunStep="write_bitstream">
+        <ReportConfig DisplayName="implementation_log" Name="impl_ExtraTimingOpt_copy_1_bitstream_implementation_log_0" Spec="" RunStep="write_bitstream" ReportFile="Reveal_Top.vdi">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
       </ReportStrategy>
