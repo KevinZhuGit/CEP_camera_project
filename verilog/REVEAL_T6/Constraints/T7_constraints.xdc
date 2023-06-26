@@ -342,7 +342,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {CS_DAC}]
 set_property PACKAGE_PIN      L5 [get_ports {MSTREAM[16]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {MSTREAM[16]}]
 # MC2-24
-#set_property PACKAGE_PIN      R13 [get_ports {Z_B35_L20P}]
+#set_property PACKAGE_PIN      R1 [get_ports {Z_B35_L20P}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {Z_B35_L20P}]
 # MC2-25
 set_property PACKAGE_PIN      L4 [get_ports {MSTREAM[18]}]
